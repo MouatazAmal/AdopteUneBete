@@ -21,6 +21,13 @@ import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MdMenuModule } from 'md-menu/menu';
+import { NouveautesComponent } from './nouveautes/nouveautes.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -38,9 +45,22 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     AubAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AubEntityModule,
-    AubAppRoutingModule
+    AubAppRoutingModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MDBBootstrapModule.forRoot(),
+    FlexLayoutModule,
+    MdMenuModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    JhiMainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    NouveautesComponent
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

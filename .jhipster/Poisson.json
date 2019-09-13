@@ -1,0 +1,19 @@
+{
+    "name": "Poisson",
+    "fields": [
+        {
+            "fieldName": "typePoisson",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190912082529",
+    "entityTableName": "poisson",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

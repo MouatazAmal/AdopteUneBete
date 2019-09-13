@@ -1,0 +1,19 @@
+{
+    "name": "Autre",
+    "fields": [
+        {
+            "fieldName": "race",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190912082532",
+    "entityTableName": "autre",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

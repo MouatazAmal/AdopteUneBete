@@ -1,0 +1,52 @@
+{
+    "name": "Animal",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "statut",
+            "fieldType": "AnimalStatut",
+            "fieldValues": "DISPONIBLE,RESERVE,VENDU"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "panier",
+            "otherEntityRelationshipName": "animal",
+            "relationshipName": "panier",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "commande",
+            "otherEntityRelationshipName": "animal",
+            "relationshipName": "commande",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190912082528",
+    "entityTableName": "animal",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

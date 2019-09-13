@@ -1,0 +1,21 @@
+{
+    "name": "Panier",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "animal",
+            "otherEntityRelationshipName": "panier",
+            "relationshipName": "animal"
+        }
+    ],
+    "changelogDate": "20190912082526",
+    "entityTableName": "panier",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

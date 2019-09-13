@@ -8,6 +8,8 @@ import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 
+import { NavItem } from 'app/layouts/navbar/nav-items';
+
 @Component({
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
@@ -20,6 +22,33 @@ export class NavbarComponent implements OnInit {
   swaggerEnabled: boolean;
   modalRef: NgbModalRef;
   version: string;
+
+  navItems: NavItem[] = [
+    {
+      displayName: 'Nouveautées',
+      iconName: ''
+    },
+    {
+      displayName: 'Tout les produits',
+      iconName: ''
+    },
+    {
+      displayName: 'Poissons',
+      iconName: ''
+    },
+    {
+      displayName: 'Reptiles',
+      iconName: ''
+    },
+    {
+      displayName: 'Felins',
+      iconName: ''
+    },
+    {
+      displayName: 'Autres',
+      iconName: ''
+    }
+  ];
 
   constructor(
     private loginService: LoginService,

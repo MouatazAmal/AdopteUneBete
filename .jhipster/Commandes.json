@@ -1,0 +1,38 @@
+{
+    "name": "Commandes",
+    "fields": [
+        {
+            "fieldName": "dateCommande",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "statut",
+            "fieldType": "CommandeStatut",
+            "fieldValues": "CONFIRMEE,ANNULEE,EXPEDIEE,LIVREE,NON_CONFIRMEE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "animaux",
+            "otherEntityRelationshipName": "commandes",
+            "relationshipName": "animaux"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "utilisateurs",
+            "otherEntityRelationshipName": "commandes",
+            "relationshipName": "utilisateurs",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190913145816",
+    "entityTableName": "commandes",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
