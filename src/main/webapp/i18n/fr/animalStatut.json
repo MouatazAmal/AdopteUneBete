@@ -1,0 +1,10 @@
+{
+  "aubApp": {
+    "AnimalStatut": {
+      "null": "",
+      "DISPONIBLE": "DISPONIBLE",
+      "RESERVE": "RESERVE",
+      "VENDU": "VENDU"
+    }
+  }
+}

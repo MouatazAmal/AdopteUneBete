@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Animaux.
+    -->
+    <changeSet id="20190913145817-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paniers_id"
+                                 baseTableName="animaux"
+                                 constraintName="fk_animaux_paniers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="paniers"/>
+
+        <addForeignKeyConstraint baseColumnNames="commandes_id"
+                                 baseTableName="animaux"
+                                 constraintName="fk_animaux_commandes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commandes"/>
+
+    </changeSet>
+</databaseChangeLog>

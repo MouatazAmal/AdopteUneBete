@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-animaux-heading" jhiTranslate="aubApp.animaux.home.createOrEditLabel">Create or edit a Animaux</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.age" for="field_age">Age</label>
+                    <input type="number" class="form-control" name="age" id="field_age"
+                           formControlName="age"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.prix" for="field_prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" id="field_prix"
+                           formControlName="prix"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.description" for="field_description">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                              formControlName="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.statut" for="field_statut">Statut</label>
+                    <select class="form-control" name="statut" formControlName="statut" id="field_statut">
+                        <option value="DISPONIBLE">{{'aubApp.AnimalStatut.DISPONIBLE' | translate}}</option>
+                        <option value="RESERVE">{{'aubApp.AnimalStatut.RESERVE' | translate}}</option>
+                        <option value="VENDU">{{'aubApp.AnimalStatut.VENDU' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.typeAnimal" for="field_typeAnimal">Type Animal</label>
+                    <select class="form-control" name="typeAnimal" formControlName="typeAnimal" id="field_typeAnimal">
+                        <option value="POISSON">{{'aubApp.TypeAnimal.POISSON' | translate}}</option>
+                        <option value="REPTILE">{{'aubApp.TypeAnimal.REPTILE' | translate}}</option>
+                        <option value="FELIN">{{'aubApp.TypeAnimal.FELIN' | translate}}</option>
+                        <option value="CANIDE">{{'aubApp.TypeAnimal.CANIDE' | translate}}</option>
+                        <option value="AUTRES">{{'aubApp.TypeAnimal.AUTRES' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.sexe" for="field_sexe">Sexe</label>
+                    <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe">
+                        <option value="MALE">{{'aubApp.Sexe.MALE' | translate}}</option>
+                        <option value="FEMELLE">{{'aubApp.Sexe.FEMELLE' | translate}}</option>
+                        <option value="HERMAPHRODITE">{{'aubApp.Sexe.HERMAPHRODITE' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.poids" for="field_poids">Poids</label>
+                    <input type="number" class="form-control" name="poids" id="field_poids"
+                           formControlName="poids"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.fertilite" for="field_fertilite">Fertilite</label>
+                    <select class="form-control" name="fertilite" formControlName="fertilite" id="field_fertilite">
+                        <option value="STERILE">{{'aubApp.Fertilite.STERILE' | translate}}</option>
+                        <option value="CASTRE">{{'aubApp.Fertilite.CASTRE' | translate}}</option>
+                        <option value="FERTILE">{{'aubApp.Fertilite.FERTILE' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.image" for="field_image">Image</label>
+                    <div>
+                        <div *ngIf="editForm.get('image').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('imageContentType').value, editForm.get('image').value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{editForm.get('imageContentType').value}}, {{byteSize(editForm.get('image').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({image: null});editForm.patchValue({imageContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.paniers" for="field_paniers">Paniers</label>
+                    <select class="form-control" id="field_paniers" name="paniers" formControlName="paniers">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="paniersOption.id === editForm.get('paniers').value?.id ? editForm.get('paniers').value : paniersOption" *ngFor="let paniersOption of paniers; trackBy: trackPaniersById">{{paniersOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.commandes" for="field_commandes">Commandes</label>
+                    <select class="form-control" id="field_commandes" name="commandes" formControlName="commandes">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="commandesOption.id === editForm.get('commandes').value?.id ? editForm.get('commandes').value : commandesOption" *ngFor="let commandesOption of commandes; trackBy: trackCommandesById">{{commandesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

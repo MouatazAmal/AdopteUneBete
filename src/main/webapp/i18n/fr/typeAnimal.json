@@ -1,0 +1,12 @@
+{
+  "aubApp": {
+    "TypeAnimal": {
+      "null": "",
+      "POISSON": "POISSON",
+      "REPTILE": "REPTILE",
+      "FELIN": "FELIN",
+      "CANIDE": "CANIDE",
+      "AUTRES": "AUTRES"
+    }
+  }
+}

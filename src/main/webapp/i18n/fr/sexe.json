@@ -1,0 +1,10 @@
+{
+  "aubApp": {
+    "Sexe": {
+      "null": "",
+      "MALE": "MALE",
+      "FEMELLE": "FEMELLE",
+      "HERMAPHRODITE": "HERMAPHRODITE"
+    }
+  }
+}

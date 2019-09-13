@@ -1,0 +1,33 @@
+{
+  "aubApp": {
+    "animaux": {
+      "home": {
+        "title": "Animauxes",
+        "createLabel": "Créer un nouveau Animaux",
+        "createOrEditLabel": "Créer ou éditer un Animaux",
+        "notFound": "Aucun Animaux trouvé"
+      },
+      "created": "Un nouveau Animaux a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Animaux avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Animaux avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Animaux {{ id }} ?"
+      },
+      "detail": {
+        "title": "Animaux"
+      },
+      "nom": "Nom",
+      "age": "Age",
+      "prix": "Prix",
+      "description": "Description",
+      "statut": "Statut",
+      "typeAnimal": "Type Animal",
+      "sexe": "Sexe",
+      "poids": "Poids",
+      "fertilite": "Fertilite",
+      "image": "Image",
+      "paniers": "Paniers",
+      "commandes": "Commandes"
+    }
+  }
+}
