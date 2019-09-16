@@ -20,6 +20,8 @@ import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static com.uga.ecom.web.rest.TestUtil.createFormattingConversionService;
@@ -73,6 +75,10 @@ public class AnimauxResourceIT {
     private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
 
+    private static final Instant DEFAULT_DATE_AJOUT = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATE_AJOUT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant SMALLER_DATE_AJOUT = Instant.ofEpochMilli(-1L);
+
     @Autowired
     private AnimauxRepository animauxRepository;
 
@@ -125,7 +131,8 @@ public class AnimauxResourceIT {
             .poids(DEFAULT_POIDS)
             .fertilite(DEFAULT_FERTILITE)
             .image(DEFAULT_IMAGE)
-            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE);
+            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
+            .dateAjout(DEFAULT_DATE_AJOUT);
         return animaux;
     }
     /**
@@ -146,7 +153,8 @@ public class AnimauxResourceIT {
             .poids(UPDATED_POIDS)
             .fertilite(UPDATED_FERTILITE)
             .image(UPDATED_IMAGE)
-            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE);
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .dateAjout(UPDATED_DATE_AJOUT);
         return animaux;
     }
 
@@ -181,6 +189,7 @@ public class AnimauxResourceIT {
         assertThat(testAnimaux.getFertilite()).isEqualTo(DEFAULT_FERTILITE);
         assertThat(testAnimaux.getImage()).isEqualTo(DEFAULT_IMAGE);
         assertThat(testAnimaux.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
+        assertThat(testAnimaux.getDateAjout()).isEqualTo(DEFAULT_DATE_AJOUT);
     }
 
     @Test
@@ -224,7 +233,8 @@ public class AnimauxResourceIT {
             .andExpect(jsonPath("$.[*].poids").value(hasItem(DEFAULT_POIDS)))
             .andExpect(jsonPath("$.[*].fertilite").value(hasItem(DEFAULT_FERTILITE.toString())))
             .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))));
+            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
+            .andExpect(jsonPath("$.[*].dateAjout").value(hasItem(DEFAULT_DATE_AJOUT.toString())));
     }
     
     @Test
@@ -248,7 +258,8 @@ public class AnimauxResourceIT {
             .andExpect(jsonPath("$.poids").value(DEFAULT_POIDS))
             .andExpect(jsonPath("$.fertilite").value(DEFAULT_FERTILITE.toString()))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)));
+            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
+            .andExpect(jsonPath("$.dateAjout").value(DEFAULT_DATE_AJOUT.toString()));
     }
 
     @Test
@@ -282,7 +293,8 @@ public class AnimauxResourceIT {
             .poids(UPDATED_POIDS)
             .fertilite(UPDATED_FERTILITE)
             .image(UPDATED_IMAGE)
-            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE);
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .dateAjout(UPDATED_DATE_AJOUT);
 
         restAnimauxMockMvc.perform(put("/api/animauxes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -304,6 +316,7 @@ public class AnimauxResourceIT {
         assertThat(testAnimaux.getFertilite()).isEqualTo(UPDATED_FERTILITE);
         assertThat(testAnimaux.getImage()).isEqualTo(UPDATED_IMAGE);
         assertThat(testAnimaux.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
+        assertThat(testAnimaux.getDateAjout()).isEqualTo(UPDATED_DATE_AJOUT);
     }
 
     @Test

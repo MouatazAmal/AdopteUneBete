@@ -26,6 +26,7 @@
       "poids": "Poids",
       "fertilite": "Fertilite",
       "image": "Image",
+      "dateAjout": "Date Ajout",
       "paniers": "Paniers",
       "commandes": "Commandes"
     }

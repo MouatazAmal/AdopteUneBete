@@ -59,6 +59,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="date_ajout" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
             <column name="paniers_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -70,6 +74,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
+        <dropDefaultValue tableName="animaux" columnName="date_ajout" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20190913145817-1-relations" author="jhipster">
@@ -102,6 +107,7 @@
             <column name="fertilite" type="string"/>
             <column name="image" type="blob"/>
             <column name="image_content_type" type="string"/>
+            <column name="date_ajout" type="datetime"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

@@ -1,11 +1,11 @@
-id;nom;age;prix;description;statut;type_animal;sexe;poids;fertilite;image;image_content_type
-1;system Small;43933;10789;../fake-data/blob/hipster.txt;RESERVE;POISSON;HERMAPHRODITE;75555;CASTRE;../fake-data/blob/hipster.png;image/png
-2;Money Market Account;69478;16122;../fake-data/blob/hipster.txt;RESERVE;REPTILE;HERMAPHRODITE;31800;STERILE;../fake-data/blob/hipster.png;image/png
-3;cutting-edge ability Hat;53408;41741;../fake-data/blob/hipster.txt;RESERVE;FELIN;FEMELLE;70301;STERILE;../fake-data/blob/hipster.png;image/png
-4;Exclusive Moroccan Dirham card;14808;28484;../fake-data/blob/hipster.txt;VENDU;POISSON;MALE;14489;FERTILE;../fake-data/blob/hipster.png;image/png
-5;Credit Card Account;8085;76161;../fake-data/blob/hipster.txt;VENDU;POISSON;MALE;83530;STERILE;../fake-data/blob/hipster.png;image/png
-6;Argentine Peso;85835;59089;../fake-data/blob/hipster.txt;RESERVE;POISSON;FEMELLE;69093;STERILE;../fake-data/blob/hipster.png;image/png
-7;Forint;73521;11347;../fake-data/blob/hipster.txt;RESERVE;FELIN;HERMAPHRODITE;9310;CASTRE;../fake-data/blob/hipster.png;image/png
-8;even-keeled Saint Helena Pound;84666;89711;../fake-data/blob/hipster.txt;RESERVE;AUTRES;MALE;10147;CASTRE;../fake-data/blob/hipster.png;image/png
-9;Buckinghamshire Ports;99445;22426;../fake-data/blob/hipster.txt;VENDU;POISSON;MALE;64963;CASTRE;../fake-data/blob/hipster.png;image/png
-10;Berkshire;63633;26520;../fake-data/blob/hipster.txt;VENDU;CANIDE;HERMAPHRODITE;57690;CASTRE;../fake-data/blob/hipster.png;image/png
+id;nom;age;prix;description;statut;type_animal;sexe;poids;fertilite;image;image_content_type;date_ajout
+1;mobile Fish;77969;59865;../fake-data/blob/hipster.txt;RESERVE;FELIN;HERMAPHRODITE;2058;CASTRE;../fake-data/blob/hipster.png;image/png;2019-09-15T13:35:07
+2;red Chips Soap;30424;61165;../fake-data/blob/hipster.txt;VENDU;AUTRES;HERMAPHRODITE;23277;FERTILE;../fake-data/blob/hipster.png;image/png;2019-09-16T00:23:04
+3;Planner Canyon;85994;60754;../fake-data/blob/hipster.txt;RESERVE;CANIDE;MALE;12203;CASTRE;../fake-data/blob/hipster.png;image/png;2019-09-15T11:44:24
+4;Digitized invoice;31171;42515;../fake-data/blob/hipster.txt;RESERVE;REPTILE;MALE;72727;CASTRE;../fake-data/blob/hipster.png;image/png;2019-09-15T10:29:44
+5;navigating;74732;27134;../fake-data/blob/hipster.txt;RESERVE;POISSON;HERMAPHRODITE;80219;FERTILE;../fake-data/blob/hipster.png;image/png;2019-09-15T09:52:43
+6;index orange;552;1407;../fake-data/blob/hipster.txt;RESERVE;REPTILE;FEMELLE;37081;FERTILE;../fake-data/blob/hipster.png;image/png;2019-09-15T17:34:54
+7;New York tangible Mississippi;38292;11959;../fake-data/blob/hipster.txt;DISPONIBLE;CANIDE;HERMAPHRODITE;63641;CASTRE;../fake-data/blob/hipster.png;image/png;2019-09-15T11:46:56
+8;Phased;41038;53984;../fake-data/blob/hipster.txt;DISPONIBLE;FELIN;HERMAPHRODITE;21844;CASTRE;../fake-data/blob/hipster.png;image/png;2019-09-15T12:21:54
+9;projection Fresh;35629;31800;../fake-data/blob/hipster.txt;VENDU;POISSON;MALE;11986;FERTILE;../fake-data/blob/hipster.png;image/png;2019-09-15T10:56:02
+10;conglomeration;51879;55810;../fake-data/blob/hipster.txt;RESERVE;POISSON;MALE;97661;FERTILE;../fake-data/blob/hipster.png;image/png;2019-09-16T01:16:55

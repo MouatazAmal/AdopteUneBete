@@ -82,6 +82,7 @@ class AnimauxGatlingTest extends Simulation {
                 , "poids":"0"
                 , "fertilite":"STERILE"
                 , "image":null
+                , "dateAjout":"2020-01-01T00:00:00.000Z"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_animaux_url"))).exitHereIfFailed

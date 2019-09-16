@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import com.uga.ecom.domain.enumeration.AnimalStatut;
 
@@ -67,6 +68,9 @@ public class Animaux implements Serializable {
 
     @Column(name = "image_content_type")
     private String imageContentType;
+
+    @Column(name = "date_ajout")
+    private Instant dateAjout;
 
     @ManyToOne
     @JsonIgnoreProperties("animauxes")
@@ -228,6 +232,19 @@ public class Animaux implements Serializable {
         this.imageContentType = imageContentType;
     }
 
+    public Instant getDateAjout() {
+        return dateAjout;
+    }
+
+    public Animaux dateAjout(Instant dateAjout) {
+        this.dateAjout = dateAjout;
+        return this;
+    }
+
+    public void setDateAjout(Instant dateAjout) {
+        this.dateAjout = dateAjout;
+    }
+
     public Paniers getPaniers() {
         return paniers;
     }
@@ -286,6 +303,7 @@ public class Animaux implements Serializable {
             ", fertilite='" + getFertilite() + "'" +
             ", image='" + getImage() + "'" +
             ", imageContentType='" + getImageContentType() + "'" +
+            ", dateAjout='" + getDateAjout() + "'" +
             "}";
     }
 }

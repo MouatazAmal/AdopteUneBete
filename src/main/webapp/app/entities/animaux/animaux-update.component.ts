@@ -4,6 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IAnimaux, Animaux } from 'app/shared/model/animaux.model';
 import { AnimauxService } from './animaux.service';
@@ -36,6 +38,7 @@ export class AnimauxUpdateComponent implements OnInit {
     fertilite: [],
     image: [],
     imageContentType: [],
+    dateAjout: [],
     paniers: [],
     commandes: []
   });
@@ -85,6 +88,7 @@ export class AnimauxUpdateComponent implements OnInit {
       fertilite: animaux.fertilite,
       image: animaux.image,
       imageContentType: animaux.imageContentType,
+      dateAjout: animaux.dateAjout != null ? animaux.dateAjout.format(DATE_TIME_FORMAT) : null,
       paniers: animaux.paniers,
       commandes: animaux.commandes
     });
@@ -151,6 +155,8 @@ export class AnimauxUpdateComponent implements OnInit {
       fertilite: this.editForm.get(['fertilite']).value,
       imageContentType: this.editForm.get(['imageContentType']).value,
       image: this.editForm.get(['image']).value,
+      dateAjout:
+        this.editForm.get(['dateAjout']).value != null ? moment(this.editForm.get(['dateAjout']).value, DATE_TIME_FORMAT) : undefined,
       paniers: this.editForm.get(['paniers']).value,
       commandes: this.editForm.get(['commandes']).value
     };

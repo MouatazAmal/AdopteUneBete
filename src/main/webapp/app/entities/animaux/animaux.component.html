@@ -28,6 +28,7 @@
             <th><span jhiTranslate="aubApp.animaux.poids">Poids</span></th>
             <th><span jhiTranslate="aubApp.animaux.fertilite">Fertilite</span></th>
             <th><span jhiTranslate="aubApp.animaux.image">Image</span></th>
+            <th><span jhiTranslate="aubApp.animaux.dateAjout">Date Ajout</span></th>
             <th><span jhiTranslate="aubApp.animaux.paniers">Paniers</span></th>
             <th><span jhiTranslate="aubApp.animaux.commandes">Commandes</span></th>
             <th></th>
@@ -49,6 +50,7 @@
                     <a *ngIf="animaux.image" (click)="openFile(animaux.imageContentType, animaux.image)" jhiTranslate="entity.action.open">open</a>
                     <span *ngIf="animaux.image">{{animaux.imageContentType}}, {{byteSize(animaux.image)}}</span>
                 </td>
+                <td>{{animaux.dateAjout | date:'medium'}}</td>
                 <td>
                     <div *ngIf="animaux.paniers">
                         <a [routerLink]="['/paniers', animaux.paniers?.id, 'view' ]" >{{animaux.paniers?.id}}</a>

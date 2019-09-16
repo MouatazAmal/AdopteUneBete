@@ -1,3 +1,4 @@
+import { Moment } from 'moment';
 import { IPaniers } from 'app/shared/model/paniers.model';
 import { ICommandes } from 'app/shared/model/commandes.model';
 
@@ -40,6 +41,7 @@ export interface IAnimaux {
   fertilite?: Fertilite;
   imageContentType?: string;
   image?: any;
+  dateAjout?: Moment;
   paniers?: IPaniers;
   commandes?: ICommandes;
 }
@@ -58,6 +60,7 @@ export class Animaux implements IAnimaux {
     public fertilite?: Fertilite,
     public imageContentType?: string,
     public image?: any,
+    public dateAjout?: Moment,
     public paniers?: IPaniers,
     public commandes?: ICommandes
   ) {}
