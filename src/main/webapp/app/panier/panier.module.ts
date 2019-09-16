@@ -1,13 +1,14 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PanierComponent } from './panier.component';
+
 import { RouterModule } from '@angular/router';
 import { AubSharedModule } from 'app/shared';
-import { nouveautesRoute } from './nouveautes.route';
-import { NouveautesComponent } from './nouveautes.component';
+import { panierRoute } from './panier.route';
 
 @NgModule({
-  declarations: [NouveautesComponent],
-  imports: [AubSharedModule, RouterModule.forChild([nouveautesRoute])],
+  declarations: [PanierComponent],
+  imports: [AubSharedModule, RouterModule.forChild([panierRoute])],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NouveautesModule {}
+export class PanierModule {}
