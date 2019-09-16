@@ -22,11 +22,20 @@ import * as moment from 'moment';
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdMenuModule } from 'md-menu/menu';
 import { NouveautesComponent } from './nouveautes/nouveautes.component';
+import { PoissonsComponent } from './poissons/poissons.component';
+import { ToutlesproduitsComponent } from './toutlesproduits/toutlesproduits.component';
+import { FelinsComponent } from './felins/felins.component';
+import { AutresComponent } from './autres/autres.component';
+import { ReptilesComponent } from './reptiles/reptiles.component';
+import { PanierComponent } from './panier/panier.component';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   imports: [
@@ -48,6 +57,7 @@ import { NouveautesComponent } from './nouveautes/nouveautes.component';
     AubAppRoutingModule,
     MatToolbarModule,
     MatMenuModule,
+    MatCardModule,
     MDBBootstrapModule.forRoot(),
     FlexLayoutModule,
     MdMenuModule
@@ -59,7 +69,14 @@ import { NouveautesComponent } from './nouveautes/nouveautes.component';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
-    NouveautesComponent
+    NouveautesComponent,
+    PoissonsComponent,
+    ToutlesproduitsComponent,
+    ReptilesComponent,
+    FelinsComponent,
+    AutresComponent,
+    PanierComponent,
+    ArticleComponent
   ],
   providers: [
     {

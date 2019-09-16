@@ -21,13 +21,13 @@
                 </li>
             </ul>
         </span>
-
+    
       </span>
       <span>
           <!-- Search form -->
         <form class="form-inline waves-light" >
           <div class="md-form my-0">
-            <input class="form-control mr-sm-2 search_toggle" type="text" placeholder="Search">
+            <input class="form-control mr-sm-2 search_toggle" type="text" placeholder="Rechercher">
             <fa-icon icon="search"></fa-icon>
           </div>
         </form>
@@ -36,7 +36,14 @@
       <span fxShow fxHide.lt-md>
         <!-- Links -->
         <span *ngFor="let item of navItems" class="nav-item active button_span">
-            <a class="nav-link waves-light" >{{item.displayName}}<span class="sr-only"></span></a>
+            <a class="nav-link waves-light" >
+                <div routerLinkActive="active">
+                    <span routerLink="{{item.route}}" (click)="collapseNavbar()" >
+                        {{item.displayName}}
+                    </span>
+                    <span class="sr-only"></span>
+                </div>
+            </a>
         </span>
     </span>
     <span class="example-spacer"></span>
@@ -150,13 +157,15 @@
                         <!--basket-->
                         <li class="nav-item pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                             <a class="nav-link " href="javascript:void(0);" id="basket-menu">
-                                <span *ngIf="!getImageUrl()">
-                                <fa-icon icon="shopping-basket" style="color: white;"></fa-icon>
-                                <span class="dropdown-menu-self" >
-                                    Panier
-                                </span>
-                                </span>
-
+                                <div routerLinkActive="active">
+                                        <span routerLink="panieryyy" (click)="collapseNavbar()" >
+                                                <span *ngIf="!getImageUrl()">
+                                                        <fa-icon icon="shopping-basket" style="color: white;"></fa-icon>
+                                                        <span class="dropdown-menu-self" > Panier </span>
+                                                </span>
+                                        </span>
+                                        <span class="sr-only"></span>
+                                </div>
                             </a>
                         </li>
                         <!---------acountMenu-->
@@ -164,7 +173,7 @@
                             <a class="nav-link dropdown-toggle dropdown-menu-self" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                                 <span *ngIf="!getImageUrl()">
                                 <fa-icon icon="user" style="color : white;"></fa-icon>
-                                <span jhiTranslate="global.menu.account.main" class="dropdown-menu-self">
+                                <span jhiTranslate="global.menu.account.main" class="dropdown-menu-self"> 
                                     Account
                                 </span>
                                 </span>

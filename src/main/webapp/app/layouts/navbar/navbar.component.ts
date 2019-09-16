@@ -25,27 +25,33 @@ export class NavbarComponent implements OnInit {
 
   navItems: NavItem[] = [
     {
-      displayName: 'Nouveautées',
+      displayName: 'Nouveautés',
+      route: 'nouveautes',
       iconName: ''
     },
     {
       displayName: 'Tout les produits',
+      route: 'toutlesproduits',
       iconName: ''
     },
     {
       displayName: 'Poissons',
+      route: 'poissons',
       iconName: ''
     },
     {
       displayName: 'Reptiles',
+      route: 'reptilesyyy',
       iconName: ''
     },
     {
       displayName: 'Felins',
+      route: 'felins',
       iconName: ''
     },
     {
       displayName: 'Autres',
+      route: 'autres',
       iconName: ''
     }
   ];
