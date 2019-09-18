@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="animaux">
+            <h2><span jhiTranslate="aubApp.animaux.detail.title">Animaux</span> {{animaux.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="aubApp.animaux.nom">Nom</span></dt>
+                <dd>
+                    <span>{{animaux.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.age">Age</span></dt>
+                <dd>
+                    <span>{{animaux.age}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.prix">Prix</span></dt>
+                <dd>
+                    <span>{{animaux.prix}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.description">Description</span></dt>
+                <dd>
+                    <span>{{animaux.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.statut">Statut</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'aubApp.AnimalStatut.' + animaux.statut}}">{{animaux.statut}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.typeAnimal">Type Animal</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'aubApp.TypeAnimal.' + animaux.typeAnimal}}">{{animaux.typeAnimal}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.sexe">Sexe</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'aubApp.Sexe.' + animaux.sexe}}">{{animaux.sexe}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.poids">Poids</span></dt>
+                <dd>
+                    <span>{{animaux.poids}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.fertilite">Fertilite</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'aubApp.Fertilite.' + animaux.fertilite}}">{{animaux.fertilite}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.dateAjout">Date Ajout</span></dt>
+                <dd>
+                    <span>{{animaux.dateAjout}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="animaux.image">
+                        <a (click)="openFile(animaux.imageContentType, animaux.image)" jhiTranslate="entity.action.open">open</a>
+                        {{animaux.imageContentType}}, {{byteSize(animaux.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.paniers">Paniers</span></dt>
+                <dd>
+                    <div *ngIf="animaux.paniers">
+                        <a [routerLink]="['/paniers', animaux.paniers?.id, 'view']">{{animaux.paniers?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="aubApp.animaux.commandes">Commandes</span></dt>
+                <dd>
+                    <div *ngIf="animaux.commandes">
+                        <a [routerLink]="['/commandes', animaux.commandes?.id, 'view']">{{animaux.commandes?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/animaux', animaux.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

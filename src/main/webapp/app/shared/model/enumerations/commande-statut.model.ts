@@ -1,0 +1,7 @@
+export const enum CommandeStatut {
+  CONFIRMEE = 'CONFIRMEE',
+  ANNULEE = 'ANNULEE',
+  EXPEDIEE = 'EXPEDIEE',
+  LIVREE = 'LIVREE',
+  NON_CONFIRMEE = 'NON_CONFIRMEE'
+}

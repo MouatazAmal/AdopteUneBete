@@ -1,0 +1,11 @@
+id;nom;age;prix;description;statut;type_animal;sexe;poids;fertilite;date_ajout;image;image_content_type
+1;system Small;43933;10789;../fake-data/blob/hipster.txt;VENDU;AUTRES;MALE;75555;FERTILE;2019-09-18T07:03:56;../fake-data/blob/hipster.png;image/png
+2;neutral Salad;92969;62435;../fake-data/blob/hipster.txt;RESERVE;FELIN;FEMELLE;35629;STERILE;2019-09-18T02:22:55;../fake-data/blob/hipster.png;image/png
+3;withdrawal;52;81801;../fake-data/blob/hipster.txt;VENDU;AUTRES;HERMAPHRODITE;32320;FERTILE;2019-09-17T16:02:27;../fake-data/blob/hipster.png;image/png
+4;robust Engineer;96244;24687;../fake-data/blob/hipster.txt;DISPONIBLE;REPTILE;HERMAPHRODITE;3305;CASTRE;2019-09-17T17:41:20;../fake-data/blob/hipster.png;image/png
+5;Canadian Dollar;53093;48945;../fake-data/blob/hipster.txt;RESERVE;FELIN;HERMAPHRODITE;53577;FERTILE;2019-09-18T04:26:12;../fake-data/blob/hipster.png;image/png
+6;Refined Rubber Gloves Algerian Dinar Clothing;51209;80950;../fake-data/blob/hipster.txt;VENDU;POISSON;MALE;67569;STERILE;2019-09-17T19:55:06;../fake-data/blob/hipster.png;image/png
+7;Fiji Dollar Profound Bacon;98216;55520;../fake-data/blob/hipster.txt;DISPONIBLE;FELIN;MALE;33902;FERTILE;2019-09-17T15:29:25;../fake-data/blob/hipster.png;image/png
+8;Internal AI optical;64203;85092;../fake-data/blob/hipster.txt;VENDU;AUTRES;MALE;97366;CASTRE;2019-09-18T01:35:04;../fake-data/blob/hipster.png;image/png
+9;Buckinghamshire Ports;99445;22426;../fake-data/blob/hipster.txt;RESERVE;AUTRES;FEMELLE;64963;STERILE;2019-09-18T06:39:53;../fake-data/blob/hipster.png;image/png
+10;turn-key dedicated;24398;58987;../fake-data/blob/hipster.txt;RESERVE;AUTRES;MALE;23018;FERTILE;2019-09-18T07:52:00;../fake-data/blob/hipster.png;image/png

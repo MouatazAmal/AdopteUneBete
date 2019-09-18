@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="utilisateurs">
+            <h2><span jhiTranslate="aubApp.utilisateurs.detail.title">Utilisateurs</span> {{utilisateurs.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="aubApp.utilisateurs.numRue">Num Rue</span></dt>
+                <dd>
+                    <span>{{utilisateurs.numRue}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.utilisateurs.nomRue">Nom Rue</span></dt>
+                <dd>
+                    <span>{{utilisateurs.nomRue}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.utilisateurs.ville">Ville</span></dt>
+                <dd>
+                    <span>{{utilisateurs.ville}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.utilisateurs.codePostal">Code Postal</span></dt>
+                <dd>
+                    <span>{{utilisateurs.codePostal}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.utilisateurs.dateNaissance">Date Naissance</span></dt>
+                <dd>
+                    <span>{{utilisateurs.dateNaissance}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.utilisateurs.paniers">Paniers</span></dt>
+                <dd>
+                    <div *ngIf="utilisateurs.paniers">
+                        <a [routerLink]="['/paniers', utilisateurs.paniers?.id, 'view']">{{utilisateurs.paniers?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="aubApp.utilisateurs.user">User</span></dt>
+                <dd>
+                    {{utilisateurs.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/utilisateurs', utilisateurs.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -42,6 +42,13 @@ public class CacheConfiguration {
             createCache(cm, com.uga.ecom.domain.User.class.getName());
             createCache(cm, com.uga.ecom.domain.Authority.class.getName());
             createCache(cm, com.uga.ecom.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.uga.ecom.domain.Utilisateurs.class.getName());
+            createCache(cm, com.uga.ecom.domain.Utilisateurs.class.getName() + ".commandes");
+            createCache(cm, com.uga.ecom.domain.Paniers.class.getName());
+            createCache(cm, com.uga.ecom.domain.Paniers.class.getName() + ".animauxes");
+            createCache(cm, com.uga.ecom.domain.Commandes.class.getName());
+            createCache(cm, com.uga.ecom.domain.Commandes.class.getName() + ".animauxes");
+            createCache(cm, com.uga.ecom.domain.Animaux.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

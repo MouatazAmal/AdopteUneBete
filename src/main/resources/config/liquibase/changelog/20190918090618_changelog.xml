@@ -1,0 +1,80 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="root (generated)" id="1568797591082-3">
+        <createTable tableName="animaux">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="animauxPK"/>
+            </column>
+            <column name="age" type="INT"/>
+            <column name="date_ajout" type="TIMESTAMP"/>
+            <column name="description" type="CLOB"/>
+            <column name="fertilite" type="VARCHAR(255)"/>
+            <column name="image" type="BLOB"/>
+            <column name="image_content_type" type="VARCHAR(255)"/>
+            <column name="nom" type="VARCHAR(255)"/>
+            <column name="poids" type="INT"/>
+            <column name="prix" type="INT"/>
+            <column name="sexe" type="VARCHAR(255)"/>
+            <column name="statut" type="VARCHAR(255)"/>
+            <column name="type_animal" type="VARCHAR(255)"/>
+            <column name="commandes_id" type="BIGINT"/>
+            <column name="paniers_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-4">
+        <createTable tableName="commandes">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="commandesPK"/>
+            </column>
+            <column name="date_commande" type="TIMESTAMP"/>
+            <column name="statut" type="VARCHAR(255)"/>
+            <column name="utilisateurs_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-5">
+        <createTable tableName="paniers">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="paniersPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-6">
+        <createTable tableName="utilisateurs">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="utilisateursPK"/>
+            </column>
+            <column name="code_postal" type="INT"/>
+            <column name="date_naissance" type="TIMESTAMP"/>
+            <column name="nom_rue" type="VARCHAR(255)"/>
+            <column name="num_rue" type="INT"/>
+            <column name="ville" type="VARCHAR(255)"/>
+            <column name="paniers_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-7">
+        <addUniqueConstraint columnNames="paniers_id" constraintName="UC_UTILISATEURSPANIERS_ID_COL" tableName="utilisateurs"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-8">
+        <addForeignKeyConstraint baseColumnNames="paniers_id" baseTableName="utilisateurs" constraintName="FK1eu4pqi3517r2n0r48nmaj12j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paniers" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-9">
+        <addForeignKeyConstraint baseColumnNames="paniers_id" baseTableName="animaux" constraintName="FK22v25fdtdh95d79gd2i2y22bp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paniers" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-10">
+        <addForeignKeyConstraint baseColumnNames="utilisateurs_id" baseTableName="commandes" constraintName="FKdyacth1mmgk62inaurgewqc6x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="utilisateurs" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-11">
+        <addForeignKeyConstraint baseColumnNames="commandes_id" baseTableName="animaux" constraintName="FKir7wix1c09gqkifs6mah169e0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="commandes" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-12">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="utilisateurs" constraintName="FKp8gfj0viyg9xnrxqqlfa4qo2a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-1">
+        <dropUniqueConstraint constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1568797591082-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

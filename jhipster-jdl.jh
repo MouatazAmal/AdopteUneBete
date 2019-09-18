@@ -1,0 +1,79 @@
+
+entity Utilisateurs {
+	id Long,
+    numRue Integer,
+    nomRue String,
+    ville String,
+    codePostal Integer,
+    dateNaissance Instant,    
+}
+
+entity Paniers{
+	id Long
+}
+
+entity Commandes{
+	id Long,
+    dateCommande Instant,
+    statut CommandeStatut
+}
+
+
+entity Animaux{
+	id Long,
+    nom String,
+    age Integer,
+    prix Integer,
+    description TextBlob,
+    statut AnimalStatut,
+    typeAnimal TypeAnimal,
+    sexe Sexe,
+    poids Integer,
+    fertilite Fertilite,
+    dateAjout Instant,
+    image Blob
+}
+
+enum Fertilite{
+	STERILE,
+    CASTRE,
+    FERTILE
+}
+enum AnimalStatut{
+	DISPONIBLE,
+    RESERVE,
+    VENDU
+}
+
+enum CommandeStatut{
+	CONFIRMEE,
+    ANNULEE,
+    EXPEDIEE,
+    LIVREE,
+    NON_CONFIRMEE
+}
+
+enum TypeAnimal{
+	POISSON,
+    REPTILE,
+    FELIN,
+    CANIDE,
+    AUTRES
+}
+
+enum Sexe{
+	MALE,
+    FEMELLE,
+    HERMAPHRODITE
+}
+relationship OneToOne {
+	Utilisateurs{paniers} to Paniers
+}
+
+relationship OneToMany {
+	Utilisateurs to Commandes{utilisateurs},
+    Paniers to Animaux{paniers},
+    Commandes to Animaux{commandes}
+}
+
+

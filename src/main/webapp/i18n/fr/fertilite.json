@@ -1,0 +1,10 @@
+{
+  "aubApp": {
+    "Fertilite": {
+      "null": "",
+      "STERILE": "STERILE",
+      "CASTRE": "CASTRE",
+      "FERTILE": "FERTILE"
+    }
+  }
+}

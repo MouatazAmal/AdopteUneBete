@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="commandes">
+            <h2><span jhiTranslate="aubApp.commandes.detail.title">Commandes</span> {{commandes.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="aubApp.commandes.dateCommande">Date Commande</span></dt>
+                <dd>
+                    <span>{{commandes.dateCommande}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.commandes.statut">Statut</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'aubApp.CommandeStatut.' + commandes.statut}}">{{commandes.statut}}</span>
+                </dd>
+                <dt><span jhiTranslate="aubApp.commandes.utilisateurs">Utilisateurs</span></dt>
+                <dd>
+                    <div *ngIf="commandes.utilisateurs">
+                        <a [routerLink]="['/utilisateurs', commandes.utilisateurs?.id, 'view']">{{commandes.utilisateurs?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/commandes', commandes.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
