@@ -4,6 +4,8 @@
 
 Launch all your infrastructure by running: `docker-compose up -d`.
 
+To generate the missing Docker image(s), please run: ./mvnw -ntp -Pprod verify jib:dockerBuild in /home/doublean/AUBv3   
+
 ## Configured Docker services
 
 ### Applications and dependencies:
