@@ -3,7 +3,7 @@ import { Route } from '@angular/router';
 import { ToutlesproduitsComponent } from './toutlesproduits.component';
 
 export const toutlesproduitsRoute: Route = {
-  path: 'toutlesproduits',
+  path: '',
   component: ToutlesproduitsComponent,
   data: {
     authorities: [],

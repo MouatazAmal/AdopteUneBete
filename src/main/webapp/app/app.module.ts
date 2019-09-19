@@ -22,25 +22,24 @@ import { ErrorComponent } from './layouts/error/error.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdMenuModule } from 'md-menu/menu';
-import { NouveautesComponent } from './nouveautes/nouveautes.component';
-import { PoissonsComponent } from './poissons/poissons.component';
-import { ToutlesproduitsComponent } from './toutlesproduits/toutlesproduits.component';
-import { FelinsComponent } from './felins/felins.component';
-import { AutresComponent } from './autres/autres.component';
-import { ReptilesComponent } from './reptiles/reptiles.component';
-import { PanierComponent } from './panier/panier.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DemoMaterialModule} from './material-module';
+//import { MdMenuModule } from 'md-menu/menu';
 import { NouveautesModule } from './nouveautes/nouveautes.module';
-import { ArticleComponent } from './article/article.component';
+import { PoissonsModule } from './poissons/poissons.module';
+import { ToutlesproduitsModule } from './toutlesproduits/toutlesproduits.module';
+import { FelinsModule } from './felins/felins.module';
+import { AutresModule } from './autres/autres.module';
+import { ReptilesModule } from './reptiles/reptiles.module';
+import { PanierModule } from './panier/panier.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoMaterialModule } from './material-module';
+//import { ArticleModule } from './article/article.module';
 
 @NgModule({
   imports: [
@@ -56,13 +55,19 @@ import { ArticleComponent } from './article/article.component';
     MatCardModule,
     MDBBootstrapModule.forRoot(),
     FlexLayoutModule,
-    MdMenuModule,
+    //MdMenuModule,
     MatSidenavModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatSelectModule,
     DemoMaterialModule,
-    NouveautesModule
+    NouveautesModule,
+    PoissonsModule,
+    ToutlesproduitsModule,
+    FelinsModule,
+    AutresModule,
+    ReptilesModule,
+    PanierModule
   ],
   declarations: [
     JhiMainComponent,
@@ -70,13 +75,13 @@ import { ArticleComponent } from './article/article.component';
     ErrorComponent,
     PageRibbonComponent,
     ActiveMenuDirective,
-    FooterComponent,
-    PoissonsComponent,
-    ToutlesproduitsComponent,
-    ReptilesComponent,
-    FelinsComponent,
-    AutresComponent,
-    PanierComponent
+    FooterComponent
+    //PoissonsComponent,
+    //ToutlesproduitsComponent,
+    //ReptilesComponent,
+    //FelinsComponent,
+    //AutresComponent,
+    //PanierComponent
   ],
   providers: [
     {

@@ -10,8 +10,8 @@ import { panierRoute } from './panier/panier.route';
 import { articleRoute } from './article/article.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { from } from 'rxjs';
-import {navbarRoute} from "app/layouts/navbar/navbar.route";
-import {errorRoute} from "app/layouts/error/error.route";
+import { navbarRoute } from 'app/layouts/navbar/navbar.route';
+import { errorRoute } from 'app/layouts/error/error.route';
 
 const LAYOUT_ROUTES = [
   navbarRoute,

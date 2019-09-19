@@ -119,5 +119,4 @@ export class NavbarComponent implements OnInit {
   ChangeCatItem(newSelectedCat: string) {
     this.defaultNavItem = newSelectedCat;
   }
-
 }

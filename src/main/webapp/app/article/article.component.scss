@@ -1,42 +1,42 @@
 .article-card {
-    max-width: 400px;
+  max-width: 400px;
 }
 
-.article-card-img{
-    object-fit: contain
-}
-  
-.articlelogo{
-    width: 100%;
+.article-card-img {
+  object-fit: contain;
 }
 
-.articleImgDiv{
-    width: 100%;
-    height: 170px;
-    overflow: hidden;
+.articlelogo {
+  width: 100%;
 }
 
-.articleCard{
-    border: 0;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-    padding: 5px 5px;
+.articleImgDiv {
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+}
+
+.articleCard {
+  border: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  padding: 5px 5px;
 }
 .circle {
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    background-color: darkslategray;
-    border: none;
-    float: right;
-    display: block;
-    position: relative;
-    top: -14px;
-    right: 12px;
-  }
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background-color: darkslategray;
+  border: none;
+  float: right;
+  display: block;
+  position: relative;
+  top: -14px;
+  right: 12px;
+}
 
-  .chevronIcon{
-    color: white;
-    position: relative;
-    top: 6px;
-    right: -13px;
-  }
+.chevronIcon {
+  color: white;
+  position: relative;
+  top: 6px;
+  right: -13px;
+}

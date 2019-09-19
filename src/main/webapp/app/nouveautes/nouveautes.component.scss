@@ -1,23 +1,21 @@
+.middle-spacer {
+  flex: 0.5 1 auto;
+}
 
+.catName {
+  margin: 50px 0px;
+}
 
-  .middle-spacer {
-    flex: 0.5 1 auto;
-  }
+.revertPadding {
+  padding-left: 60px;
+}
+.revertPaddingRight {
+  padding-right: 40px;
+}
+.spacedLines {
+  margin-top: 30px;
+}
 
-  .catName{
-    margin: 50px 0px;
-  }
-
-  .revertPadding{
-    padding-left: 60px;
-  }
-  .revertPaddingRight{
-    padding-right: 40px;
-  }
-  .spacedLines{
-    margin-top: 30px;
-  }
-
-  .totalPage{
-    height: 800px;
-  }
+.totalPage {
+  height: 800px;
+}

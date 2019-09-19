@@ -1,3 +1,3 @@
 export interface PriceItem {
-    displayName: string;
-  }
+  displayName: string;
+}
