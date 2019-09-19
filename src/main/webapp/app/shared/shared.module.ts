@@ -7,9 +7,10 @@ import { JhiLoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 import { ArticleComponent } from 'app/article/article.component';
+import {MDBBootstrapModule} from "angular-bootstrap-md";
 
 @NgModule({
-  imports: [AubSharedLibsModule],
+  imports: [AubSharedLibsModule, MDBBootstrapModule],
   declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective, ArticleComponent],
   entryComponents: [JhiLoginModalComponent],
   exports: [
@@ -22,4 +23,10 @@ import { ArticleComponent } from 'app/article/article.component';
     ArticleComponent
   ]
 })
-export class AubSharedModule {}
+export class AubSharedModule {
+  static forRoot() {
+    return {
+      ngModule: AubSharedModule
+    };
+}
+}

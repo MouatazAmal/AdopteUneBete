@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PanierComponent } from './panier.component';
 
 import { RouterModule } from '@angular/router';
-import { AubSharedModule } from 'app/shared';
+import {AubSharedModule} from "app/shared/shared.module";
 import { panierRoute } from './panier.route';
 
 @NgModule({

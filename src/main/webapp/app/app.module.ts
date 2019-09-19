@@ -45,7 +45,7 @@ import { ArticleComponent } from './article/article.component';
 @NgModule({
   imports: [
     BrowserModule,
-    AubSharedModule,
+    AubSharedModule.forRoot(),
     AubCoreModule,
     AubHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
@@ -63,6 +63,20 @@ import { ArticleComponent } from './article/article.component';
     MatSelectModule,
     DemoMaterialModule,
     NouveautesModule
+  ],
+  declarations: [
+    JhiMainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    PoissonsComponent,
+    ToutlesproduitsComponent,
+    ReptilesComponent,
+    FelinsComponent,
+    AutresComponent,
+    PanierComponent
   ],
   providers: [
     {

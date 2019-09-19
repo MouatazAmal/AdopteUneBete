@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { errorRoute, navbarRoute } from './layouts';
 import { nouveautesRoute } from './nouveautes/nouveautes.route';
 import { toutlesproduitsRoute } from './toutlesproduits/toutlesproduits.route';
 import { poissonsRoute } from './poissons/poissons.route';
@@ -11,6 +10,8 @@ import { panierRoute } from './panier/panier.route';
 import { articleRoute } from './article/article.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { from } from 'rxjs';
+import {navbarRoute} from "app/layouts/navbar/navbar.route";
+import {errorRoute} from "app/layouts/error/error.route";
 
 const LAYOUT_ROUTES = [
   navbarRoute,

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReptilesComponent } from './reptiles.component';
 
 import { RouterModule } from '@angular/router';
-import { AubSharedModule } from 'app/shared';
+import {AubSharedModule} from "app/shared/shared.module";
 import { reptilesRoute } from './reptiles.route';
 
 @NgModule({
