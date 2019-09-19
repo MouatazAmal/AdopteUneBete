@@ -29,11 +29,6 @@ export class NavbarComponent implements OnInit {
   defaultNavItem = 'Categorie ';
   navItems: NavItem[] = [
     {
-      displayName: 'Nouveautés',
-      route: 'nouveautes',
-      iconName: ''
-    },
-    {
       displayName: 'Tout les produits',
       route: 'toutlesproduits',
       iconName: ''

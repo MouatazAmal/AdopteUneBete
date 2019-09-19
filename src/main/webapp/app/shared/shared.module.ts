@@ -1,3 +1,5 @@
+import { ArticlePageComponent } from './../article-page/article-page.component';
+import { NouveautesComponent } from './../nouveautes/nouveautes.component';
 import { NgModule } from '@angular/core';
 import { AubSharedLibsModule } from './shared-libs.module';
 import { FindLanguageFromKeyPipe } from './language/find-language-from-key.pipe';
@@ -17,7 +19,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     JhiAlertErrorComponent,
     JhiLoginModalComponent,
     HasAnyAuthorityDirective,
-    ArticleComponent
+    ArticleComponent,
+    NouveautesComponent,
+    ArticlePageComponent
   ],
   entryComponents: [JhiLoginModalComponent],
   exports: [
@@ -27,7 +31,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     JhiAlertErrorComponent,
     JhiLoginModalComponent,
     HasAnyAuthorityDirective,
-    ArticleComponent
+    ArticleComponent,
+    NouveautesComponent,
+    ArticlePageComponent
   ]
 })
 export class AubSharedModule {

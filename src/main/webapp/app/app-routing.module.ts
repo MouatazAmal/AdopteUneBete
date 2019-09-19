@@ -7,15 +7,17 @@ import { reptilesRoute } from './reptiles/reptiles.route';
 import { felinsRoute } from './felins/felins.route';
 import { autresRoute } from './autres/autres.route';
 import { panierRoute } from './panier/panier.route';
-import { articleRoute } from './article/article.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
-import { from } from 'rxjs';
 import { navbarRoute } from 'app/layouts/navbar/navbar.route';
 import { errorRoute } from 'app/layouts/error/error.route';
+import { articleRoute } from "app/article/article.route";
+import { articlePageRoute } from "app/article-page/article-page.route";
+
 
 const LAYOUT_ROUTES = [
   navbarRoute,
   articleRoute,
+  articlePageRoute,
   nouveautesRoute,
   toutlesproduitsRoute,
   poissonsRoute,

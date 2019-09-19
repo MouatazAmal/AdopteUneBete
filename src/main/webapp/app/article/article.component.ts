@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ArticleItem } from 'app/article/article-items';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'jhi-article',
@@ -9,7 +10,13 @@ import { ArticleItem } from 'app/article/article-items';
 export class ArticleComponent implements OnInit {
   @Input() articleItem: ArticleItem;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  goToProductDetails() {
+    console.log(this.articleItem);
+    //this.stateService.data = this.articleItem; , { state: this.articleItem }
+    this.router.navigate(['../articlePage', this.articleItem.id]);
+  }
 }

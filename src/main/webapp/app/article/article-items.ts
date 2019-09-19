@@ -5,4 +5,5 @@ export interface ArticleItem {
   route?: string;
   price: string;
   category: string;
+  id: number;
 }

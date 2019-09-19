@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 import { PriceItem } from './price-items';
 import { ArticleItem } from 'app/article/article-items';
 
@@ -8,13 +8,13 @@ import { ArticleItem } from 'app/article/article-items';
   styleUrls: ['./nouveautes.component.scss']
 })
 export class NouveautesComponent implements OnInit {
-  Category = 'Nouveautes';
+  @Input() Category: string;
   selectedSexeFilter = 'Sexe ';
   selectedPriceFilter = 'Price ';
   selectedTrieFilter = 'Default ';
 
   articles: ArticleItem[];
-  trieItems: string[] = ['Default', 'Prix croissant', 'Pric decroissant', 'Date dapparution', 'Age'];
+  trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', 'Date d\'apparition', 'Age'];
   sexeItems: string[] = ['Male', 'Female'];
   priceItems: PriceItem[] = [
     {
@@ -40,6 +40,8 @@ export class NouveautesComponent implements OnInit {
     }
   ];
 
+  constructor() {}
+
   ChangePriceFilter(newPriceFilter: string) {
     this.selectedPriceFilter = newPriceFilter;
   }
@@ -53,31 +55,61 @@ export class NouveautesComponent implements OnInit {
   getResult() {
     this.articles = [
       {
-        displayName: 'lion',
+        displayName: 'lion zbshvzhvs',
         iconName: '../../content/images/animalsPics/lion.jpg',
         price: '20 000',
-        category: 'felin'
+        category: 'felin',
+        id: 1
       },
       {
         displayName: 'tigre',
         iconName: '../../content/images/animalsPics/Tigre.jpg',
         price: '30 000',
-        category: 'felin'
+        category: 'felin',
+        id: 2
       },
       {
-        displayName: 'lion',
+        displayName: 'lion2',
         iconName: '../../content/images/animalsPics/lion.jpg',
         price: '20 000',
-        category: 'felin'
+        category: 'felin',
+        id: 3
+      },
+      {
+        displayName: 'lion3',
+        iconName: '../../content/images/animalsPics/lion.jpg',
+        price: '20 000',
+        category: 'felin',
+        id: 4
+      },
+      {
+        displayName: 'lion4',
+        iconName: '../../content/images/animalsPics/lion.jpg',
+        price: '20 000',
+        category: 'felin',
+        id: 5
+      },
+      {
+        displayName: 'tigre2',
+        iconName: '../../content/images/animalsPics/Tigre.jpg',
+        price: '30 000',
+        category: 'felin',
+        id: 6
+      },
+      {
+        displayName: 'tigre3',
+        iconName: '../../content/images/animalsPics/Tigre.jpg',
+        price: '30 000',
+        category: 'felin',
+        id: 7
       }
     ];
   }
 
   SetCategory(cat) {
-    /*on input a changer */
+    /* on input a changer */
     this.Category = cat;
   }
-  constructor() {}
 
   ngOnInit() {
     this.getResult();
