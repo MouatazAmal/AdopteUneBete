@@ -1,14 +1,20 @@
 package com.uga.ecom.web.rest;
 
 import com.uga.ecom.domain.Animaux;
+import com.uga.ecom.domain.enumeration.Fertilite;
+import com.uga.ecom.domain.enumeration.Sexe;
+import com.uga.ecom.domain.enumeration.TypeAnimal;
 import com.uga.ecom.repository.AnimauxRepository;
+import com.uga.ecom.service.AnimauxDbTaskManager;
 import com.uga.ecom.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +34,9 @@ public class AnimauxResource {
     private final Logger log = LoggerFactory.getLogger(AnimauxResource.class);
 
     private static final String ENTITY_NAME = "animaux";
+
+    @Autowired
+    private AnimauxDbTaskManager animauxDbTaskManager;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -85,8 +94,28 @@ public class AnimauxResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of animauxes in body.
      */
     @GetMapping("/animauxes")
-    public List<Animaux> getAllAnimauxes() {
+    public List<Animaux> getAllAnimauxes(
+        @RequestParam(required = false) TypeAnimal typeAnimal,
+        @RequestParam(required = false) Sexe sexe,
+        @RequestParam(required = false) Fertilite fertilite,
+        @RequestParam(required = false) Integer ageMin,
+        @RequestParam(required = false) Integer ageMax,
+        @RequestParam(required = false) Integer prixMin,
+        @RequestParam(required = false) Integer prixMax
+    ) {
         log.debug("REST request to get all Animauxes");
+        if (prixMin != null || prixMax != null){
+            return animauxDbTaskManager.getAnimalsByPrix(prixMin,prixMax);
+        }else if (ageMin != null || ageMax != null){
+            return animauxDbTaskManager.getAnimalsByAge(ageMin,ageMax);
+        }
+        else if (fertilite!= null){
+            return animauxDbTaskManager.getAnimalsByFertilite(fertilite);
+        }else if (sexe != null){
+            return animauxDbTaskManager.getAnimalsBySexe(sexe);
+        } else if (typeAnimal != null){
+            return animauxDbTaskManager.getAnimalsByTypeAnimaux(typeAnimal);
+        }
         return animauxRepository.findAll();
     }
 
@@ -114,5 +143,17 @@ public class AnimauxResource {
         log.debug("REST request to delete Animaux : {}", id);
         animauxRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * {@code GET  /animauxes/new-arrivals} : get animals orderBy dateAjout
+     *
+     * @return the {@link ResponseEntity} with status {@code 202 (ACCEPTED)}.
+     */
+    @GetMapping("/animauxes/new-arrivals")
+    public ResponseEntity<List<Animaux>> getAnimalsByDate(){
+        log.debug("REST request to get new arrivals");
+        List<Animaux> animauxes = animauxRepository.findTop5ByOrderByDateAjout();
+        return new ResponseEntity<>(animauxes,HttpStatus.ACCEPTED);
     }
 }

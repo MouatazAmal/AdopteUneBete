@@ -226,6 +226,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-loader-tools</artifactId>
         </dependency>
@@ -330,6 +336,12 @@
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
@@ -997,32 +1009,32 @@
             <id>war</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${maven-war-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>war</goal>
-                                </goals>
-                                <phase>package</phase>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <warSourceIncludes>WEB-INF/**,META-INF/**</warSourceIncludes>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <warSourceDirectory>target/classes/static/</warSourceDirectory>
-                            <webResources>
-                                <resource>
-                                    <directory>src/main/webapp</directory>
-                                    <includes>
-                                        <include>WEB-INF/**</include>
-                                    </includes>
-                                </resource>
-                            </webResources>
-                        </configuration>
-                    </plugin>
+                    <!--                    <plugin>-->
+                    <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+                    <!--                        <artifactId>maven-war-plugin</artifactId>-->
+                    <!--                        <version>${maven-war-plugin.version}</version>-->
+                    <!--                        <executions>-->
+                    <!--                            <execution>-->
+                    <!--                                <goals>-->
+                    <!--                                    <goal>war</goal>-->
+                    <!--                                </goals>-->
+                    <!--                                <phase>package</phase>-->
+                    <!--                            </execution>-->
+                    <!--                        </executions>-->
+                    <!--                        <configuration>-->
+                    <!--                            <warSourceIncludes>WEB-INF/**,META-INF/**</warSourceIncludes>-->
+                    <!--                            <failOnMissingWebXml>false</failOnMissingWebXml>-->
+                    <!--                            <warSourceDirectory>target/classes/static/</warSourceDirectory>-->
+                    <!--                            <webResources>-->
+                    <!--                                <resource>-->
+                    <!--                                    <directory>src/main/webapp</directory>-->
+                    <!--                                    <includes>-->
+                    <!--                                        <include>WEB-INF/**</include>-->
+                    <!--                                    </includes>-->
+                    <!--                                </resource>-->
+                    <!--                            </webResources>-->
+                    <!--                        </configuration>-->
+                    <!--                    </plugin>-->
                 </plugins>
             </build>
         </profile>
