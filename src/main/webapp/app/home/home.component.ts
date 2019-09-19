@@ -7,6 +7,8 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 
+import { ArticleItem } from 'app/article/article-items';
+
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
@@ -16,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account;
   authSubscription: Subscription;
   modalRef: NgbModalRef;
+  articles: ArticleItem[];
 
   constructor(
     private accountService: AccountService,
@@ -28,6 +31,36 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.account = account;
     });
     this.registerAuthenticationSuccess();
+    this.getResult();
+  }
+
+  getResult() {
+    this.articles = [
+      {
+        displayName: 'lion',
+        iconName: '../../content/images/animalsPics/lion.jpg',
+        price: '20 000',
+        category: 'felin'
+      },
+      {
+        displayName: 'tigre',
+        iconName: '../../content/images/animalsPics/Tigre.jpg',
+        price: '30 000',
+        category: 'felin'
+      },
+      {
+        displayName: 'lion',
+        iconName: '../../content/images/animalsPics/lion.jpg',
+        price: '20 000',
+        category: 'felin'
+      },
+      {
+        displayName: 'tigre',
+        iconName: '../../content/images/animalsPics/Tigre.jpg',
+        price: '30 000',
+        category: 'felin'
+      }
+    ];
   }
 
   registerAuthenticationSuccess() {

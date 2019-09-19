@@ -20,6 +20,28 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MdMenuModule } from 'md-menu/menu';
+import { NouveautesComponent } from './nouveautes/nouveautes.component';
+import { PoissonsComponent } from './poissons/poissons.component';
+import { ToutlesproduitsComponent } from './toutlesproduits/toutlesproduits.component';
+import { FelinsComponent } from './felins/felins.component';
+import { AutresComponent } from './autres/autres.component';
+import { ReptilesComponent } from './reptiles/reptiles.component';
+import { PanierComponent } from './panier/panier.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DemoMaterialModule} from './material-module';
+import { NouveautesModule } from './nouveautes/nouveautes.module';
+import { ArticleComponent } from './article/article.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,9 +50,20 @@ import { ErrorComponent } from './layouts/error/error.component';
     AubHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AubEntityModule,
-    AubAppRoutingModule
+    AubAppRoutingModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatCardModule,
+    MDBBootstrapModule.forRoot(),
+    FlexLayoutModule,
+    MdMenuModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    DemoMaterialModule,
+    NouveautesModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
