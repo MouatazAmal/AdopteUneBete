@@ -11,6 +11,8 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 
+import { NavItem } from 'app/layouts/navbar/nav-items';
+
 @Component({
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
@@ -23,6 +25,40 @@ export class NavbarComponent implements OnInit {
   swaggerEnabled: boolean;
   modalRef: NgbModalRef;
   version: string;
+
+  defaultNavItem = 'Categorie ';
+  navItems: NavItem[] = [
+    {
+      displayName: 'Nouveautés',
+      route: 'nouveautes',
+      iconName: ''
+    },
+    {
+      displayName: 'Tout les produits',
+      route: 'toutlesproduits',
+      iconName: ''
+    },
+    {
+      displayName: 'Poissons',
+      route: 'poissons',
+      iconName: ''
+    },
+    {
+      displayName: 'Reptiles',
+      route: 'reptilesyyy',
+      iconName: ''
+    },
+    {
+      displayName: 'Felins',
+      route: 'felins',
+      iconName: ''
+    },
+    {
+      displayName: 'Autres',
+      route: 'autres',
+      iconName: ''
+    }
+  ];
 
   constructor(
     private loginService: LoginService,
@@ -79,4 +115,9 @@ export class NavbarComponent implements OnInit {
   getImageUrl() {
     return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
   }
+
+  ChangeCatItem(newSelectedCat: string) {
+    this.defaultNavItem = newSelectedCat;
+  }
+
 }

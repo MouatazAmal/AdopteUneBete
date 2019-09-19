@@ -1,0 +1,51 @@
+<div class="articleCard">
+<!--Card-->
+<mdb-card>
+    <!--Card image-->
+    <div class="view overlay waves-light" mdbWavesEffect>
+      <div class="articleImgDiv">
+          <img src="{{articleItem.iconName}}" alt="Photo de {{articleItem.displayName}}" class="articlelogo">
+      </div>
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+    <!--/.Card image-->
+  
+    <!--Button-->
+    <div class="circle">
+      <fa-icon icon="chevron-right" class="chevronIcon"></fa-icon>
+    </div>
+  
+    <!--Card content-->
+    <mdb-card-body>
+  
+      <!--Title-->
+      <mdb-card-title>
+        <h4> {{articleItem.displayName}}</h4>
+      </mdb-card-title>
+  
+      <hr>
+      <!--Text-->
+      <p class="font-small grey-dark-text mb-0">Some quick example text to build on the card title and make up
+        the bulk
+        of the card's content.</p>
+    </mdb-card-body>
+    <!--/.Card content-->
+    <!-- Card footer -->
+    <mdb-card-footer class="mdb-color lighten-3 text-center">
+      <ul class="list-unstyled list-inline font-small mt-3">
+        <li class="list-inline-item pr-2 white-text">
+          <mdb-icon far icon="clock" class="pr-1"></mdb-icon>Price : </li>
+        <li class="list-inline-item pr-2">
+            {{articleItem.price}}
+        </li>
+        <li class="list-inline-item pr-2">
+            euros
+        </li>
+      </ul>
+    </mdb-card-footer>
+    <!-- Card footer -->
+  </mdb-card>
+  <!--/.Card-->
+</div>

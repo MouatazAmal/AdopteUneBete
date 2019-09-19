@@ -6,9 +6,11 @@ import { JhiAlertErrorComponent } from './alert/alert-error.component';
 import { JhiLoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
+import { ArticleComponent } from 'app/article/article.component';
+
 @NgModule({
   imports: [AubSharedLibsModule],
-  declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective],
+  declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective, ArticleComponent],
   entryComponents: [JhiLoginModalComponent],
   exports: [
     AubSharedLibsModule,
@@ -16,7 +18,8 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     JhiAlertComponent,
     JhiAlertErrorComponent,
     JhiLoginModalComponent,
-    HasAnyAuthorityDirective
+    HasAnyAuthorityDirective,
+    ArticleComponent
   ]
 })
 export class AubSharedModule {}
