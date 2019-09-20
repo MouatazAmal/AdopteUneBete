@@ -42,7 +42,7 @@ import {
   faVenus,
   faMars,
   faVenusMars,
-  faWeight,
+  faWeight
 } from '@fortawesome/free-solid-svg-icons';
 
 // Adds the SVG icon to the library so you can use it in your page

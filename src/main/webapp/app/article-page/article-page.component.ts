@@ -2,7 +2,6 @@ import { ArticleItem } from './../article/article-items';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'articlePage',
@@ -10,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./article-page.component.scss']
 })
 export class ArticlePageComponent implements OnInit {
-  @Input() articleItem : ArticleItem = {
+  @Input() articleItem: ArticleItem = {
     displayName: 'lion zbshvzhvs',
     iconName: '../../content/images/animalsPics/lion.jpg',
     iconNameSec: '../../content/images/animalsPics/lion2.jpg',
@@ -22,7 +21,6 @@ export class ArticlePageComponent implements OnInit {
     weigth: 2
   };
   id: number;
-  
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -30,7 +28,6 @@ export class ArticlePageComponent implements OnInit {
     // this.id = this.activatedRoute.paramMap.subscribe(params => { params.id});
     this.id = +this.route.snapshot.paramMap.get('id');
   }
-
   addToPanier(){
     
   }

@@ -48,19 +48,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         iconName: '../../content/images/animalsPics/Tigre.jpg',
         price: '30 000',
         category: 'felin',
-        id: 9      },
+        id: 9
+      },
       {
         displayName: 'lion',
         iconName: '../../content/images/animalsPics/lion.jpg',
         price: '20 000',
         category: 'felin',
-        id: 10      },
+        id: 10
+      },
       {
         displayName: 'tigre',
         iconName: '../../content/images/animalsPics/Tigre.jpg',
         price: '30 000',
         category: 'felin',
-        id: 11      }
+        id: 11
+      }
     ];
   }
 

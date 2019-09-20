@@ -3,17 +3,20 @@ package com.uga.ecom.web.rest;
 import com.uga.ecom.domain.Utilisateurs;
 import com.uga.ecom.repository.UtilisateursRepository;
 import com.uga.ecom.repository.UserRepository;
+import com.uga.ecom.service.dto.UtilisateurDto;
+import com.uga.ecom.service.mapper.UtilisateurMapper;
 import com.uga.ecom.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -40,6 +43,9 @@ public class UtilisateursResource {
 
     private final UserRepository userRepository;
 
+    @Autowired
+    private UtilisateurMapper utilisateurMapper;
+
     public UtilisateursResource(UtilisateursRepository utilisateursRepository, UserRepository userRepository) {
         this.utilisateursRepository = utilisateursRepository;
         this.userRepository = userRepository;
@@ -53,7 +59,7 @@ public class UtilisateursResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/utilisateurs")
-    public ResponseEntity<Utilisateurs> createUtilisateurs(@RequestBody Utilisateurs utilisateurs) throws URISyntaxException {
+    public ResponseEntity<Utilisateurs> createUtilisateurs(@RequestBody UtilisateurDto utilisateurs) throws URISyntaxException {
         log.debug("REST request to save Utilisateurs : {}", utilisateurs);
         if (utilisateurs.getId() != null) {
             throw new BadRequestAlertException("A new utilisateurs cannot already have an ID", ENTITY_NAME, "idexists");
@@ -61,12 +67,12 @@ public class UtilisateursResource {
         if (Objects.isNull(utilisateurs.getUser())) {
             throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
         }
-        long userId = utilisateurs.getUser().getId();
-        userRepository.findById(userId).ifPresent(utilisateurs::user);
-        Utilisateurs result = utilisateursRepository.save(utilisateurs);
-        return ResponseEntity.created(new URI("/api/utilisateurs/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        long userId = utilisateurs.getUser();
+
+        Utilisateurs entity = utilisateurMapper.utilisateursDtoToUtilisateur(utilisateurs);
+        //userRepository.findById(userId).ifPresent(entity::user);
+        utilisateursRepository.save(entity);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     /**
@@ -79,12 +85,12 @@ public class UtilisateursResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/utilisateurs")
-    public ResponseEntity<Utilisateurs> updateUtilisateurs(@RequestBody Utilisateurs utilisateurs) throws URISyntaxException {
+    public ResponseEntity<Utilisateurs> updateUtilisateurs(@RequestBody UtilisateurDto utilisateurs) throws URISyntaxException {
         log.debug("REST request to update Utilisateurs : {}", utilisateurs);
         if (utilisateurs.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Utilisateurs result = utilisateursRepository.save(utilisateurs);
+        Utilisateurs result = utilisateursRepository.save(utilisateurMapper.utilisateursDtoToUtilisateur(utilisateurs));
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, utilisateurs.getId().toString()))
             .body(result);
