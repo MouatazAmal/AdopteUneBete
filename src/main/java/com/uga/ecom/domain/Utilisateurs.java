@@ -37,11 +37,11 @@ public class Utilisateurs implements Serializable {
     @Column(name = "date_naissance")
     private Instant dateNaissance;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
     @JoinColumn(unique = true)
     private Paniers paniers;
 
-    @OneToMany(mappedBy = "utilisateurs")
+    @OneToMany(mappedBy = "utilisateurs",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Commandes> commandes = new HashSet<>();
 

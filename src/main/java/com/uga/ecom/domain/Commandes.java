@@ -37,7 +37,7 @@ public class Commandes implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Animaux> animauxes = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("commandes")
     private Utilisateurs utilisateurs;
 
