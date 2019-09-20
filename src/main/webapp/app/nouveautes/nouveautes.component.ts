@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PriceItem } from './price-items';
 import { ArticleItem } from 'app/article/article-items';
 
@@ -14,7 +14,7 @@ export class NouveautesComponent implements OnInit {
   selectedTrieFilter = 'Default ';
 
   articles: ArticleItem[];
-  trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', 'Date d\'apparition', 'Age'];
+  trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'apparition", 'Age'];
   sexeItems: string[] = ['Male', 'Female'];
   priceItems: PriceItem[] = [
     {

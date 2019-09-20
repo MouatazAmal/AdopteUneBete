@@ -1,0 +1,45 @@
+.row {
+  overflow: hidden;
+  height: 300px;
+}
+
+.col {
+  overflow: hidden;
+}
+
+.articlelogo {
+  position: absolute;
+  top: -275px;
+}
+
+.articlelogo2 {
+  position: absolute;
+  left: -570px;
+  top: -270px;
+}
+
+.articleMainDesc {
+  color: darkslategray;
+  padding: 45px 45px;
+}
+
+.articleCara {
+  background: darkslategray;
+  color: white;
+  padding: 35px 35px;
+}
+
+.spacer {
+  flex: 0.5 1 auto;
+}
+.spacer-div {
+  display: flex;
+  color: black;
+}
+
+.nav-item {
+  background-color: white;
+}
+.row-min {
+  height: 200px;
+}
