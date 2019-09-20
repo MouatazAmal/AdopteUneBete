@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <img src="../../../content/images/logo_4545.svg" alt="Logo" class="logo">
+        <img src="../../../content/images/logo_4545.svg" alt="Logo" class="logo" routerLink="/" (click)="collapseNavbar()">
         <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="Text-centered">
             <span class="Title" routerLink="/" (click)="collapseNavbar()" >AdopteUneBete.com</span>
         </div>
