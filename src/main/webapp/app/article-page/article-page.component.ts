@@ -31,9 +31,12 @@ export class ArticlePageComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('id');
   }
 
-  goToPanier(){
+  addToPanier(){
+    
+  }
+  /*goToPanier(){
     this.router.navigate(['../panieryyy'], {queryParams : {id: this.articleItem.id}});
 
-  }
+  }*/
 
 }

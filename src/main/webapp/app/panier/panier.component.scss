@@ -1,0 +1,21 @@
+.spacer{
+    flex: 0.5 1 auto;
+}
+.spacer-rigth{
+    flex: 0.8 1 auto;
+}
+.row{
+    overflow: hidden;
+    height: 100px;
+    padding: 15px 15px;
+}
+.cat{
+    height: 50px;
+}
+
+.first{vertical-align: middle;}
+
+.spacer-div{
+    display: flex;
+    margin: 15px 15px;
+}

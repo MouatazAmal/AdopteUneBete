@@ -1,4 +1,58 @@
-<p>
-  panier works!
-  {{articleItem}}
-</p>
+<div  class="row first">
+    <span class="spacer"></span>
+    <h4> Votre Panier</h4>
+</div>
+<div class="row cat">
+    <div class="col-md-1 col">
+    </div>
+    <div class="col-md-8 col">
+        <h6> Article </h6>
+    </div>
+    <div class="col-md-3 col">
+        <h6> Prix </h6>
+    </div>
+</div>
+<hr>
+<div *ngFor="let articleItem of articles">
+<div class="row">
+    <div class="col-md-1 col">
+    </div>
+    <div class="col-md-8 col">
+        <h6> {{articleItem.displayName}} le {{articleItem.category}}</h6>
+    </div>
+    <div class="col-md-3 col articlePrice">
+        <div class="row">
+        <div class="col-md-6 col">
+        <h6>{{articleItem.price}} euros       </h6>
+        </div>
+        <div class="col-md-6 col">
+        <span class="circle" (click)="removeProduct(articleItem.id)">
+            <div>
+                <span>
+                    <fa-icon icon="times"></fa-icon>
+                </span>
+                <span class="sr-only"></span>
+            </div>
+        </span>
+        </div>
+        </div>
+    </div>
+</div>
+<hr>
+</div>
+<div class="row">
+  <span class="spacer-rigth"></span>
+  <span>
+    Total price : 
+  </sapn>
+</div>
+<div class="spacer-div">
+    <span class="spacer"></span>
+    <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="addToPanier()">
+        <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Regler
+            <span _ngcontent-qhy-c2="" class="sr-only"></span>
+        </a>
+    </span>
+</div>
+
+

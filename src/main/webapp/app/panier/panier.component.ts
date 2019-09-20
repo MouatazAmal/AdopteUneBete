@@ -9,12 +9,45 @@ import { ArticleItem } from 'app/article/article-items';
   styleUrls: ['./panier.component.scss']
 })
 export class PanierComponent implements OnInit {
-  articleItem : string;
+  articles: ArticleItem[];
   id: number;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.id = +(this.route.snapshot.queryParamMap.get('id'));
+    this.getResult();
   }
+
+  removeProduct(id){
+    //remove;
+    //update
+  }
+
+  getResult() {
+    this.articles = [
+      {
+        displayName: 'lion zbshvzhvs',
+        iconName: '../../content/images/animalsPics/lion.jpg',
+        price: '20 000',
+        category: 'felin',
+        id: 1
+      },
+      {
+        displayName: 'tigre',
+        iconName: '../../content/images/animalsPics/Tigre.jpg',
+        price: '30 000',
+        category: 'felin',
+        id: 2
+      },
+      {
+        displayName: 'lion2',
+        iconName: '../../content/images/animalsPics/lion.jpg',
+        price: '20 000',
+        category: 'felin',
+        id: 3
+      }
+    ];
+  }
+
 }
