@@ -1,3 +1,50 @@
-<p>
-    article-page works for {{id}}!
-</p>
+<div class="row">
+    <div class="col-md-7 col">
+        <img src="{{articleItem.iconName}}" alt="Photo de {{articleItem.displayName}}" class="articlelogo">
+    </div>
+    <div class="col-md-5 col articleMainDesc">
+        <h1 class="display-4">
+            {{articleItem.displayName}}, 
+            <h5> {{articleItem.age}} ans</h4>
+        </h1>
+        <fa-icon *ngIf="articleItem.sexe==='female'" icon="venus"></fa-icon>
+        <fa-icon *ngIf="articleItem.sexe==='male'" icon="mars"></fa-icon>
+        <fa-icon *ngIf="articleItem.sexe==='hermaphrodite'" icon="venus-mars"></fa-icon>
+        <hr>
+        <p> Description </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col articleCara">
+        <div class="button-div">
+            <div class="row-min">
+                <h5>
+                    Caracteristiques :
+                </h5>
+                <div>
+                    <fa-icon icon="weight"></fa-icon>
+                    kg
+                </div>  
+                <div>
+                    fertille
+                </div>  
+                <fa-icon icon="weigth"></fa-icon>
+                <hr>
+                Prix : {{articleItem.price}} euros
+          
+            </div>
+            <div class="spacer-div">
+                <span class="spacer"></span>
+                <span _ngcontent-qhy-c2="" class="nav-item active button_span" routerLinkActive="active" (click)="goToPanier()">
+                    <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Adopter moi
+                        <span _ngcontent-qhy-c2="" class="sr-only"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col">
+        <img src="{{articleItem.iconNameSec}}" alt="Photo de {{articleItem.displayName}}" class="articlelogo2">
+    </div>
+</div>
+</div>

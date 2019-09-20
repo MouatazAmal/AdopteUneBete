@@ -1,7 +1,7 @@
 import { ArticleItem } from './../article/article-items';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,16 +10,30 @@ import { Observable } from 'rxjs';
   styleUrls: ['./article-page.component.scss']
 })
 export class ArticlePageComponent implements OnInit {
-  @Input() articleItem: ArticleItem;
+  @Input() articleItem : ArticleItem = {
+    displayName: 'lion zbshvzhvs',
+    iconName: '../../content/images/animalsPics/lion.jpg',
+    iconNameSec: '../../content/images/animalsPics/lion2.jpg',
+    price: '20 000',
+    category: 'felin',
+    id: 1,
+    sexe: 'female',
+    age: 2,
+    weigth: 2
+  };
   id: number;
-  private sub: any;
-  private state$: Observable<object>;
+  
 
-  constructor(public activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     // this.id = this.activatedRoute.paramMap.subscribe(params => { params.id});
-    // this.router.events.pipe(filter(e => e instanceof NavigationStart), map(() => this.router.getCurrentNavigation().extras.state));
+    this.id = +this.route.snapshot.paramMap.get('id');
+  }
+
+  goToPanier(){
+    this.router.navigate(['../panieryyy'], {queryParams : {id: this.articleItem.id}});
+
   }
 
 }
