@@ -36,6 +36,8 @@ public class AnimauxMapper {
 
         entity.setDescription(dto.getDescription());
 
+        entity.setStatut(dto.getStatut());
+
         entity.setTypeAnimal(dto.getTypeAnimal());
 
         entity.setSexe(dto.getSexe());

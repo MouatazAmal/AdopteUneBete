@@ -81,12 +81,12 @@ public class AnimauxResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/animauxes")
-    public ResponseEntity<Animaux> updateAnimaux(@RequestBody Animaux animaux) throws URISyntaxException {
+    public ResponseEntity<Animaux> updateAnimaux(@RequestBody AnimauxDto animaux) throws URISyntaxException {
         log.debug("REST request to update Animaux : {}", animaux);
         if (animaux.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Animaux result = animauxRepository.save(animaux);
+        Animaux result = animauxRepository.save(animauxMapper.AnimauxDtoToAnimaux(animaux));
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, animaux.getId().toString()))
             .body(result);
