@@ -39,6 +39,12 @@ export class AnimauxService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findAnimal(id: number): Observable<Animaux> {
+    return this.http
+      .get<Animaux>(`${this.resourceUrl}/${id}`);
+  }
+
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

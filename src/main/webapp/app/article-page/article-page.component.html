@@ -5,11 +5,11 @@
     <div class="col-md-5 col articleMainDesc">
         <h1 class="display-4">
             {{articleItem.image}},
-            <h5> {{articleItem.age}} ans</h4>
+            <h5> {{articleItem.age}} ans</h5>
         </h1>
-        <fa-icon *ngIf="articleItem.sexe==='female'" icon="venus"></fa-icon>
-        <fa-icon *ngIf="articleItem.sexe==='male'" icon="mars"></fa-icon>
-        <fa-icon *ngIf="articleItem.sexe==='hermaphrodite'" icon="venus-mars"></fa-icon>
+        <fa-icon *ngIf="articleItem.sexe==='FEMELLE'" icon="venus"></fa-icon>
+        <fa-icon *ngIf="articleItem.sexe==='MALE'" icon="mars"></fa-icon>
+        <fa-icon *ngIf="articleItem.sexe==='HERMAPHRODITE'" icon="venus-mars"></fa-icon>
         <hr>
         <p> Description </p>
     </div>
@@ -23,17 +23,28 @@
                 </h5>
                 <div>
                     <fa-icon icon="weight"></fa-icon>
-                    kg
+                    {{articleItem.poids}}kg
                 </div>
                 <div>
-                    fertille
+                    <p *ngIf="articleItem.fertilite==='FERTILE'"> Fertile </p>
+                    <p *ngIf="articleItem.fertilite==='CASTRE'"> Castré </p>
+                    <p *ngIf="articleItem.fertilite==='STERILE'"> Stérile </p>
                 </div>
-                <fa-icon icon="weigth"></fa-icon>
+               <div>
+                   <p> Age : {{articleItem.age}} ans</p>
+               </div>
                 <hr>
-                Prix : {{articleItem.prix}} euros
+                <h5>
+                    Description :
+                </h5>
+                <div>
+                    <p> {{articleItem.description}} </p>
+                </div>
+                <hr>
+                <p> Prix : {{articleItem.prix}} euros</p>
 
             </div>
-            <div class="spacer-div">
+            <div *ngIf="articleItem.statut==='DISPONIBLE'" class="spacer-div">
                 <span class="spacer"></span>
                 <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="addToPanier()">
                     <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Adopter moi
@@ -47,4 +58,4 @@
         <img src="{{articleItem.image}}" alt="Photo de {{articleItem.nom}}" class="articlelogo2">
     </div>
 </div>
-</div>
+
