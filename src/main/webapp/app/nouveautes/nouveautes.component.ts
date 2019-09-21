@@ -15,7 +15,7 @@ export class NouveautesComponent implements OnInit {
   selectedPriceFilter = 'Price ';
   selectedTrieFilter = 'Default ';
 
-  articles: Observable<Animaux[]>;
+  articles: Animaux[];
 
   trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'apparition", 'Age'];
   sexeItems: string[] = ['Male', 'Female'];
@@ -56,7 +56,7 @@ export class NouveautesComponent implements OnInit {
     this.selectedTrieFilter = newTrieFilter;
   }
   getResult() {
-   this.articles = this.animauxService.getAnimauxList();
+   this.animauxService.getAnimauxList().subscribe(data => {this.articles = data; });
   }
 
   SetCategory(cat) {
