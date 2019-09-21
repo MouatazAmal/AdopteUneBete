@@ -6,6 +6,8 @@ import com.uga.ecom.domain.enumeration.Sexe;
 import com.uga.ecom.domain.enumeration.TypeAnimal;
 import com.uga.ecom.repository.AnimauxRepository;
 import com.uga.ecom.service.AnimauxDbTaskManager;
+import com.uga.ecom.service.dto.AnimauxDto;
+import com.uga.ecom.service.mapper.AnimauxMapper;
 import com.uga.ecom.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -38,6 +40,9 @@ public class AnimauxResource {
     @Autowired
     private AnimauxDbTaskManager animauxDbTaskManager;
 
+    @Autowired
+    private AnimauxMapper animauxMapper;
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
@@ -55,12 +60,12 @@ public class AnimauxResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/animauxes")
-    public ResponseEntity<Animaux> createAnimaux(@RequestBody Animaux animaux) throws URISyntaxException {
+    public ResponseEntity<Animaux> createAnimaux(@RequestBody AnimauxDto animaux) throws URISyntaxException {
         log.debug("REST request to save Animaux : {}", animaux);
         if (animaux.getId() != null) {
             throw new BadRequestAlertException("A new animaux cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Animaux result = animauxRepository.save(animaux);
+        Animaux result = animauxRepository.save(animauxMapper.AnimauxDtoToAnimaux(animaux));
         return ResponseEntity.created(new URI("/api/animauxes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);

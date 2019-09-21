@@ -7,8 +7,8 @@ import com.uga.ecom.repository.CommandesRepository;
 import com.uga.ecom.repository.PaniersRepository;
 import com.uga.ecom.repository.UserRepository;
 import com.uga.ecom.service.dto.UtilisateurDto;
-import com.uga.ecom.web.rest.errors.NotFoundCommande;
-import com.uga.ecom.web.rest.errors.NotFoundUser;
+import com.uga.ecom.exception.NotFoundCommande;
+import com.uga.ecom.exception.NotFoundUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
