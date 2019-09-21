@@ -5,7 +5,7 @@
         <!--Card image-->
         <div class="view overlay waves-light" mdbWavesEffect>
             <div class="articleImgDiv">
-                <img src="{{articleItem.iconName}}" alt="Photo de {{articleItem.displayName}}" class="articlelogo">
+                <img src="{{articleItem.image}}" alt="Photo de {{articleItem.nom}}" class="articlelogo">
             </div>
             <a>
                 <div class="mask rgba-white-slight"></div>
@@ -29,12 +29,12 @@
 
             <!--Title-->
             <mdb-card-title>
-                <h4> {{articleItem.displayName}}</h4>
+                <h4> {{articleItem.nom}}</h4>
             </mdb-card-title>
 
             <hr>
             <!--Text-->
-            <p class="font-small grey-dark-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="font-small grey-dark-text mb-0">{{articleItem.description}}</p>
         </mdb-card-body>
         <!--/.Card content-->
         <!-- Card footer -->
@@ -43,7 +43,7 @@
                 <li class="list-inline-item pr-2">
                     <mdb-icon far icon="clock" class="pr-1"></mdb-icon>Price : </li>
                 <li class="list-inline-item pr-2">
-                    {{articleItem.price}}
+                    {{articleItem.prix}}
                 </li>
                 <li class="list-inline-item pr-2">
                     euros

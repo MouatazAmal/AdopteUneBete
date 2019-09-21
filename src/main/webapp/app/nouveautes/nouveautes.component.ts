@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PriceItem } from './price-items';
-import { ArticleItem } from 'app/article/article-items';
+import {Animaux} from "app/shared/model/animaux.model";
+import  {AnimauxService} from "app/entities/animaux/animaux.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'jhi-nouveautes',
@@ -13,7 +15,8 @@ export class NouveautesComponent implements OnInit {
   selectedPriceFilter = 'Price ';
   selectedTrieFilter = 'Default ';
 
-  articles: ArticleItem[];
+  articles: Observable<Animaux[]>;
+
   trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'apparition", 'Age'];
   sexeItems: string[] = ['Male', 'Female'];
   priceItems: PriceItem[] = [
@@ -40,7 +43,7 @@ export class NouveautesComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private animauxService: AnimauxService) {}
 
   ChangePriceFilter(newPriceFilter: string) {
     this.selectedPriceFilter = newPriceFilter;
@@ -53,57 +56,7 @@ export class NouveautesComponent implements OnInit {
     this.selectedTrieFilter = newTrieFilter;
   }
   getResult() {
-    this.articles = [
-      {
-        displayName: 'lion zbshvzhvs',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 1
-      },
-      {
-        displayName: 'tigre',
-        iconName: '../../content/images/animalsPics/Tigre.jpg',
-        price: '30 000',
-        category: 'felin',
-        id: 2
-      },
-      {
-        displayName: 'lion2',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 3
-      },
-      {
-        displayName: 'lion3',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 4
-      },
-      {
-        displayName: 'lion4',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 5
-      },
-      {
-        displayName: 'tigre2',
-        iconName: '../../content/images/animalsPics/Tigre.jpg',
-        price: '30 000',
-        category: 'felin',
-        id: 6
-      },
-      {
-        displayName: 'tigre3',
-        iconName: '../../content/images/animalsPics/Tigre.jpg',
-        price: '30 000',
-        category: 'felin',
-        id: 7
-      }
-    ];
+   this.articles = this.animauxService.getAnimauxList();
   }
 
   SetCategory(cat) {

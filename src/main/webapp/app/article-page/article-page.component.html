@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-7 col">
-        <img src="{{articleItem.iconName}}" alt="Photo de {{articleItem.displayName}}" class="articlelogo">
+        <img src="{{articleItem.image}}" alt="Photo de {{articleItem.nom}}" class="articlelogo">
     </div>
     <div class="col-md-5 col articleMainDesc">
         <h1 class="display-4">
-            {{articleItem.displayName}}, 
+            {{articleItem.image}},
             <h5> {{articleItem.age}} ans</h4>
         </h1>
         <fa-icon *ngIf="articleItem.sexe==='female'" icon="venus"></fa-icon>
@@ -24,14 +24,14 @@
                 <div>
                     <fa-icon icon="weight"></fa-icon>
                     kg
-                </div>  
+                </div>
                 <div>
                     fertille
-                </div>  
+                </div>
                 <fa-icon icon="weigth"></fa-icon>
                 <hr>
-                Prix : {{articleItem.price}} euros
-          
+                Prix : {{articleItem.prix}} euros
+
             </div>
             <div class="spacer-div">
                 <span class="spacer"></span>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="col-md-6 col">
-        <img src="{{articleItem.iconNameSec}}" alt="Photo de {{articleItem.displayName}}" class="articlelogo2">
+        <img src="{{articleItem.image}}" alt="Photo de {{articleItem.nom}}" class="articlelogo2">
     </div>
 </div>
 </div>

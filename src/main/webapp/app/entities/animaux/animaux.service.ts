@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
-import { IAnimaux } from 'app/shared/model/animaux.model';
+import { Animaux } from 'app/shared/model/animaux.model';
 
-type EntityResponseType = HttpResponse<IAnimaux>;
-type EntityArrayResponseType = HttpResponse<IAnimaux[]>;
+type EntityResponseType = HttpResponse<Animaux>;
+type EntityArrayResponseType = HttpResponse<Animaux[]>;
 
 @Injectable({ providedIn: 'root' })
 export class AnimauxService {
@@ -19,30 +19,30 @@ export class AnimauxService {
 
   constructor(protected http: HttpClient) {}
 
-  create(animaux: IAnimaux): Observable<EntityResponseType> {
+  create(animaux: Animaux): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(animaux);
     return this.http
-      .post<IAnimaux>(this.resourceUrl, copy, { observe: 'response' })
+      .post<Animaux>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  update(animaux: IAnimaux): Observable<EntityResponseType> {
+  update(animaux: Animaux): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(animaux);
     return this.http
-      .put<IAnimaux>(this.resourceUrl, copy, { observe: 'response' })
+      .put<Animaux>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<IAnimaux>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .get<Animaux>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
-      .get<IAnimaux[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .get<Animaux[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
@@ -50,8 +50,13 @@ export class AnimauxService {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  protected convertDateFromClient(animaux: IAnimaux): IAnimaux {
-    const copy: IAnimaux = Object.assign({}, animaux, {
+  getAnimauxList() : Observable<any> {
+    return this.http
+      .get(`${this.resourceUrl}`);
+  }
+
+  protected convertDateFromClient(animaux: Animaux): Animaux {
+    const copy: Animaux = Object.assign({}, animaux, {
       dateAjout: animaux.dateAjout != null && animaux.dateAjout.isValid() ? animaux.dateAjout.toJSON() : null
     });
     return copy;
@@ -66,10 +71,12 @@ export class AnimauxService {
 
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
-      res.body.forEach((animaux: IAnimaux) => {
+      res.body.forEach((animaux: Animaux) => {
         animaux.dateAjout = animaux.dateAjout != null ? moment(animaux.dateAjout) : null;
       });
     }
     return res;
   }
+
+
 }
