@@ -44,6 +44,10 @@ export class AnimauxService {
       .get<Animaux>(`${this.resourceUrl}/${id}`);
   }
 
+  finAnimalByType(type: string ):Observable<any>{
+    return this.http
+      .get(`${this.resourceUrl}`,{params: { typeAnimal : type}});
+  }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

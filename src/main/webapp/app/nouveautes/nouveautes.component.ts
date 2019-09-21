@@ -56,7 +56,19 @@ export class NouveautesComponent implements OnInit {
     this.selectedTrieFilter = newTrieFilter;
   }
   getResult() {
-   this.animauxService.getAnimauxList().subscribe(data => {this.articles = data; });
+    if(this.Category==="Tout les produits"){
+      this.animauxService.getAnimauxList().subscribe(data => {this.articles = data; });
+    }else if(this.Category==="Les Poissons "){
+      this.animauxService.finAnimalByType("POISSON").subscribe(data => {this.articles = data; });
+    }else if(this.Category==="Les Felins"){
+      this.animauxService.finAnimalByType("FELIN").subscribe(data => {this.articles = data; });
+    }else if(this.Category==="Les reptiles "){
+      this.animauxService.finAnimalByType("REPTILE").subscribe(data => {this.articles = data; });
+    }else if(this.Category==="Les canides "){
+      this.animauxService.finAnimalByType("CANIDE").subscribe(data => {this.articles = data; });
+    }else if(this.Category==="Autres "){
+      this.animauxService.getAnimauxList().subscribe(data => {this.articles = data; });
+    }
   }
 
   SetCategory(cat) {
