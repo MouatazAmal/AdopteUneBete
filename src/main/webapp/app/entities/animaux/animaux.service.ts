@@ -49,6 +49,37 @@ export class AnimauxService {
       .get(`${this.resourceUrl}`,{params: { typeAnimal : type}});
   }
 
+  filtreByPrix(prixMin: number , prixMax : number):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() , prixMax : prixMax.toString()}})
+  }
+
+  filtreByPrixPlus(prixMin: number):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() }})
+  }
+
+  filtreByAge(prixMin: number , prixMax : number):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { ageMin : prixMin.toString() , ageMax : prixMax.toString()}})
+  }
+
+  filtreBySexe(sexeAnimal:string):Observable<any>{
+    return this.http
+      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal}});
+  }
+
+  filtreBySexeType(sexeAnimal:string, type:string):Observable<any>{
+    return this.http
+      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type }});
+  }
+
+  filtreBySexeTypeAnimal(sexeAnimal:string, type:string,prixMin: number , prixMax : number):Observable<any>{
+    return this.http
+      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type , prixMin : prixMin.toString() , prixMax : prixMax.toString()}});
+  }
+
+  findNewArrivals():Observable<any>{
+    return this.http
+      .get(`${this.resourceUrl}/${'new-arrivals'}`);
+  }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

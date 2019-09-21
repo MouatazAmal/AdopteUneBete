@@ -8,6 +8,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 
 import { Animaux } from 'app/shared/model/animaux.model';
+import {AnimauxService} from "app/entities/animaux/animaux.service";
 
 @Component({
   selector: 'jhi-home',
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
-    private eventManager: JhiEventManager
+    private eventManager: JhiEventManager,
+    private animauxService:AnimauxService
   ) {}
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getResult() {
-    this.articles = [];
+    this.animauxService.findNewArrivals().subscribe(data => {this.articles = data; });;
   }
 
   registerAuthenticationSuccess() {

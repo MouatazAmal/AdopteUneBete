@@ -54,6 +54,23 @@ export class NouveautesComponent implements OnInit {
   }
   ChangeTrieFilter(newTrieFilter: string) {
     this.selectedTrieFilter = newTrieFilter;
+    /*
+    if(newTrieFilter === 'de 0 a 100 euro'){
+      this.animauxService.filtreByPrix(0,100).subscribe(data => {this.articles = data; });
+    }else if(newTrieFilter === 'de 100 a 500 euro'){
+      this.animauxService.filtreByPrix(100,500).subscribe(data => {this.articles = data; });
+    }else if(newTrieFilter === 'de 500 a 1000 euro'){
+      this.animauxService.filtreByPrix(500,1000).subscribe(data => {this.articles = data; });
+    }else if(newTrieFilter === 'de 1000 a 5000 euro'){
+      this.animauxService.filtreByPrix(1000,5000).subscribe(data => {this.articles = data; });
+    }else if(newTrieFilter === 'de 5000 a 10000 euro'){
+      this.animauxService.filtreByPrix(5000,10000).subscribe(data => {this.articles = data; });
+    }else if(newTrieFilter === 'de 10000 a 50000 euro'){
+      this.animauxService.filtreByPrix(10000,50000).subscribe(data => {this.articles = data; });
+    }else if(newTrieFilter === 'plus de 50000 euro'){
+      this.animauxService.filtreByPrixPlus(50000).subscribe(data => {this.articles = data; });
+    }
+     */
   }
   getResult() {
     if(this.Category==="Tout les produits"){
