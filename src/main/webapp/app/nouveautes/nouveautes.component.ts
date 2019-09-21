@@ -67,8 +67,7 @@ export class NouveautesComponent implements OnInit {
     }else if(this.Category==="Les canides "){
       this.animauxService.finAnimalByType("CANIDE").subscribe(data => {this.articles = data; });
     }else if(this.Category==="Autres "){
-      this.animauxService.getAnimauxList().subscribe(data => {this.articles = data; });
-    }
+      this.animauxService.finAnimalByType("AUTRES").subscribe(data => {this.articles = data; });    }
   }
 
   SetCategory(cat) {
