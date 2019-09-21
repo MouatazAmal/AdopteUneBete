@@ -22,8 +22,6 @@ public class AnimauxMapper {
     @Autowired
     private CommandesRepository commandesRepository;
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-y");
-
     public Animaux AnimauxDtoToAnimaux(AnimauxDto dto){
 
         Animaux entity = new Animaux();
@@ -33,6 +31,8 @@ public class AnimauxMapper {
         entity.setNom(dto.getNom());
 
         entity.setAge(dto.getAge());
+
+        entity.setPrix(dto.getPrix());
 
         entity.setDescription(dto.getDescription());
 
