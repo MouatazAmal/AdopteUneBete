@@ -72,7 +72,8 @@ public class Animaux implements Serializable {
     @Column(name = "image_content_type")
     private String imageContentType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "paniers_id")
     @JsonIgnoreProperties("animauxes")
     private Paniers paniers;
 
