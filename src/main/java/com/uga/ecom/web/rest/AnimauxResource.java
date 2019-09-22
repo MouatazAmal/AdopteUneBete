@@ -22,6 +22,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -104,19 +105,59 @@ public class AnimauxResource {
         @RequestParam(required = false) Integer prixMax
     ) {
         log.debug("REST request to get all Animauxes");
+        List<Animaux> listResult = new ArrayList<Animaux>();
+        boolean premierTrie = true;
+
         if (prixMin != null || prixMax != null){
-            return animauxDbTaskManager.getAnimalsByPrix(prixMin,prixMax);
-        }else if (ageMin != null || ageMax != null){
-            return animauxDbTaskManager.getAnimalsByAge(ageMin,ageMax);
+            if (premierTrie == true){
+                listResult=animauxDbTaskManager.getAnimalsByPrix(prixMin,prixMax);
+                premierTrie=false;
+            }else{
+                listResult.retainAll(animauxDbTaskManager.getAnimalsByPrix(prixMin,prixMax));
+            }
         }
-        else if (fertilite!= null){
-            return animauxDbTaskManager.getAnimalsByFertilite(fertilite);
-        }else if (sexe != null){
-            return animauxDbTaskManager.getAnimalsBySexe(sexe);
-        } else if (typeAnimal != null){
-            return animauxDbTaskManager.getAnimalsByTypeAnimaux(typeAnimal);
+
+        if (ageMin != null || ageMax != null){
+            if(premierTrie==true) {
+                listResult = animauxDbTaskManager.getAnimalsByAge(ageMin, ageMax);
+                premierTrie=false;
+            }else{
+                listResult.retainAll(animauxDbTaskManager.getAnimalsByAge(ageMin, ageMax));
+            }
         }
-        return animauxRepository.findAll();
+
+        if (fertilite!= null){
+            if(premierTrie==true) {
+                listResult= animauxDbTaskManager.getAnimalsByFertilite(fertilite);
+                premierTrie=false;
+            }else{
+                listResult.retainAll(animauxDbTaskManager.getAnimalsByFertilite(fertilite));
+            }
+        }
+
+        if (sexe != null){
+            if(premierTrie==true) {
+                listResult = animauxDbTaskManager.getAnimalsBySexe(sexe);
+                premierTrie=false;
+            }else{
+                listResult.retainAll(animauxDbTaskManager.getAnimalsBySexe(sexe));
+            }
+        }
+
+        if (typeAnimal != null){
+            if(premierTrie==true) {
+                listResult=animauxDbTaskManager.getAnimalsByTypeAnimaux(typeAnimal);
+                premierTrie=false;
+             }else{
+                listResult.retainAll(animauxDbTaskManager.getAnimalsByTypeAnimaux(typeAnimal));
+            }
+        }
+
+        if (premierTrie==true){
+            return animauxRepository.findAll();
+        }else {
+            return listResult;
+        }
     }
 
     /**
