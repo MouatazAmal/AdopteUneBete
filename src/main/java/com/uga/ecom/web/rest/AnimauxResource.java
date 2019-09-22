@@ -208,4 +208,19 @@ public class AnimauxResource {
         List<Animaux> animauxes = animauxRepository.findTop5ByOrderByDateAjout();
         return new ResponseEntity<>(animauxes,HttpStatus.ACCEPTED);
     }
+
+    /**
+     * {@code GET  /animauxes/new-arrivals} : get animals orderBy dateAjout
+     *
+     * @return the {@link ResponseEntity} with status {@code 202 (ACCEPTED)}.
+     */
+    @GetMapping("/animauxes/animauxes-unsold")
+    public ResponseEntity<List<Animaux>> getAnimalsNonVendu(){
+        log.debug("REST request to get unsold animals");
+        List<Animaux> animauxdisp = animauxRepository.findAnimauxByStatut(AnimalStatut.DISPONIBLE);
+        List<Animaux> animauxres = animauxRepository.findAnimauxByStatut(AnimalStatut.RESERVE);
+        animauxdisp.addAll(animauxres);
+        return new ResponseEntity<>(animauxdisp,HttpStatus.ACCEPTED);
+    }
+
 }
