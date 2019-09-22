@@ -104,7 +104,9 @@ public class AnimauxResource {
         @RequestParam(required = false) Integer ageMax,
         @RequestParam(required = false) Integer prixMin,
         @RequestParam(required = false) Integer prixMax,
-        @RequestParam(required = false) AnimalStatut animalStatut
+        @RequestParam(required = false) AnimalStatut animalStatut1,
+        @RequestParam(required = false) AnimalStatut animalStatut2
+
     ) {
         log.debug("REST request to get all Animauxes");
         List<Animaux> listResult = new ArrayList<Animaux>();
@@ -155,12 +157,21 @@ public class AnimauxResource {
             }
         }
 
-        if (animalStatut != null){
+        if (animalStatut1 != null ){
+            List<Animaux> animauxstatut1;
+            List<Animaux> animauxstatut2;
+            if (animalStatut2!=null){
+                animauxstatut1 = animauxRepository.findAnimauxByStatut(animalStatut1);
+                animauxstatut2 = animauxRepository.findAnimauxByStatut(animalStatut2);
+                animauxstatut1.addAll(animauxstatut2);
+            }else {
+                animauxstatut1 = animauxRepository.findAnimauxByStatut(animalStatut1);
+            }
             if(premierTrie==true) {
-                listResult=animauxDbTaskManager.getAnimalsByAnimalStatut(animalStatut);
+                listResult=animauxstatut1;
                 premierTrie=false;
             }else{
-                listResult.retainAll(animauxDbTaskManager.getAnimalsByAnimalStatut(animalStatut));
+                listResult.retainAll(animauxstatut1);
             }
         }
 
@@ -210,7 +221,7 @@ public class AnimauxResource {
     }
 
     /**
-     * {@code GET  /animauxes/new-arrivals} : get animals orderBy dateAjout
+     * {@code GET  /animauxes/animauxes-unsold} : get unsold animals
      *
      * @return the {@link ResponseEntity} with status {@code 202 (ACCEPTED)}.
      */
@@ -222,5 +233,6 @@ public class AnimauxResource {
         animauxdisp.addAll(animauxres);
         return new ResponseEntity<>(animauxdisp,HttpStatus.ACCEPTED);
     }
+
 
 }
