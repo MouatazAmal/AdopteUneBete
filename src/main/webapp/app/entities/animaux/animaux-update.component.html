@@ -6,28 +6,23 @@
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.nom" for="field_nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" id="field_nom"
-                           formControlName="nom"/>
+                    <input type="text" class="form-control" name="nom" id="field_nom" formControlName="nom" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.age" for="field_age">Age</label>
-                    <input type="number" class="form-control" name="age" id="field_age"
-                           formControlName="age"/>
+                    <input type="number" class="form-control" name="age" id="field_age" formControlName="age" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.prix" for="field_prix">Prix</label>
-                    <input type="number" class="form-control" name="prix" id="field_prix"
-                           formControlName="prix"/>
+                    <input type="number" class="form-control" name="prix" id="field_prix" formControlName="prix" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.description" for="field_description">Description</label>
-                    <textarea class="form-control" name="description" id="field_description"
-                              formControlName="description"></textarea>
+                    <textarea class="form-control" name="description" id="field_description" formControlName="description"></textarea>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.statut" for="field_statut">Statut</label>
@@ -57,8 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.poids" for="field_poids">Poids</label>
-                    <input type="number" class="form-control" name="poids" id="field_poids"
-                           formControlName="poids"/>
+                    <input type="number" class="form-control" name="poids" id="field_poids" formControlName="poids" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.fertilite" for="field_fertilite">Fertilite</label>
@@ -71,7 +65,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.dateAjout" for="field_dateAjout">Date Ajout</label>
                     <div class="d-flex">
-                        <input id="field_dateAjout" type="datetime-local" class="form-control" name="dateAjout" formControlName="dateAjout" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_dateAjout" type="datetime-local" class="form-control" name="dateAjout" formControlName="dateAjout" placeholder="YYYY-MM-DD HH:mm" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -80,19 +74,19 @@
                         <div *ngIf="editForm.get('image').value" class="form-text text-danger clearfix">
                             <a class="pull-left" (click)="openFile(editForm.get('imageContentType').value, editForm.get('image').value)" jhiTranslate="entity.action.open">open</a><br>
                             <span class="pull-left">{{editForm.get('imageContentType').value}}, {{byteSize(editForm.get('image').value)}}</span>
-                            <button type="button" (click)="editForm.patchValue({image: null});editForm.patchValue({imageContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
+                            <button type="button" (click)="editForm.patchValue({image: null});editForm.patchValue({imageContentType: null});" class="btn btn-secondary btn-xs pull-right">
                                 <fa-icon [icon]="'times'"></fa-icon>
                             </button>
                         </div>
-                        <input type="file" id="file_image" (change)="setFileData($event, 'image', false)" jhiTranslate="entity.action.addblob"/>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', false)" jhiTranslate="entity.action.addblob" />
                     </div>
-                    <input type="hidden" class="form-control" name="image" id="field_image"
-                           formControlName="image"/>
-                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
-                           formControlName="imageContentType" />
+                    <input type="hidden" class="form-control" name="image" id="field_image" formControlName="image" />
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType" formControlName="imageContentType" />
                 </div>
-
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.animaux.imageContentType" for="field_imageContentType">imageContentType</label>
+                    <input type="text" class="form-control" name="nom" id="field_imageContentType" formControlName="imageContentType" />
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="aubApp.animaux.paniers" for="field_paniers">Paniers</label>
                     <select class="form-control" id="field_paniers" name="paniers" formControlName="paniers">
@@ -109,7 +103,7 @@
                 </div>
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
