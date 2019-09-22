@@ -2,6 +2,7 @@ package com.uga.ecom.web.rest;
 
 import com.uga.ecom.domain.Animaux;
 import com.uga.ecom.domain.enumeration.Fertilite;
+import com.uga.ecom.domain.enumeration.AnimalStatut;
 import com.uga.ecom.domain.enumeration.Sexe;
 import com.uga.ecom.domain.enumeration.TypeAnimal;
 import com.uga.ecom.repository.AnimauxRepository;
@@ -102,7 +103,8 @@ public class AnimauxResource {
         @RequestParam(required = false) Integer ageMin,
         @RequestParam(required = false) Integer ageMax,
         @RequestParam(required = false) Integer prixMin,
-        @RequestParam(required = false) Integer prixMax
+        @RequestParam(required = false) Integer prixMax,
+        @RequestParam(required = false) AnimalStatut animalStatut
     ) {
         log.debug("REST request to get all Animauxes");
         List<Animaux> listResult = new ArrayList<Animaux>();
@@ -150,6 +152,15 @@ public class AnimauxResource {
                 premierTrie=false;
              }else{
                 listResult.retainAll(animauxDbTaskManager.getAnimalsByTypeAnimaux(typeAnimal));
+            }
+        }
+
+        if (animalStatut != null){
+            if(premierTrie==true) {
+                listResult=animauxDbTaskManager.getAnimalsByAnimalStatut(animalStatut);
+                premierTrie=false;
+            }else{
+                listResult.retainAll(animauxDbTaskManager.getAnimalsByAnimalStatut(animalStatut));
             }
         }
 
