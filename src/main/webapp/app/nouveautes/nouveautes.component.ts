@@ -74,17 +74,17 @@ export class NouveautesComponent implements OnInit {
   }
   getResult() {
     if(this.Category==="Tout les produits"){
-      this.animauxService.getAnimauxList().subscribe(data => {this.articles = data; });
+      this.animauxService.getAnimauxUnsoldList().subscribe(data => {this.articles = data; });
     }else if(this.Category==="Les Poissons "){
-      this.animauxService.finAnimalByType("POISSON").subscribe(data => {this.articles = data; });
+      this.animauxService.finAnimalUnsoldByType("POISSON").subscribe(data => {this.articles = data; });
     }else if(this.Category==="Les Felins"){
-      this.animauxService.finAnimalByType("FELIN").subscribe(data => {this.articles = data; });
+      this.animauxService.finAnimalUnsoldByType("FELIN").subscribe(data => {this.articles = data; });
     }else if(this.Category==="Les reptiles "){
-      this.animauxService.finAnimalByType("REPTILE").subscribe(data => {this.articles = data; });
+      this.animauxService.finAnimalUnsoldByType("REPTILE").subscribe(data => {this.articles = data; });
     }else if(this.Category==="Les canides "){
-      this.animauxService.finAnimalByType("CANIDE").subscribe(data => {this.articles = data; });
+      this.animauxService.finAnimalUnsoldByType("CANIDE").subscribe(data => {this.articles = data; });
     }else if(this.Category==="Autres "){
-      this.animauxService.finAnimalByType("AUTRES").subscribe(data => {this.articles = data; });    }
+      this.animauxService.finAnimalUnsoldByType("AUTRES").subscribe(data => {this.articles = data; });    }
   }
 
   SetCategory(cat) {

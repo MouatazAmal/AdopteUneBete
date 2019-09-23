@@ -216,7 +216,7 @@ public class AnimauxResource {
     @GetMapping("/animauxes/new-arrivals")
     public ResponseEntity<List<Animaux>> getAnimalsByDate(){
         log.debug("REST request to get new arrivals");
-        List<Animaux> animauxes = animauxRepository.findTop5ByOrderByDateAjout();
+        List<Animaux> animauxes = animauxRepository.findTop5ByStatutNotOrderByDateAjout(AnimalStatut.VENDU);
         return new ResponseEntity<>(animauxes,HttpStatus.ACCEPTED);
     }
 

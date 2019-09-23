@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { Animaux } from 'app/shared/model/animaux.model';
+import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 
 type EntityResponseType = HttpResponse<Animaux>;
 type EntityArrayResponseType = HttpResponse<Animaux[]>;
@@ -47,6 +48,11 @@ export class AnimauxService {
   finAnimalByType(type: string ):Observable<any>{
     return this.http
       .get(`${this.resourceUrl}`,{params: { typeAnimal : type}});
+  }
+
+  finAnimalUnsoldByType(type: string ):Observable<any>{
+    return this.http
+      .get(`${this.resourceUrl}`,{params: { typeAnimal : type, animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
   }
 
   filtreByPrix(prixMin: number , prixMax : number):Observable<any>{
@@ -94,6 +100,11 @@ export class AnimauxService {
   getAnimauxList() : Observable<any> {
     return this.http
       .get(`${this.resourceUrl}`);
+  }
+
+  getAnimauxUnsoldList() : Observable<any> {
+    return this.http
+      .get(`${this.resourceUrl}`,{params:{animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
   }
 
   protected convertDateFromClient(animaux: Animaux): Animaux {

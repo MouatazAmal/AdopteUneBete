@@ -16,7 +16,8 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface AnimauxRepository extends JpaRepository<Animaux, Long> {
-    List<Animaux> findTop5ByOrderByDateAjout();
+
+    List<Animaux> findTop5ByStatutNotOrderByDateAjout(AnimalStatut animalStatut );
 
     List<Animaux> findAnimauxByPrixBetween(int minPrice, int maxPrice);
 
@@ -36,6 +37,6 @@ public interface AnimauxRepository extends JpaRepository<Animaux, Long> {
 
     List<Animaux> findAnimauxByTypeAnimal(TypeAnimal typeAnimal);
 
-    List<Animaux> findAnimauxByStatut(AnimalStatut AnimalStatut);
+    List<Animaux> findAnimauxByStatut(AnimalStatut animalStatut);
 }
 
