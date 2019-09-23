@@ -18,12 +18,12 @@
     <div class="col-md-1 col">
     </div>
     <div class="col-md-8 col">
-        <h6> {{articleItem.displayName}} le {{articleItem.category}}</h6>
+        <h6> {{articleItem.nom}} le {{articleItem.typeAnimal}}</h6>
     </div>
     <div class="col-md-3 col articlePrice">
         <div class="row">
         <div class="col-md-6 col">
-        <h6>{{articleItem.price}} euros       </h6>
+        <h6>{{articleItem.prix}} euros       </h6>
         </div>
         <div class="col-md-6 col">
         <span class="circle" (click)="removeProduct(articleItem.id)">
@@ -43,12 +43,12 @@
 <div class="row">
   <span class="spacer-rigth"></span>
   <span>
-    Total price : 
-  </sapn>
+    Total price :
+  </span>
 </div>
 <div class="spacer-div">
     <span class="spacer"></span>
-    <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="addToPanier()">
+    <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="(toOrder())">
         <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Regler
             <span _ngcontent-qhy-c2="" class="sr-only"></span>
         </a>

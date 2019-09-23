@@ -39,6 +39,7 @@ import { ReptilesModule } from './reptiles/reptiles.module';
 import { PanierModule } from './panier/panier.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
+import {PanierService} from "app/panier/panier.service";
 //import { ArticleModule } from './article/article.module';
 
 @NgModule({
@@ -103,7 +104,7 @@ import { DemoMaterialModule } from './material-module';
       provide: HTTP_INTERCEPTORS,
       useClass: NotificationInterceptor,
       multi: true
-    }
+    },PanierService
   ],
   bootstrap: [JhiMainComponent]
 })

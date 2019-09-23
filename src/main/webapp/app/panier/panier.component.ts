@@ -3,6 +3,8 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleItem } from 'app/article/article-items';
 import { Animaux } from 'app/shared/model/animaux.model';
+import {Paniers} from "app/shared/model/paniers.model";
+import {PanierService} from "app/panier/panier.service";
 
 @Component({
   selector: 'jhi-panier',
@@ -13,7 +15,7 @@ export class PanierComponent implements OnInit {
   articles: Animaux[];
   id: number;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, protected panierService : PanierService) {}
 
   ngOnInit() {
     this.id = +(this.route.snapshot.queryParamMap.get('id'));
@@ -25,8 +27,12 @@ export class PanierComponent implements OnInit {
     //update
   }
 
+  toOrder(){
+
+  }
+
   getResult() {
-    this.articles = [];
+    return this.articles;
   }
 
 }
