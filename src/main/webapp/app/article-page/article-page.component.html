@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-7 col">
-        <img src="{{articleItem.image}}" alt="Photo de {{articleItem.nom}}" class="articlelogo">
+        <img src="{{articleItem.imageContentType}}" alt="Photo de {{articleItem.nom}}" class="articlelogo">
     </div>
     <div class="col-md-5 col articleMainDesc">
         <h1 class="display-4">
-            {{articleItem.image}},
+            {{articleItem.nom}},
             <h5> {{articleItem.age}} ans</h5>
         </h1>
         <fa-icon *ngIf="articleItem.sexe==='FEMELLE'" icon="venus"></fa-icon>
@@ -12,6 +12,9 @@
         <fa-icon *ngIf="articleItem.sexe==='HERMAPHRODITE'" icon="venus-mars"></fa-icon>
         <hr>
         <p> Description </p>
+        <div>
+            <p> {{articleItem.description}} </p>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -30,32 +33,23 @@
                     <p *ngIf="articleItem.fertilite==='CASTRE'"> Castré </p>
                     <p *ngIf="articleItem.fertilite==='STERILE'"> Stérile </p>
                 </div>
-               <div>
-                   <p> Age : {{articleItem.age}} ans</p>
-               </div>
-                <hr>
-                <h5>
-                    Description :
-                </h5>
                 <div>
-                    <p> {{articleItem.description}} </p>
+                    <p> Age : {{articleItem.age}} ans</p>
                 </div>
-                <hr>
                 <p> Prix : {{articleItem.prix}} euros</p>
 
             </div>
             <div *ngIf="articleItem.statut==='DISPONIBLE'" class="spacer-div">
                 <span class="spacer"></span>
                 <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="addToPanier()">
-                    <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Adopter moi
+                    <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Adoptez moi
                         <span _ngcontent-qhy-c2="" class="sr-only"></span>
-                    </a>
+                </a>
                 </span>
             </div>
         </div>
     </div>
     <div class="col-md-6 col">
-        <img src="{{articleItem.image}}" alt="Photo de {{articleItem.nom}}" class="articlelogo2">
+        <img src="{{articleItem.imageContentType}}" alt="Photo de {{articleItem.nom}}" class="articlelogo2">
     </div>
 </div>
-
