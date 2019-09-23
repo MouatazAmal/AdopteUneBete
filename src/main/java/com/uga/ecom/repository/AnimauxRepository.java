@@ -39,5 +39,22 @@ public interface AnimauxRepository extends JpaRepository<Animaux, Long> {
 
     List<Animaux> findAnimauxByStatut(AnimalStatut animalStatut);
 
+    List<Animaux> findAnimauxByStatutNotAndTypeAnimalAndSexeAndPrixBetweenOrderByDateAjout(AnimalStatut animalStatut , TypeAnimal typeAnimal, Sexe sexe, int minPrice, int maxPrice );
+
+    List<Animaux> findAnimauxByStatutNotOrderByDateAjout(AnimalStatut animalStatut);
+
+    List<Animaux> findAnimauxByStatutNotAndTypeAnimalOrderByDateAjout(AnimalStatut animalStatut,TypeAnimal typeAnimal);
+
+    List<Animaux> findAnimauxByStatutNotAndSexeOrderByDateAjout(AnimalStatut animalStatut,Sexe sexe);
+
+    List<Animaux> findAnimauxByStatutNotAndPrixBetweenOrderByDateAjout(AnimalStatut animalStatut,int minPrice, int maxPrice);
+
+    List<Animaux> findAnimauxByStatutNotAndTypeAnimalAndPrixBetweenOrderByDateAjout(AnimalStatut animalStatut,TypeAnimal typeAnimal, int minPrice, int maxPrice);
+
+    List<Animaux> findAnimauxByStatutNotAndSexeAndPrixBetweenOrderByDateAjout(AnimalStatut animalStatut,Sexe sexe, int minPrice, int maxPrice);
+
+    List<Animaux> findAnimauxByStatutNotAndSexeAndTypeAnimalOrderByDateAjout(AnimalStatut animalStatut,Sexe sexe, TypeAnimal typeAnimal);
+
+
 }
 

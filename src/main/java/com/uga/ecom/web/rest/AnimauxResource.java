@@ -131,7 +131,7 @@ public class AnimauxResource {
                 listResult = animauxDbTaskManager.getAnimalsByAge(ageMin, ageMax);
                 premierTrie=false;
             }else{
-                listResult.retainAll(animauxDbTaskManager.getAnimalsByAge(ageMin, ageMax));
+                    listResult.retainAll(animauxDbTaskManager.getAnimalsByAge(ageMin, ageMax));
             }
         }
 
@@ -185,6 +185,22 @@ public class AnimauxResource {
         }else {
             return listResult;
         }
+    }
+    /**
+     * {@code GET  /animauxes} : get all the animauxes.
+     *
+
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of animauxes in body.
+     */
+    @GetMapping("/animauxes/order")
+    public List<Animaux> getAllAnimauxesOrder(
+        @RequestParam(required = false) TypeAnimal typeAnimal,
+        @RequestParam(required = false) Sexe sexe,
+        @RequestParam(required = false) Integer prixMin,
+        @RequestParam(required = false) Integer prixMax
+    ) {
+        List<Animaux> result = animauxRepository.findAnimauxByStatutNotAndTypeAnimalAndSexeAndPrixBetweenOrderByDateAjout(AnimalStatut.VENDU,typeAnimal,sexe,prixMin,prixMax);
+        return result;
     }
 
     /**

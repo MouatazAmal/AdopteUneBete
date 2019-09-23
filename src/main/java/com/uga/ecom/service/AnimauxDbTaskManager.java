@@ -59,4 +59,9 @@ public class AnimauxDbTaskManager {
         return animauxRepository.findAnimauxByStatut(animalStatut);
     }
 
+    public List<Animaux> getAnimalsFilterByOrder(AnimalStatut animalStatut , TypeAnimal typeAnimal, Sexe sexe, int minPrice, int maxPrice){
+        return animauxRepository.findAnimauxByStatutNotAndTypeAnimalAndSexeAndPrixBetweenOrderByDateAjout(animalStatut,typeAnimal,sexe,minPrice,maxPrice);
+    }
+
+
 }
