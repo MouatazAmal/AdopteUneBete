@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleItem } from 'app/article/article-items';
+import { Animaux } from 'app/shared/model/animaux.model';
 
 @Component({
   selector: 'jhi-panier',
@@ -9,7 +10,7 @@ import { ArticleItem } from 'app/article/article-items';
   styleUrls: ['./panier.component.scss']
 })
 export class PanierComponent implements OnInit {
-  articles: ArticleItem[];
+  articles: Animaux[];
   id: number;
 
   constructor(private route: ActivatedRoute) {}
@@ -25,29 +26,7 @@ export class PanierComponent implements OnInit {
   }
 
   getResult() {
-    this.articles = [
-      {
-        displayName: 'lion zbshvzhvs',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 1
-      },
-      {
-        displayName: 'tigre',
-        iconName: '../../content/images/animalsPics/Tigre.jpg',
-        price: '30 000',
-        category: 'felin',
-        id: 2
-      },
-      {
-        displayName: 'lion2',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 3
-      }
-    ];
+    this.articles = [];
   }
 
 }

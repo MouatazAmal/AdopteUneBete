@@ -7,7 +7,8 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 
-import { ArticleItem } from 'app/article/article-items';
+import { Animaux } from 'app/shared/model/animaux.model';
+import {AnimauxService} from "app/entities/animaux/animaux.service";
 
 @Component({
   selector: 'jhi-home',
@@ -18,12 +19,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account;
   authSubscription: Subscription;
   modalRef: NgbModalRef;
-  articles: ArticleItem[];
+  articles: Animaux[];
 
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
-    private eventManager: JhiEventManager
+    private eventManager: JhiEventManager,
+    private animauxService:AnimauxService
   ) {}
 
   ngOnInit() {
@@ -35,36 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getResult() {
-    this.articles = [
-      {
-        displayName: 'lion',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 8
-      },
-      {
-        displayName: 'tigre',
-        iconName: '../../content/images/animalsPics/Tigre.jpg',
-        price: '30 000',
-        category: 'felin',
-        id: 9
-      },
-      {
-        displayName: 'lion',
-        iconName: '../../content/images/animalsPics/lion.jpg',
-        price: '20 000',
-        category: 'felin',
-        id: 10
-      },
-      {
-        displayName: 'tigre',
-        iconName: '../../content/images/animalsPics/Tigre.jpg',
-        price: '30 000',
-        category: 'felin',
-        id: 11
-      }
-    ];
+    this.animauxService.findNewArrivals().subscribe(data => {this.articles = data; });;
   }
 
   registerAuthenticationSuccess() {

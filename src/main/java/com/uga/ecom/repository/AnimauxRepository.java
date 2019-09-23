@@ -2,6 +2,7 @@ package com.uga.ecom.repository;
 
 import com.uga.ecom.domain.Animaux;
 import com.uga.ecom.domain.enumeration.Fertilite;
+import com.uga.ecom.domain.enumeration.AnimalStatut;
 import com.uga.ecom.domain.enumeration.Sexe;
 import com.uga.ecom.domain.enumeration.TypeAnimal;
 import org.springframework.data.jpa.repository.*;
@@ -34,4 +35,7 @@ public interface AnimauxRepository extends JpaRepository<Animaux, Long> {
     List<Animaux> findAnimauxBySexe(Sexe sexe);
 
     List<Animaux> findAnimauxByTypeAnimal(TypeAnimal typeAnimal);
+
+    List<Animaux> findAnimauxByStatut(AnimalStatut AnimalStatut);
 }
+

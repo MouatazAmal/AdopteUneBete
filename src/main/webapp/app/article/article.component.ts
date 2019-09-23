@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ArticleItem } from 'app/article/article-items';
 import { Router } from '@angular/router';
+import {Animaux} from "app/shared/model/animaux.model";
 
 @Component({
   selector: 'jhi-article',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  @Input() articleItem: ArticleItem;
+  @Input() articleItem: Animaux;
 
   constructor(private router: Router) {}
 
