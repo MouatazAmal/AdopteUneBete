@@ -1,4 +1,4 @@
-package com.uga.ecom.web.rest.errors;
+package com.uga.ecom.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
