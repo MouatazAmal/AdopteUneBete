@@ -3,6 +3,7 @@ import { PriceItem } from './price-items';
 import {Animaux} from "app/shared/model/animaux.model";
 import  {AnimauxService} from "app/entities/animaux/animaux.service";
 import {Observable} from "rxjs";
+import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 
 @Component({
   selector: 'jhi-nouveautes',
@@ -47,6 +48,39 @@ export class NouveautesComponent implements OnInit {
 
   ChangePriceFilter(newPriceFilter: string) {
     this.selectedPriceFilter = newPriceFilter;
+    if(this.Category==='ALL'){
+      if(newPriceFilter === 'de 0 a 100 euro'){
+        this.animauxService.filtreByPrixAll(0,100).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 100 a 500 euro'){
+        this.animauxService.filtreByPrixAll(100,500).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 500 a 1000 euro'){
+        this.animauxService.filtreByPrixAll(500,1000).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 1000 a 5000 euro'){
+        this.animauxService.filtreByPrixAll(1000,5000).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 5000 a 10000 euro'){
+        this.animauxService.filtreByPrixAll(5000,10000).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 10000 a 50000 euro'){
+        this.animauxService.filtreByPrixAll(10000,50000).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'plus de 50000 euro'){
+        this.animauxService.filtreByPrixPlusAll(50000).subscribe(data => {this.articles = data; });
+      }
+    }else {
+      if(newPriceFilter === 'de 0 a 100 euro'){
+        this.animauxService.filtreByPrix(0,100, this.Category).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 100 a 500 euro'){
+        this.animauxService.filtreByPrix(100,500, this.Category).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 500 a 1000 euro'){
+        this.animauxService.filtreByPrix(500,1000, this.Category).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 1000 a 5000 euro'){
+        this.animauxService.filtreByPrix(1000,5000, this.Category).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 5000 a 10000 euro'){
+        this.animauxService.filtreByPrix(5000,10000, this.Category).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'de 10000 a 50000 euro'){
+        this.animauxService.filtreByPrix(10000,50000, this.Category).subscribe(data => {this.articles = data; });
+      }else if(newPriceFilter === 'plus de 50000 euro'){
+        this.animauxService.filtreByPrixPlus(50000, this.Category).subscribe(data => {this.articles = data; });
+      }
+    }
   }
 
   ChangeSexeFilter(newSexeFilter: string) {
@@ -54,37 +88,12 @@ export class NouveautesComponent implements OnInit {
   }
   ChangeTrieFilter(newTrieFilter: string) {
     this.selectedTrieFilter = newTrieFilter;
-    /*
-    if(newTrieFilter === 'de 0 a 100 euro'){
-      this.animauxService.filtreByPrix(0,100).subscribe(data => {this.articles = data; });
-    }else if(newTrieFilter === 'de 100 a 500 euro'){
-      this.animauxService.filtreByPrix(100,500).subscribe(data => {this.articles = data; });
-    }else if(newTrieFilter === 'de 500 a 1000 euro'){
-      this.animauxService.filtreByPrix(500,1000).subscribe(data => {this.articles = data; });
-    }else if(newTrieFilter === 'de 1000 a 5000 euro'){
-      this.animauxService.filtreByPrix(1000,5000).subscribe(data => {this.articles = data; });
-    }else if(newTrieFilter === 'de 5000 a 10000 euro'){
-      this.animauxService.filtreByPrix(5000,10000).subscribe(data => {this.articles = data; });
-    }else if(newTrieFilter === 'de 10000 a 50000 euro'){
-      this.animauxService.filtreByPrix(10000,50000).subscribe(data => {this.articles = data; });
-    }else if(newTrieFilter === 'plus de 50000 euro'){
-      this.animauxService.filtreByPrixPlus(50000).subscribe(data => {this.articles = data; });
-    }
-     */
   }
   getResult() {
-    if(this.Category==="Tout les produits"){
+    if(this.Category==="ALL"){
       this.animauxService.getAnimauxUnsoldList().subscribe(data => {this.articles = data; });
-    }else if(this.Category==="Les Poissons "){
-      this.animauxService.finAnimalUnsoldByType("POISSON").subscribe(data => {this.articles = data; });
-    }else if(this.Category==="Les Felins"){
-      this.animauxService.finAnimalUnsoldByType("FELIN").subscribe(data => {this.articles = data; });
-    }else if(this.Category==="Les reptiles "){
-      this.animauxService.finAnimalUnsoldByType("REPTILE").subscribe(data => {this.articles = data; });
-    }else if(this.Category==="Les canides "){
-      this.animauxService.finAnimalUnsoldByType("CANIDE").subscribe(data => {this.articles = data; });
-    }else if(this.Category==="Autres "){
-      this.animauxService.finAnimalUnsoldByType("AUTRES").subscribe(data => {this.articles = data; });    }
+    }else{
+      this.animauxService.finAnimalUnsoldByType(this.Category).subscribe(data => {this.articles = data; });    }
   }
 
   SetCategory(cat) {

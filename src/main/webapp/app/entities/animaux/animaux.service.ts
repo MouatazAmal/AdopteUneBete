@@ -55,31 +55,39 @@ export class AnimauxService {
       .get(`${this.resourceUrl}`,{params: { typeAnimal : type, animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
   }
 
-  filtreByPrix(prixMin: number , prixMax : number):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() , prixMax : prixMax.toString()}})
+  filtreByPrix(prixMin: number , prixMax : number , type:string ):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { typeAnimal :type , prixMin : prixMin.toString() , prixMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
   }
 
-  filtreByPrixPlus(prixMin: number):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() }})
+  filtreByPrixAll(prixMin: number , prixMax : number):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() , prixMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
+  }
+
+  filtreByPrixPlus(prixMin: number, type : string):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { typeAnimal : type , prixMin : prixMin.toString() , animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
+  }
+
+  filtreByPrixPlusAll(prixMin: number):Observable<any>{
+    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() , animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
   }
 
   filtreByAge(prixMin: number , prixMax : number):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { ageMin : prixMin.toString() , ageMax : prixMax.toString()}})
+    return this.http.get(`${this.resourceUrl}`,{params: { ageMin : prixMin.toString() , ageMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
   }
 
   filtreBySexe(sexeAnimal:string):Observable<any>{
     return this.http
-      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal}});
+      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal,animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
   }
 
   filtreBySexeType(sexeAnimal:string, type:string):Observable<any>{
     return this.http
-      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type }});
+      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type,animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE }});
   }
 
   filtreBySexeTypeAnimal(sexeAnimal:string, type:string,prixMin: number , prixMax : number):Observable<any>{
     return this.http
-      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type , prixMin : prixMin.toString() , prixMax : prixMax.toString()}});
+      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type , prixMin : prixMin.toString() , prixMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
   }
 
   findNewArrivals():Observable<any>{
