@@ -38,5 +38,6 @@ public interface AnimauxRepository extends JpaRepository<Animaux, Long> {
     List<Animaux> findAnimauxByTypeAnimal(TypeAnimal typeAnimal);
 
     List<Animaux> findAnimauxByStatut(AnimalStatut animalStatut);
+
 }
 

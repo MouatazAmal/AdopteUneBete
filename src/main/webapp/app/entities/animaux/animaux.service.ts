@@ -45,49 +45,31 @@ export class AnimauxService {
       .get<Animaux>(`${this.resourceUrl}/${id}`);
   }
 
-  finAnimalByType(type: string ):Observable<any>{
-    return this.http
-      .get(`${this.resourceUrl}`,{params: { typeAnimal : type}});
-  }
-
-  finAnimalUnsoldByType(type: string ):Observable<any>{
-    return this.http
-      .get(`${this.resourceUrl}`,{params: { typeAnimal : type, animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
-  }
-
-  filtreByPrix(prixMin: number , prixMax : number , type:string ):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { typeAnimal :type , prixMin : prixMin.toString() , prixMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
-  }
-
-  filtreByPrixAll(prixMin: number , prixMax : number):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() , prixMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
-  }
-
-  filtreByPrixPlus(prixMin: number, type : string):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { typeAnimal : type , prixMin : prixMin.toString() , animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
-  }
-
-  filtreByPrixPlusAll(prixMin: number):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { prixMin : prixMin.toString() , animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
-  }
-
-  filtreByAge(prixMin: number , prixMax : number):Observable<any>{
-    return this.http.get(`${this.resourceUrl}`,{params: { ageMin : prixMin.toString() , ageMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}})
-  }
-
-  filtreBySexe(sexeAnimal:string):Observable<any>{
-    return this.http
-      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal,animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
-  }
-
-  filtreBySexeType(sexeAnimal:string, type:string):Observable<any>{
-    return this.http
-      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type,animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE }});
-  }
-
-  filtreBySexeTypeAnimal(sexeAnimal:string, type:string,prixMin: number , prixMax : number):Observable<any>{
-    return this.http
-      .get(`${this.resourceUrl}`,{params: { sexe : sexeAnimal ,typeAnimal : type , prixMin : prixMin.toString() , prixMax : prixMax.toString(),animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
+  filtre(sexeAnimal:string, type:string,prixMini: string, prixMaxi : string):Observable<any>{
+    if(type==="") {
+      return this.http
+        .get(`${this.resourceUrl}`, {
+          params: {
+            sexe: sexeAnimal,
+            prixMin: prixMini,
+            prixMax: prixMaxi,
+            animalStatut1: AnimalStatut.DISPONIBLE,
+            animalStatut2: AnimalStatut.RESERVE
+          }
+        });
+    }else{
+      return this.http
+        .get(`${this.resourceUrl}`, {
+          params: {
+            sexe: sexeAnimal,
+            typeAnimal: type,
+            prixMin: prixMini,
+            prixMax: prixMaxi,
+            animalStatut1: AnimalStatut.DISPONIBLE,
+            animalStatut2: AnimalStatut.RESERVE
+          }
+        })
+    }
   }
 
   findNewArrivals():Observable<any>{
@@ -103,16 +85,6 @@ export class AnimauxService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
-  }
-
-  getAnimauxList() : Observable<any> {
-    return this.http
-      .get(`${this.resourceUrl}`);
-  }
-
-  getAnimauxUnsoldList() : Observable<any> {
-    return this.http
-      .get(`${this.resourceUrl}`,{params:{animalStatut1 : AnimalStatut.DISPONIBLE , animalStatut2 : AnimalStatut.RESERVE}});
   }
 
   protected convertDateFromClient(animaux: Animaux): Animaux {
