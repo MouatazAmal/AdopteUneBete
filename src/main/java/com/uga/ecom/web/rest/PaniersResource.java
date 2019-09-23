@@ -1,13 +1,20 @@
 package com.uga.ecom.web.rest;
 
+import com.uga.ecom.domain.Animaux;
 import com.uga.ecom.domain.Paniers;
+import com.uga.ecom.domain.enumeration.AnimalStatut;
+import com.uga.ecom.exception.NotFoundAnimal;
+import com.uga.ecom.repository.AnimauxRepository;
 import com.uga.ecom.repository.PaniersRepository;
+import com.uga.ecom.service.dto.PanierDto;
+import com.uga.ecom.service.mapper.PanierMapper;
 import com.uga.ecom.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +40,12 @@ public class PaniersResource {
     private String applicationName;
 
     private final PaniersRepository paniersRepository;
+
+    @Autowired
+    private PanierMapper panierMapper;
+
+    @Autowired
+    private AnimauxRepository animauxRepository;
 
     public PaniersResource(PaniersRepository paniersRepository) {
         this.paniersRepository = paniersRepository;
@@ -67,12 +80,16 @@ public class PaniersResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/paniers")
-    public ResponseEntity<Paniers> updatePaniers(@RequestBody Paniers paniers) throws URISyntaxException {
+    public ResponseEntity<Paniers> updatePaniers(@RequestBody PanierDto paniers) throws URISyntaxException {
         log.debug("REST request to update Paniers : {}", paniers);
         if (paniers.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Paniers result = paniersRepository.save(paniers);
+        Paniers result = paniersRepository.save(panierMapper.paniersDtoToPanier(paniers));
+//        for (Long animalId : paniers.getAnimauxes()){
+//            Animaux animaux = animauxRepository.findById(animalId).orElseThrow(()->new NotFoundAnimal(animalId));
+//            animaux.setStatut(AnimalStatut.RESERVE);
+//        }
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, paniers.getId().toString()))
             .body(result);
