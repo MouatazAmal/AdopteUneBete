@@ -14,19 +14,19 @@
 </div>
 <hr>
 <div *ngFor="let articleItem of articles">
-    <div class="row">
-        <div class="col-md-1 col">
+<div class="row">
+    <div class="col-md-1 col">
+    </div>
+    <div class="col-md-8 col">
+        <h6> {{articleItem.nom}} le {{articleItem.typeAnimal}}</h6>
+    </div>
+    <div class="col-md-3 col articlePrice">
+        <div class="row">
+        <div class="col-md-6 col">
+        <h6>{{articleItem.prix}} euros       </h6>
         </div>
-        <div class="col-md-8 col">
-            <h6> {{articleItem.displayName}} le {{articleItem.category}}</h6>
-        </div>
-        <div class="col-md-3 col articlePrice">
-            <div class="row">
-                <div class="col-md-6 col">
-                    <h6>{{articleItem.price}} euros </h6>
-                </div>
-                <div class="col-md-6 col">
-                    <span class="circle" (click)="removeProduct(articleItem.id)">
+        <div class="col-md-6 col">
+        <span class="circle" (click)="removeProduct(articleItem)">
             <div>
                 <span>
                     <fa-icon icon="times"></fa-icon>
@@ -43,12 +43,12 @@
 <div class="row">
     <span class="spacer-rigth"></span>
     <span>
-    Total price : 
-  </sapn>
+    Total price :
+  </span>
 </div>
 <div class="spacer-div">
     <span class="spacer"></span>
-    <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="Payer()">
+    <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="(toOrder())">
             <div routerLinkActive="active">
         <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Payer
             <span _ngcontent-qhy-c2="" class="sr-only"></span>

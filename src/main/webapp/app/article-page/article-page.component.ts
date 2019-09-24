@@ -3,6 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AnimauxService} from "app/entities/animaux/animaux.service";
 import {Observable} from "rxjs";
+import {Paniers} from "app/shared/model/paniers.model";
+import {PanierService} from "app/panier/panier.service";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -17,15 +19,16 @@ export class ArticlePageComponent implements OnInit {
 
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private animauxService: AnimauxService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private animauxService: AnimauxService, private panierService : PanierService) {}
 
   ngOnInit() {
     // this.id = this.activatedRoute.paramMap.subscribe(params => { params.id});
     this.id = +this.route.snapshot.paramMap.get('id');
     this.getResult();
   }
-  addToPanier(){
 
+  addToPanier(){
+    this.panierService.addAnimaux(this.articleItem);
   }
 
   getResult(){
