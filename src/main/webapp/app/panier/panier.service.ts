@@ -23,4 +23,14 @@ export class PanierService implements IPaniers {
   addAnimaux(a: IAnimaux) {
     this.animauxes.push(a);
   }
+
+  supAnimaux(idA : number ){
+    let i : number;
+    for(i=0; i < this.animauxes.length; i++){
+      if(this.animauxes[i].id === idA){
+         this.animauxes.splice(i, 1);
+         break;
+      }
+    }
+  }
 }

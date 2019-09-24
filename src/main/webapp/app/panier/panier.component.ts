@@ -23,8 +23,8 @@ export class PanierComponent implements OnInit {
   }
 
   removeProduct(id){
-    //remove;
-    //update
+    this.panierService.supAnimaux(id);
+    this.getResult();
   }
 
   toOrder(){
@@ -32,7 +32,7 @@ export class PanierComponent implements OnInit {
   }
 
   getResult() {
-    return this.articles;
+    this.articles= this.panierService.animauxes;
   }
 
 }
