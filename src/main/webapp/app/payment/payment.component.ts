@@ -11,7 +11,8 @@ export class PaymentComponent implements OnInit {
   constructor(private router: Router) { }
 
   retourPanier(){
-    this.router.navigate(['../panier']);
+    //this.router.navigate(['../home']);
+    window.history.back();
   }
 
   ngOnInit() {
