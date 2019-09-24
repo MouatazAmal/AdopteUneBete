@@ -42,4 +42,8 @@ export class Animaux implements IAnimaux {
     public paniers?: IPaniers,
     public commandes?: ICommandes
   ) {}
+
+  set changeStatut(statut:AnimalStatut){
+    this.statut=statut;
+  }
 }

@@ -1,10 +1,9 @@
-import {Animaux, IAnimaux} from "app/shared/model/animaux.model";
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Animaux} from "app/shared/model/animaux.model";
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AnimauxService} from "app/entities/animaux/animaux.service";
-import {Observable} from "rxjs";
-import {Paniers} from "app/shared/model/paniers.model";
 import {PanierService} from "app/panier/panier.service";
+import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -29,6 +28,10 @@ export class ArticlePageComponent implements OnInit {
 
   addToPanier(){
     this.panierService.addAnimaux(this.articleItem);
+    this.articleItem.changeStatut=AnimalStatut.RESERVE;
+    // eslint-disable-next-line no-console
+    console.log(this.articleItem.statut);
+    this.animauxService.updateStatut(this.articleItem);
   }
 
   getResult(){

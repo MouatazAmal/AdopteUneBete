@@ -8,6 +8,7 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IAnimaux } from 'app/shared/model/animaux.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { AnimauxService } from './animaux.service';
+import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 
 @Component({
   selector: 'jhi-animaux',
@@ -72,4 +73,5 @@ export class AnimauxComponent implements OnInit, OnDestroy {
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
+
 }

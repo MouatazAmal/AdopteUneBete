@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
-import { Animaux } from 'app/shared/model/animaux.model';
+import {Animaux, IAnimaux} from 'app/shared/model/animaux.model';
 import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 
 type EntityResponseType = HttpResponse<Animaux>;
@@ -20,15 +20,22 @@ export class AnimauxService {
 
   constructor(protected http: HttpClient) {}
 
-  create(animaux: Animaux): Observable<EntityResponseType> {
+  create(animaux: IAnimaux): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(animaux);
     return this.http
       .post<Animaux>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  update(animaux: Animaux): Observable<EntityResponseType> {
+  update(animaux: IAnimaux): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(animaux);
+    return this.http
+      .put<Animaux>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  updateStatut(animaux: IAnimaux): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClientStatut(animaux);
     return this.http
       .put<Animaux>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
@@ -85,10 +92,15 @@ export class AnimauxService {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  protected convertDateFromClient(animaux: Animaux): Animaux {
-    const copy: Animaux = Object.assign({}, animaux, {
+  protected convertDateFromClient(animaux: IAnimaux): IAnimaux {
+    const copy: IAnimaux = Object.assign({}, animaux, {
       dateAjout: animaux.dateAjout != null && animaux.dateAjout.isValid() ? animaux.dateAjout.toJSON() : null
     });
+    return copy;
+  }
+
+  protected convertDateFromClientStatut(animaux: IAnimaux): IAnimaux {
+    const copy: IAnimaux = Object.assign({}, animaux, {});
     return copy;
   }
 
