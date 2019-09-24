@@ -15,7 +15,7 @@ export class PanierComponent implements OnInit {
   articles: Animaux[];
   id: number;
 
-  constructor(private route: ActivatedRoute, protected panierService : PanierService) {}
+  constructor(private route: ActivatedRoute, private router: Router, protected panierService : PanierService) {}
 
   ngOnInit() {
     this.id = +(this.route.snapshot.queryParamMap.get('id'));
@@ -28,12 +28,7 @@ export class PanierComponent implements OnInit {
   }
 
   toOrder(){
-
-  }
-
-  Payer(){
     this.router.navigate(['../payment']);
-
   }
 
   getResult() {
