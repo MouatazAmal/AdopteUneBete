@@ -39,6 +39,7 @@ import { ReptilesModule } from './reptiles/reptiles.module';
 import { PanierModule } from './panier/panier.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
+import { PaymentModule } from './payment/payment.module';
 //import { ArticleModule } from './article/article.module';
 
 @NgModule({
@@ -67,7 +68,8 @@ import { DemoMaterialModule } from './material-module';
     FelinsModule,
     AutresModule,
     ReptilesModule,
-    PanierModule
+    PanierModule,
+    PaymentModule
   ],
   declarations: [
     JhiMainComponent,
@@ -75,7 +77,8 @@ import { DemoMaterialModule } from './material-module';
     ErrorComponent,
     PageRibbonComponent,
     ActiveMenuDirective,
-    FooterComponent
+    FooterComponent,
+    //PaymentComponent
     //PoissonsComponent,
     //ToutlesproduitsComponent,
     //ReptilesComponent,

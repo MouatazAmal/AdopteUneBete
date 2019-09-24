@@ -7,6 +7,7 @@ import { reptilesRoute } from './reptiles/reptiles.route';
 import { felinsRoute } from './felins/felins.route';
 import { autresRoute } from './autres/autres.route';
 import { panierRoute } from './panier/panier.route';
+import { paymentRoute } from './payment/payment.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { navbarRoute } from 'app/layouts/navbar/navbar.route';
 import { errorRoute } from 'app/layouts/error/error.route';
@@ -23,6 +24,7 @@ const LAYOUT_ROUTES = [
   reptilesRoute,
   felinsRoute,
   autresRoute,
+  paymentRoute,
   panierRoute,
   ...errorRoute
 ];

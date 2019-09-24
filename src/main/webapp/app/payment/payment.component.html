@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-utilisateurs-heading" jhiTranslate="aubApp.utilisateurs.home.createOrEditLabel">Renseigner informations</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom" formControlName="nom" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.prenom" for="field_prenom">Prénom</label>
+                    <input type="text" class="form-control" name="prenom" id="field_prenom" formControlName="prenom" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.numRue" for="field_numRue">Num Rue</label>
+                    <input type="number" class="form-control" name="numRue" id="field_numRue" formControlName="numRue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.nomRue" for="field_nomRue">Nom Rue</label>
+                    <input type="text" class="form-control" name="nomRue" id="field_nomRue" formControlName="nomRue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.ville" for="field_ville">Ville</label>
+                    <input type="text" class="form-control" name="ville" id="field_ville" formControlName="ville" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.codePostal" for="field_codePostal">Code Postal</label>
+                    <input type="number" class="form-control" name="codePostal" id="field_codePostal" formControlName="codePostal" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+                    <div class="d-flex">
+                        <input id="field_dateNaissance" type="datetime-local" class="form-control" name="dateNaissance" formControlName="dateNaissance" placeholder="YYYY-MM-DD HH:mm" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.numCarte" for="field_numCarte">Numero de Carte</label>
+                    <input type="text" class="form-control" name="numCarte" id="field_numCarte" formControlName="numCarte" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.dateExpiration" for="field_dateExpiration">Date d'expiration</label>
+                    <input type="text" class="form-control" name="dateExpiration" id="field_dateExpiration" formControlName="dateExpiration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="aubApp.utilisateurs.ccv" for="field_ccv">CCV</label>
+                    <input type="text" class="form-control" name="ccv" id="field_ccv" formControlName="ccv" />
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="retourPanier()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Payer</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
