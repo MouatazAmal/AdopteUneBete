@@ -40,6 +40,7 @@ import { PanierModule } from './panier/panier.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import {PanierService} from "app/panier/panier.service";
+import { PaymentModule } from './payment/payment.module';
 //import { ArticleModule } from './article/article.module';
 
 @NgModule({
@@ -68,7 +69,8 @@ import {PanierService} from "app/panier/panier.service";
     FelinsModule,
     AutresModule,
     ReptilesModule,
-    PanierModule
+    PanierModule,
+    PaymentModule
   ],
   declarations: [
     JhiMainComponent,
@@ -76,7 +78,8 @@ import {PanierService} from "app/panier/panier.service";
     ErrorComponent,
     PageRibbonComponent,
     ActiveMenuDirective,
-    FooterComponent
+    FooterComponent,
+    //PaymentComponent
     //PoissonsComponent,
     //ToutlesproduitsComponent,
     //ReptilesComponent,

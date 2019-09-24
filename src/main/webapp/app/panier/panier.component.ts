@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleItem } from 'app/article/article-items';
 import { Animaux } from 'app/shared/model/animaux.model';
 import {Paniers} from "app/shared/model/paniers.model";
@@ -28,6 +28,11 @@ export class PanierComponent implements OnInit {
   }
 
   toOrder(){
+
+  }
+
+  Payer(){
+    this.router.navigate(['../payment']);
 
   }
 
