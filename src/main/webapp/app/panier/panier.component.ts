@@ -4,6 +4,10 @@ import {Animaux, IAnimaux} from 'app/shared/model/animaux.model';
 import {PanierService} from "app/panier/panier.service";
 import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 import {AnimauxService} from "app/entities/animaux/animaux.service";
+import {LoginModalService} from "app/core/login/login-modal.service";
+import {AccountService} from "app/core/auth/account.service";
+import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {LoginService} from "app/core/login/login.service";
 
 @Component({
   selector: 'jhi-panier',
@@ -13,8 +17,9 @@ import {AnimauxService} from "app/entities/animaux/animaux.service";
 export class PanierComponent implements OnInit {
   articles: Animaux[];
   id: number;
+  modalRef: NgbModalRef;
 
-  constructor(private route: ActivatedRoute, private router: Router, protected panierService : PanierService, protected animauxService:AnimauxService) {}
+  constructor( private loginService: LoginService, private accountService: AccountService, private loginModalService: LoginModalService, private route: ActivatedRoute, private router: Router, protected panierService : PanierService, protected animauxService:AnimauxService) {}
 
   ngOnInit() {
     this.id = +(this.route.snapshot.queryParamMap.get('id'));
@@ -36,7 +41,7 @@ export class PanierComponent implements OnInit {
         console.log('Erreur ! : ' + error);
       }
     );
-    
+
     this.panierService.supAnimaux(animal.id);
     // eslint-disable-next-line no-console
     console.log(newAnimal);
@@ -44,11 +49,29 @@ export class PanierComponent implements OnInit {
   }
 
   toOrder(){
-    this.router.navigate(['../payment']);
+    if(this.isAuthenticated()){
+      this.router.navigate(['../payment']);
+    }else{
+      this.login();
+    }
   }
 
   getResult() {
     this.articles= this.panierService.animauxes;
+  }
+
+
+  isAuthenticated() {
+    return this.accountService.isAuthenticated();
+  }
+
+  login() {
+    this.modalRef = this.loginModalService.open();
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigate(['']);
   }
 
 }
