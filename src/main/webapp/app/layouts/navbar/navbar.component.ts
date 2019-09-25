@@ -40,12 +40,17 @@ export class NavbarComponent implements OnInit {
     },
     {
       displayName: 'Reptiles',
-      route: 'reptilesyyy',
+      route: 'reptiles',
       iconName: ''
     },
     {
       displayName: 'Felins',
       route: 'felins',
+      iconName: ''
+    },
+    {
+      displayName: 'Canides',
+      route: 'canide',
       iconName: ''
     },
     {

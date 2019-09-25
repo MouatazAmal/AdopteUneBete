@@ -20,8 +20,8 @@ export class NouveautesComponent implements OnInit {
 
   articles: Animaux[];
 
-  trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'apparition", 'Age'];
-  sexeItems: string[] = ['MALE', 'FEMELLE'];
+  trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'ajout", 'Age'];
+  sexeItems: string[] = ['MALE', 'FEMELLE', 'HERMAPHRODITE'];
   priceItems: PriceItem[] = [
     {
       displayName: 'de 0 a 100 euro'
