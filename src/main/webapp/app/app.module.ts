@@ -41,6 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import {PanierService} from "app/panier/panier.service";
 import { PaymentModule } from './payment/payment.module';
+import { CanideComponent } from './canide/canide.component';
+import { FinishPaymentComponent } from './finish-payment/finish-payment.component';
 //import { ArticleModule } from './article/article.module';
 
 @NgModule({
@@ -79,6 +81,8 @@ import { PaymentModule } from './payment/payment.module';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
+    CanideComponent,
+    FinishPaymentComponent,
     //PaymentComponent
     //PoissonsComponent,
     //ToutlesproduitsComponent,

@@ -3,7 +3,7 @@ import { Route } from '@angular/router';
 import { PanierComponent } from './panier.component';
 
 export const panierRoute: Route = {
-  path: 'monpanier',
+  path: 'panier',
   component: PanierComponent,
   data: {
     authorities: [],

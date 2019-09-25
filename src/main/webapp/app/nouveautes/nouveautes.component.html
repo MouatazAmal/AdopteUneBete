@@ -9,7 +9,7 @@
         <div class="row">
             <span ngbDropdown class="dropdown-menu-self">
             <a ngbDropdownToggle href="javascript:void(0);" class="dropdown-menu-self">
-                <span>{{selectedTrieFilter}} </span>
+                <span>{{selectedTrieFilter1}} </span>
             </a>
             <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="cat-menu">
                 <li *ngFor="let item of trieItems" (click)='ChangeTrieFilter(item)'>
@@ -27,7 +27,7 @@
             <span>{{selectedPriceFilter}} </span>
             </a>
             <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="cat-menu">
-                <li *ngFor="let item of priceItems" (click)='ChangePriceFilter(item.displayName)'>
+                <li *ngFor="let item of priceItems2" (click)='ChangePriceFilter(item.displayName)'>
                     <a class="dropdown-item">
                         <span>{{item.displayName}}</span>
                     </a>
@@ -38,10 +38,10 @@
         <div class="row">
             <span ngbDropdown class="dropdown-menu-self">
         <a ngbDropdownToggle href="javascript:void(0);" class="dropdown-menu-self">
-            <span>{{selectedSexeFilter}} </span>
+            <span>{{selectedSexeFilter1}} </span>
             </a>
             <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="cat-menu">
-                <li *ngFor="let sexe of sexeItems" (click)='ChangeSexeFilter(sexe)'>
+                <li *ngFor="let sexe of sexeItems2" (click)='ChangeSexeFilter(sexe)'>
                     <a class="dropdown-item">
                         <span> {{sexe}} </span>
                     </a>

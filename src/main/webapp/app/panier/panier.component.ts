@@ -17,6 +17,7 @@ import {LoginService} from "app/core/login/login.service";
 export class PanierComponent implements OnInit {
   articles: Animaux[];
   id: number;
+  totalPrice = 0;
   modalRef: NgbModalRef;
 
   constructor( private loginService: LoginService, private accountService: AccountService, private loginModalService: LoginModalService, private route: ActivatedRoute, private router: Router, protected panierService : PanierService, protected animauxService:AnimauxService) {}
@@ -58,6 +59,15 @@ export class PanierComponent implements OnInit {
 
   getResult() {
     this.articles= this.panierService.animauxes;
+    this.setTotalPrice();
+  }
+
+  setTotalPrice(){
+    this.totalPrice = 0;
+    for(let i=0; i<this.articles.length; i++){
+      this.totalPrice += this.articles[i].prix;
+    }
+
   }
 
 

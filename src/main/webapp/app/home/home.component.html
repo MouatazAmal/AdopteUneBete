@@ -5,20 +5,13 @@
     <div class="col-md-6">
         <h1 class="display-4">Bienvenue !</h1>
         <p> Nous sommes AdopteUneBete, blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla</p>
-        <div class="button-div">
-            <span _ngcontent-qhy-c2="" class="nav-item active button_span">
-                <a _ngcontent-qhy-c2="" class="nav-link waves-light">En savoir plus
-                    <span _ngcontent-qhy-c2="" class="sr-only"></span>
-                </a>
-            </span>
-        </div>
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account"> You are logged in as user "{{account.login}}". </span>
+                <span id="home-logged-message" *ngIf="account"> Vous etes connecte en tant qu'utilisateur "{{account.login}}". </span>
             </div>
             <div class="alert alert-warning" *ngSwitchCase="false">
-                <span >You don't have an account yet?</span>&nbsp;
-                <a class="alert-link" routerLink="register">Register a new account</a>
+                <span >Vous n'avez pas encore de compte?</span>&nbsp;
+                <a class="alert-link" routerLink="register">Nouveau compte</a>
             </div>
         </div>
 

@@ -7,15 +7,55 @@
   overflow: hidden;
 }
 
-.articlelogo {
+img[src*="Ouistiti"] {
   position: absolute;
-  top: -275px;
+  top: -10%;
+  width: 100%;
+}
+
+img[src*="lion"] {
+  position: absolute;
+  top: -18%;
+  width: 100%;
+}
+
+img[src*="felin"] {
+  position: absolute;
+  top: -25%;
+  width: 100%;
+}
+
+img[src*="Boa"] {
+  position: absolute;
+  top: -40%;
+  width: 100%;
+}
+
+img[src*="Bulldog"] {
+  position: absolute;
+  top: 0%;
+  width: 100%;
+}
+img[src*="Poisson"] {
+  position: absolute;
+  top: -80%;
+  width: 100%;
+}
+img[src*="T-Rex"] {
+  position: absolute;
+  top: -45%;
+  width: 100%;
+}
+.articlelogo{
+  position: absolute;
+  top: -10%;
+  width: 100%;
 }
 
 .articlelogo2 {
-  position: absolute;
-  left: -570px;
-  top: -270px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .articleMainDesc {

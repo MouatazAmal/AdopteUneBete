@@ -122,6 +122,11 @@ export class PaymentComponent implements OnInit {
       this.subscribeToSaveResponse(this.utilisateursService.create(utilisateurs));
     }
   }
+  goFinishPayement() {
+    // console.log(this.articleItem);
+    // this.stateService.data = this.articleItem; , { state: this.articleItem }
+    this.router.navigate(['../finishPayment']);
+  }
 
   private createFromForm(): IUtilisateurs {
     return {

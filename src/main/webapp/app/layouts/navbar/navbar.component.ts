@@ -49,6 +49,11 @@ export class NavbarComponent implements OnInit {
       iconName: ''
     },
     {
+      displayName: 'Canides',
+      route: 'canide',
+      iconName: ''
+    },
+    {
       displayName: 'Autres',
       route: 'autres',
       iconName: ''
