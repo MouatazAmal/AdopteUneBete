@@ -22,9 +22,24 @@ export class PanierComponent implements OnInit {
   }
 
   removeProduct(animal:Animaux){
+    // eslint-disable-next-line no-console
+    console.log(animal.statut);
     animal.statut=AnimalStatut.DISPONIBLE;
+    const newAnimal = this.animauxService.createFromAnimalForm(animal);
+    this.animauxService.update(newAnimal).subscribe(
+      () => {
+        // eslint-disable-next-line no-console
+        console.log('Enregistrement terminé !');
+      },
+      (error) => {
+        // eslint-disable-next-line no-console
+        console.log('Erreur ! : ' + error);
+      }
+    );
+    
     this.panierService.supAnimaux(animal.id);
-    this.animauxService.updateStatut(animal);
+    // eslint-disable-next-line no-console
+    console.log(newAnimal);
     this.getResult();
   }
 

@@ -3,8 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
-import { map } from 'rxjs/operators';
+import {DATE_FORMAT, DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
+import {catchError, map} from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
@@ -35,9 +35,10 @@ export class AnimauxService {
   }
 
   updateStatut(animaux: IAnimaux): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClientStatut(animaux);
     return this.http
-      .put<Animaux>(this.resourceUrl, copy, { observe: 'response' });
+      .put<Animaux>(this.resourceUrl, animaux,{ observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    ;
   }
 
   find(id: number): Observable<EntityResponseType> {
@@ -98,11 +99,6 @@ export class AnimauxService {
     return copy;
   }
 
-  protected convertDateFromClientStatut(animaux: IAnimaux): IAnimaux {
-    const copy: IAnimaux = Object.assign({}, animaux, {});
-    return copy;
-  }
-
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.dateAjout = res.body.dateAjout != null ? moment(res.body.dateAjout) : null;
@@ -119,5 +115,25 @@ export class AnimauxService {
     return res;
   }
 
-
+  public createFromAnimalForm(animal:Animaux): IAnimaux {
+    return {
+      ...new Animaux(),
+      id: animal.id,
+      nom: animal.nom,
+      age: animal.age,
+      prix: animal.prix,
+      description: animal.description,
+      statut: animal.statut,
+      typeAnimal: animal.typeAnimal,
+      sexe: animal.sexe,
+      poids: animal.poids,
+      fertilite: animal.fertilite,
+      dateAjout:
+        animal.dateAjout != null ? moment(animal.dateAjout, DATE_TIME_FORMAT) : undefined,
+      imageContentType: animal.imageContentType,
+      image: animal.image,
+      paniers: animal.paniers,
+      commandes:animal.commandes
+    };
+  }
 }
