@@ -22,7 +22,7 @@ export class PanierComponent implements OnInit {
   }
 
   removeProduct(animal:Animaux){
-    animal.changeStatut=AnimalStatut.DISPONIBLE;
+    animal.statut=AnimalStatut.DISPONIBLE;
     this.panierService.supAnimaux(animal.id);
     this.animauxService.updateStatut(animal);
     this.getResult();

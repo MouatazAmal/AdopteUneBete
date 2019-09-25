@@ -43,7 +43,4 @@ export class Animaux implements IAnimaux {
     public commandes?: ICommandes
   ) {}
 
-  set changeStatut(statut:AnimalStatut){
-    this.statut=statut;
-  }
 }

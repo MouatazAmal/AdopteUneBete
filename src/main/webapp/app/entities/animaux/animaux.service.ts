@@ -37,8 +37,7 @@ export class AnimauxService {
   updateStatut(animaux: IAnimaux): Observable<EntityResponseType> {
     const copy = this.convertDateFromClientStatut(animaux);
     return this.http
-      .put<Animaux>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .put<Animaux>(this.resourceUrl, copy, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {

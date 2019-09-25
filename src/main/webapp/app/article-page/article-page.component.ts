@@ -28,9 +28,7 @@ export class ArticlePageComponent implements OnInit {
 
   addToPanier(){
     this.panierService.addAnimaux(this.articleItem);
-    this.articleItem.changeStatut=AnimalStatut.RESERVE;
-    // eslint-disable-next-line no-console
-    console.log(this.articleItem.statut);
+    this.articleItem.statut=AnimalStatut.RESERVE;
     this.animauxService.updateStatut(this.articleItem);
   }
 
