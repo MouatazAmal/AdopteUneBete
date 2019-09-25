@@ -83,9 +83,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
-            .antMatchers("/api/account/reset-password/finish").permitAll()
-            .antMatchers(HttpMethod.GET,"/api/animauxes/**").permitAll()
-            .antMatchers("/api/animauxes/**").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST,"api/utilisateurs").authenticated()
+            .antMatchers(HttpMethod.PUT,"api/utilisateurs").authenticated()
+            .antMatchers(HttpMethod.GET,"api/utilisateurs").hasRole("ADMIN")
+            .antMatchers(HttpMethod.GET,"api/utilisateurs/***").authenticated()
+            .antMatchers(HttpMethod.DELETE,"api/utilisateurs/***").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST,"api/paniers/").authenticated()
+            .antMatchers(HttpMethod.PUT,"api/paniers/").authenticated()
+            .antMatchers(HttpMethod.GET,"api/paniers").hasRole("ADMIN")
+            .antMatchers(HttpMethod.GET,"api/paniers").authenticated()
+            .antMatchers(HttpMethod.DELETE,"api/paniers").hasRole("ADMIN")
+            .antMatchers(HttpMethod.DELETE,"/api/commandes").hasRole("ADMIN")
+            .antMatchers(HttpMethod.DELETE,"/api/animauxes").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST,"/api/animauxes").hasRole("ADMIN")
+            .antMatchers(HttpMethod.PUT,"/api/animauxes").hasRole("ADMIN")
+            .antMatchers("/api/commandes/***").authenticated()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()
@@ -95,7 +107,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .httpBasic()
         .and()
             .apply(securityConfigurerAdapter());
-        // @formatter:on
     }
 
     private JWTConfigurer securityConfigurerAdapter() {

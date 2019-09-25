@@ -1,7 +1,7 @@
 package com.uga.ecom.service.mapper;
 
 import com.uga.ecom.domain.Animaux;
-import com.uga.ecom.exception.NotFoundCommande;
+import com.uga.ecom.exception.NotFoundCommandeException;
 import com.uga.ecom.exception.NotFoundPaniersException;
 import com.uga.ecom.repository.CommandesRepository;
 import com.uga.ecom.repository.PaniersRepository;
@@ -9,8 +9,6 @@ import com.uga.ecom.service.dto.AnimauxDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Service
@@ -57,7 +55,7 @@ public class AnimauxMapper {
         }
 
         if (!Objects.isNull(dto.getCommandes())){
-            entity.setCommandes(commandesRepository.findById(dto.getCommandes()).orElseThrow(()-> new NotFoundCommande(dto.getPaniers())));
+            entity.setCommandes(commandesRepository.findById(dto.getCommandes()).orElseThrow(()-> new NotFoundCommandeException(dto.getPaniers())));
         }
 
         return entity;

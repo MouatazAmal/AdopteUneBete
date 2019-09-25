@@ -1,6 +1,7 @@
 package com.uga.ecom.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import sun.nio.ch.Util;
 
 import javax.persistence.*;
 
@@ -22,9 +23,13 @@ public class Paniers implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "paniers")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "paniers")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Animaux> animauxes = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn
+    private Utilisateurs utilisateurs;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

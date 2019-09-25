@@ -4,6 +4,7 @@ import com.uga.ecom.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -37,6 +38,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 50)
     @Column(length = 50, unique = true, nullable = false)
+    @Unique
     private String login;
 
     @JsonIgnore
