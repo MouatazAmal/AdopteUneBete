@@ -22,8 +22,36 @@ export class NouveautesComponent implements OnInit {
   articles: Animaux[];
 
   trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'ajout", 'Age'];
-  sexeItems: string[] = ['MALE', 'FEMELLE', 'HERMAPHRODITE'];
+  sexeItems: string[] = ['MALE', 'FEMELLE', 'HERMAPHRODITE', ''];
+  sexeItems2: string[] = ['DEFAULT', 'MALE', 'FEMELLE', 'HERMAPHRODITE'];
+
   priceItems: PriceItem[] = [
+    {
+      displayName: 'de 0 a 100 euro'
+    },
+    {
+      displayName: 'de 100 a 500 euro'
+    },
+    {
+      displayName: 'de 500 a 1000 euro'
+    },
+    {
+      displayName: 'de 1000 a 5000 euro'
+    },
+    {
+      displayName: 'de 5000 a 10000 euro'
+    },
+    {
+      displayName: 'de 10000 a 50000 euro'
+    },
+    {
+      displayName: 'plus de 50000 euro'
+    }
+  ];
+  priceItems2: PriceItem[] = [
+    {
+      displayName: 'Default'
+    },
     {
       displayName: 'de 0 a 100 euro'
     },
@@ -50,7 +78,9 @@ export class NouveautesComponent implements OnInit {
   constructor(private animauxService: AnimauxService) {}
 
   ChangePriceFilter(newPriceFilter: string) {
-    this.selectedPriceFilter=newPriceFilter;
+    if (newPriceFilter === 'Default'){
+      this.selectedPriceFilter= 'Filtrer par prix';
+    }else this.selectedPriceFilter=newPriceFilter;
       if(newPriceFilter === 'de 0 a 100 euro'){
         this.selectedPrice1Filter = "0";
         this.selectedPrice2Filter = "100";
@@ -72,7 +102,11 @@ export class NouveautesComponent implements OnInit {
       }else if(newPriceFilter === 'plus de 50000 euro'){
         this.selectedPrice1Filter = "50000";
         this.selectedPrice2Filter = "";
-      }else{
+      }else if (newPriceFilter === 'Default'){
+        this.selectedPrice1Filter = "";
+        this.selectedPrice2Filter = "";
+      }
+      else{
         this.selectedPrice1Filter = "";
         this.selectedPrice2Filter = "";
       }
@@ -80,8 +114,15 @@ export class NouveautesComponent implements OnInit {
   }
 
   ChangeSexeFilter(newSexeFilter: string) {
-    this.selectedSexeFilter = newSexeFilter;
-    this.selectedSexeFilter1 = newSexeFilter;
+    if(newSexeFilter.toString() === 'DEFAULT') {
+      this.selectedSexeFilter = '';
+      this.selectedSexeFilter1 = 'Filtrer par genre';
+
+    }
+    else {
+      this.selectedSexeFilter = newSexeFilter;
+      this.selectedSexeFilter1 = newSexeFilter;
+    }
     this.getResult() ;
   }
 
