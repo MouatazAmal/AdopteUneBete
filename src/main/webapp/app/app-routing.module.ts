@@ -15,6 +15,7 @@ import { articleRoute } from 'app/article/article.route';
 import { articlePageRoute } from 'app/article-page/article-page.route';
 import { canideRoute } from './canide/canide.route';
 import { finishPaymentRoute } from './finish-payment/finish-payment.route';
+import { SuiviCommandeRoute } from './suivi-commande/suivi-commande.route';
 
 const LAYOUT_ROUTES = [
   navbarRoute,
@@ -30,6 +31,7 @@ const LAYOUT_ROUTES = [
   paymentRoute,
   panierRoute,
   finishPaymentRoute,
+  SuiviCommandeRoute,
   ...errorRoute
 ];
 

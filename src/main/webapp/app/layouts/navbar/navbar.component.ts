@@ -108,6 +108,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  suiviCommande(){
+    this.collapseNavbar();
+    this.router.navigate(['../suivi-commande']);
+  }
+
   toggleNavbar() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
