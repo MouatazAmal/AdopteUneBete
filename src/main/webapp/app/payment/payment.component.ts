@@ -27,6 +27,8 @@ export class PaymentComponent implements OnInit {
 
   users: IUser[];
 
+  myAccount : HttpResponse<IUser>;
+
   editForm = this.fb.group({
     id: [],
     firstName:[],
@@ -48,7 +50,8 @@ export class PaymentComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router
-  ) {}
+  ) {
+  }
 
 
   retourPanier(){
@@ -113,6 +116,9 @@ export class PaymentComponent implements OnInit {
   }
 
   save() {
+    this.userService.getMyAccount().subscribe(data => {this.myAccount = data; });
+    // eslint-disable-next-line no-console
+    console.log(this.myAccount.body);
     this.isSaving = true;
     const utilisateurs = this.createFromForm();
     const myuser = this.createFromFormUser();
@@ -128,7 +134,7 @@ export class PaymentComponent implements OnInit {
   private createFromForm(): IUtilisateurs {
     return {
       ...new Utilisateurs(),
-      id: this.editForm.get(['id']).value,
+      id: this.myAccount.body.id,
       numRue: this.editForm.get(['numRue']).value,
       nomRue: this.editForm.get(['nomRue']).value,
       ville: this.editForm.get(['ville']).value,
@@ -151,19 +157,19 @@ export class PaymentComponent implements OnInit {
     this.getUser();
     return {
       ...new User(),
-      id:this.users[0].id,
-      login:this.users[0].login,
+      id:this.myAccount.body.id,
+      login:this.myAccount.body.login,
       firstName: this.editForm.get(['firstName']).value,
       lastName:this.editForm.get(['lastName']).value,
-      email:this.users[0].email,
-      activated:this.users[0].activated,
-      langKey: this.users[0].langKey,
-      authorities: this.users[0].authorities,
-      createdBy: this.users[0].createdBy,
-      createdDate: this.users[0].createdDate,
-      lastModifiedBy: this.users[0].lastModifiedBy,
-      lastModifiedDate: this.users[0].lastModifiedDate,
-      password: this.users[0].password,
+      email:this.myAccount.body.email,
+      activated:this.myAccount.body.activated,
+      langKey: this.myAccount.body.langKey,
+      authorities: this.myAccount.body.authorities,
+      createdBy: this.myAccount.body.createdBy,
+      createdDate: this.myAccount.body.createdDate,
+      lastModifiedBy: this.myAccount.body.lastModifiedBy,
+      lastModifiedDate: this.myAccount.body.lastModifiedDate,
+      password: this.myAccount.body.password,
     };
   }
 

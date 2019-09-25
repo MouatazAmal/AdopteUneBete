@@ -9,8 +9,8 @@ import { IUser } from './user.model';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   public resourceUrl = SERVER_API_URL + 'api/users';
-
-  constructor(private http: HttpClient) {}
+  public resourceUrlAccount =SERVER_API_URL + 'api/users/myaccount';
+    constructor(private http: HttpClient) {}
 
   create(user: IUser): Observable<HttpResponse<IUser>> {
     return this.http.post<IUser>(this.resourceUrl, user, { observe: 'response' });
@@ -24,6 +24,10 @@ export class UserService {
     return this.http.get<IUser>(`${this.resourceUrl}/${login}`, { observe: 'response' });
   }
 
+  getMyAccount():Observable<HttpResponse<IUser>>{
+    return this.http.get<IUser>(`${this.resourceUrlAccount}`, { observe: 'response' });
+
+  }
   getUser(id: number): any {
     return this.http.get<IUser>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
