@@ -7,8 +7,8 @@ import com.uga.ecom.repository.CommandesRepository;
 import com.uga.ecom.repository.PaniersRepository;
 import com.uga.ecom.repository.UserRepository;
 import com.uga.ecom.service.dto.UtilisateurDto;
-import com.uga.ecom.exception.NotFoundCommande;
-import com.uga.ecom.exception.NotFoundUser;
+import com.uga.ecom.exception.NotFoundCommandeException;
+import com.uga.ecom.exception.NotFoundUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,12 +54,12 @@ public class UtilisateurMapper {
 
         if(!Objects.isNull(dto.getCommandes())){
             dto.getCommandes().forEach(c ->
-                commandesSet.add(commandesRepository.findById(c).orElseThrow(()->new NotFoundCommande(c))));
+                commandesSet.add(commandesRepository.findById(c).orElseThrow(()->new NotFoundCommandeException(c))));
         }
 
         entity.setCommandes(commandesSet);
 
-        entity.setUser(userRepository.findById(dto.getUser()).orElseThrow(()->new NotFoundUser(dto.getUser())));
+        entity.setUser(userRepository.findById(dto.getUser()).orElseThrow(()->new NotFoundUserException(dto.getUser())));
 
         return entity;
     }
