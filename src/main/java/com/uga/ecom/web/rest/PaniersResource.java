@@ -83,8 +83,9 @@ public class PaniersResource {
             .orElseThrow(()-> new NotFoundPaniersException());
 
         Paniers loggedUserPanier = utilisateurs.getPaniers();
-        Paniers result = paniersRepository.save(panierMapper.paniersDtoToPanier(loggedUserPanier,paniers));
-        utilisateurs.setPaniers(result );
+        Paniers result = panierMapper.paniersDtoToPanier(loggedUserPanier,paniers);
+        result.getAnimauxes().forEach(animal -> animal.setPaniers(result));
+        paniersRepository.save(result);
         utilisateursRepository.save(utilisateurs);
         return ResponseEntity.created(new URI("/api/paniers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))

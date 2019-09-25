@@ -1,7 +1,6 @@
 package com.uga.ecom.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import sun.nio.ch.Util;
 
 import javax.persistence.*;
 
@@ -28,7 +27,7 @@ public class Paniers implements Serializable {
     private Set<Animaux> animauxes = new HashSet<>();
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn
+    @JoinColumn(name = "id")
     private Utilisateurs utilisateurs;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -87,5 +86,13 @@ public class Paniers implements Serializable {
         return "Paniers{" +
             "id=" + getId() +
             "}";
+    }
+
+    public Utilisateurs getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Utilisateurs utilisateurs) {
+        this.utilisateurs = utilisateurs;
     }
 }

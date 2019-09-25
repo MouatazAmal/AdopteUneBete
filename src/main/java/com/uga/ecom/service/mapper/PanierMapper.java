@@ -3,6 +3,7 @@ package com.uga.ecom.service.mapper;
 import com.uga.ecom.domain.Animaux;
 import com.uga.ecom.domain.Paniers;
 import com.uga.ecom.domain.enumeration.AnimalStatut;
+import com.uga.ecom.exception.AlreadyReservedAnimalException;
 import com.uga.ecom.exception.NotFoundAnimalException;
 import com.uga.ecom.repository.AnimauxRepository;
 import com.uga.ecom.service.dto.PanierDto;
@@ -39,9 +40,12 @@ public class PanierMapper {
         entity.setAnimauxes(animauxSet);
 
         if (!Objects.isNull(entity.getAnimauxes()) || !entity.getAnimauxes().isEmpty()){
-            entity.getAnimauxes().forEach(animal -> animal.setStatut(AnimalStatut.RESERVE));
+            for (Animaux animal : entity.getAnimauxes()){
+                if (animal.getStatut()== AnimalStatut.DISPONIBLE){
+                    animal.setStatut(AnimalStatut.RESERVE);
+                } else new AlreadyReservedAnimalException(animal.getId());
+            }
        }
-
         return entity;
     }
 }
