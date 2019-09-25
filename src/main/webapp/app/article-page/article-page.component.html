@@ -7,9 +7,9 @@
             {{articleItem.nom}},
             <h5> {{articleItem.age}} ans</h5>
         </h1>
-        <fa-icon *ngIf="articleItem.sexe==='FEMELLE'" icon="venus"></fa-icon>
-        <fa-icon *ngIf="articleItem.sexe==='MALE'" icon="mars"></fa-icon>
-        <fa-icon *ngIf="articleItem.sexe==='HERMAPHRODITE'" icon="venus-mars"></fa-icon>
+        <fa-icon *ngIf="articleItem?.sexe==='FEMELLE'" icon="venus"></fa-icon>
+        <fa-icon *ngIf="articleItem?.sexe==='MALE'" icon="mars"></fa-icon>
+        <fa-icon *ngIf="articleItem?.sexe==='HERMAPHRODITE'" icon="venus-mars"></fa-icon>
         <hr>
         <p> Description </p>
         <div>
@@ -29,9 +29,9 @@
                     {{articleItem.poids}}kg
                 </div>
                 <div>
-                    <p *ngIf="articleItem.fertilite==='FERTILE'"> Fertile </p>
-                    <p *ngIf="articleItem.fertilite==='CASTRE'"> Castré </p>
-                    <p *ngIf="articleItem.fertilite==='STERILE'"> Stérile </p>
+                    <p *ngIf="articleItem?.fertilite==='FERTILE'"> Fertile </p>
+                    <p *ngIf="articleItem?.fertilite==='CASTRE'"> Castré </p>
+                    <p *ngIf="articleItem?.fertilite==='STERILE'"> Stérile </p>
                 </div>
                 <div>
                     <p> Age : {{articleItem.age}} ans</p>
@@ -39,7 +39,7 @@
                 <p> Prix : {{articleItem.prix}} euros</p>
 
             </div>
-            <div *ngIf="articleItem.statut==='DISPONIBLE'" class="spacer-div">
+            <div *ngIf="articleItem?.statut==='DISPONIBLE'" class="spacer-div">
                 <span class="spacer"></span>
                 <span _ngcontent-qhy-c2="" class="nav-item active button_span" (click)="addToPanier()">
                     <a _ngcontent-qhy-c2="" class="nav-link waves-light"> Adoptez moi

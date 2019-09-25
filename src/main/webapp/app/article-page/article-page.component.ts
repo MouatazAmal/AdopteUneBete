@@ -1,9 +1,11 @@
-import {Animaux} from "app/shared/model/animaux.model";
+import {Animaux, IAnimaux} from "app/shared/model/animaux.model";
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AnimauxService} from "app/entities/animaux/animaux.service";
 import {PanierService} from "app/panier/panier.service";
 import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
+import * as moment from "moment";
+import {DATE_TIME_FORMAT} from "app/shared/constants/input.constants";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -27,9 +29,25 @@ export class ArticlePageComponent implements OnInit {
   }
 
   addToPanier(){
-    this.panierService.addAnimaux(this.articleItem);
+    // eslint-disable-next-line no-console
+    console.log(this.articleItem.statut);
     this.articleItem.statut=AnimalStatut.RESERVE;
-    this.animauxService.updateStatut(this.articleItem);
+    // eslint-disable-next-line no-console
+    console.log(this.articleItem.statut);
+    const newAnimal = this.animauxService.createFromAnimalForm(this.articleItem);
+    // eslint-disable-next-line no-console
+    console.log(newAnimal);
+    this.animauxService.update(newAnimal).subscribe(
+      () => {
+        // eslint-disable-next-line no-console
+        console.log('Enregistrement terminé !');
+      },
+      (error) => {
+        // eslint-disable-next-line no-console
+        console.log('Erreur ! : ' + error);
+      }
+    );;
+    this.panierService.addAnimaux(this.articleItem);
   }
 
   getResult(){
@@ -40,5 +58,6 @@ export class ArticlePageComponent implements OnInit {
     this.router.navigate(['../panieryyy'], {queryParams : {id: this.articleItem.id}});
 
   }*/
+
 
 }
