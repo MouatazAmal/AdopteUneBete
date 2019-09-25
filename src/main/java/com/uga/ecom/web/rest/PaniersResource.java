@@ -110,9 +110,14 @@ public class PaniersResource {
         }
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User loggedUser = userRepository.findOneByLogin(login).orElseThrow(()->new NotFoundUserException(login));
-        Paniers loggedUserPanier = utilisateursRepository.findById(loggedUser.getId()).get().getPaniers();
+        Utilisateurs utilisateurs = utilisateursRepository.findById(loggedUser.getId())
+            .orElseThrow(()-> new NotFoundPaniersException());
 
-        Paniers result = paniersRepository.save(panierMapper.paniersDtoToPanier(loggedUserPanier,paniers));
+        Paniers loggedUserPanier = utilisateurs.getPaniers();
+        Paniers result = panierMapper.paniersDtoToPanier(loggedUserPanier,paniers);
+        result.getAnimauxes().forEach(animal -> animal.setPaniers(result));
+        paniersRepository.save(result);
+        utilisateursRepository.save(utilisateurs);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, paniers.getId().toString()))
             .body(result);
