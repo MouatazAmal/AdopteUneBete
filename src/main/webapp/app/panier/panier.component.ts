@@ -13,6 +13,7 @@ import {AnimauxService} from "app/entities/animaux/animaux.service";
 export class PanierComponent implements OnInit {
   articles: Animaux[];
   id: number;
+  totalPrice = 0;
 
   constructor(private route: ActivatedRoute, private router: Router, protected panierService : PanierService, protected animauxService:AnimauxService) {}
 
@@ -34,6 +35,15 @@ export class PanierComponent implements OnInit {
 
   getResult() {
     this.articles= this.panierService.animauxes;
+    this.setTotalPrice();
+  }
+
+  setTotalPrice(){
+    this.totalPrice = 0;
+    for(let i=0; i<this.articles.length; i++){
+      this.totalPrice += this.articles[i].prix;
+    }
+
   }
 
 }

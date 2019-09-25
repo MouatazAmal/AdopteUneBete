@@ -13,11 +13,12 @@ import {AnimalStatut} from "app/shared/model/enumerations/animal-statut.model";
 export class NouveautesComponent implements OnInit {
   @Input() Category: string;
   selectedSexeFilter = "";
+  selectedSexeFilter1 = "Filtrer par genre"
   selectedPriceFilter ="Filtrer par prix";
   selectedPrice1Filter = "";
   selectedPrice2Filter = "";
   selectedTrieFilter = "";
-
+  selectedTrieFilter1 = "Default";
   articles: Animaux[];
 
   trieItems: string[] = ['Default', 'Prix croissant', 'Prix decroissant', "Date d'ajout", 'Age'];
@@ -80,11 +81,13 @@ export class NouveautesComponent implements OnInit {
 
   ChangeSexeFilter(newSexeFilter: string) {
     this.selectedSexeFilter = newSexeFilter;
+    this.selectedSexeFilter1 = newSexeFilter;
     this.getResult() ;
   }
 
   ChangeTrieFilter(newTrieFilter: string) {
     this.selectedTrieFilter = newTrieFilter;
+    this.selectedTrieFilter1 = newTrieFilter;
     this.getResult();
   }
 

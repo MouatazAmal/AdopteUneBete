@@ -1,0 +1,48 @@
+.paymentCongratsPage{
+    height: 300px;
+    margin: 10px 10px;
+    display: flex
+}
+
+.paymentCongrats{
+    height: 150px;
+    display: flex;
+}
+
+.spacer {
+    flex: 0.5 1 auto;
+  }
+
+  .button_span {
+    text-align: center;
+    font-size: inherit;
+    border-radius: 4px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  
+  .button_span a {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button_span a:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    right: -20px;
+    top: 0px;
+    transition: 0.5s;
+  }
+  
+  .button_span:hover a {
+    padding-right: 20px;
+  }
+  
+  .button_span:hover a:after {
+    opacity: 1;
+    right: 0;
+  }
+  

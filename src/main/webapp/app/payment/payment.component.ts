@@ -17,5 +17,10 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
   }
+  goFinishPayement() {
+    // console.log(this.articleItem);
+    // this.stateService.data = this.articleItem; , { state: this.articleItem }
+    this.router.navigate(['../finishPayment']);
+  }
 
 }

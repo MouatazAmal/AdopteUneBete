@@ -23,12 +23,12 @@
     <div class="col-md-3 col articlePrice">
         <div class="row">
         <div class="col-md-6 col">
-        <h6>{{articleItem.prix}} euros       </h6>
+        <h6>{{articleItem.prix}} euros</h6>
         </div>
         <div class="col-md-6 col">
         <span class="circle" (click)="removeProduct(articleItem)">
             <div>
-                <span>
+                <span class="cross">
                     <fa-icon icon="times"></fa-icon>
                 </span>
                     <span class="sr-only"></span>
@@ -43,7 +43,7 @@
 <div class="row">
     <span class="spacer-rigth"></span>
     <span>
-    Total price :
+    Total : {{totalPrice}} euros
   </span>
 </div>
 <div class="spacer-div">

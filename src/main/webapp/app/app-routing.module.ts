@@ -14,6 +14,7 @@ import { errorRoute } from 'app/layouts/error/error.route';
 import { articleRoute } from 'app/article/article.route';
 import { articlePageRoute } from 'app/article-page/article-page.route';
 import { canideRoute } from './canide/canide.route';
+import { finishPaymentRoute } from './finish-payment/finish-payment.route';
 
 const LAYOUT_ROUTES = [
   navbarRoute,
@@ -28,6 +29,7 @@ const LAYOUT_ROUTES = [
   autresRoute,
   paymentRoute,
   panierRoute,
+  finishPaymentRoute,
   ...errorRoute
 ];
 
