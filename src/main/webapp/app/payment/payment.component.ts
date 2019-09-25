@@ -122,17 +122,13 @@ export class PaymentComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.utilisateursService.create(utilisateurs));
     }
-  }
-  goFinishPayement() {
-    // console.log(this.articleItem);
-    // this.stateService.data = this.articleItem; , { state: this.articleItem }
     this.router.navigate(['../finishPayment']);
   }
 
   private createFromForm(): IUtilisateurs {
     return {
       ...new Utilisateurs(),
-      id: this.editForm.get(['user']).value,
+      id: this.editForm.get(['id']).value,
       numRue: this.editForm.get(['numRue']).value,
       nomRue: this.editForm.get(['nomRue']).value,
       ville: this.editForm.get(['ville']).value,
@@ -155,6 +151,7 @@ export class PaymentComponent implements OnInit {
     this.getUser();
     return {
       ...new User(),
+      id:this.users[0].id,
       login:this.users[0].login,
       firstName: this.editForm.get(['firstName']).value,
       lastName:this.editForm.get(['lastName']).value,
