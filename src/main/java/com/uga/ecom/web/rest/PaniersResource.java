@@ -1,15 +1,17 @@
 package com.uga.ecom.web.rest;
 
-import com.uga.ecom.domain.Animaux;
 import com.uga.ecom.domain.Paniers;
-import com.uga.ecom.domain.enumeration.AnimalStatut;
-import com.uga.ecom.exception.NotFoundAnimal;
+import com.uga.ecom.domain.User;
+import com.uga.ecom.domain.Utilisateurs;
+import com.uga.ecom.exception.NotFoundPaniersException;
+import com.uga.ecom.exception.NotFoundUserException;
 import com.uga.ecom.repository.AnimauxRepository;
 import com.uga.ecom.repository.PaniersRepository;
+import com.uga.ecom.repository.UserRepository;
+import com.uga.ecom.repository.UtilisateursRepository;
 import com.uga.ecom.service.dto.PanierDto;
 import com.uga.ecom.service.mapper.PanierMapper;
 import com.uga.ecom.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -17,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -47,6 +51,12 @@ public class PaniersResource {
     @Autowired
     private AnimauxRepository animauxRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UtilisateursRepository utilisateursRepository;
+
     public PaniersResource(PaniersRepository paniersRepository) {
         this.paniersRepository = paniersRepository;
     }
@@ -59,12 +69,24 @@ public class PaniersResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/paniers")
-    public ResponseEntity<Paniers> createPaniers(@RequestBody Paniers paniers) throws URISyntaxException {
+    @Transactional
+    public ResponseEntity<Paniers> createPaniers(@RequestBody PanierDto paniers) throws URISyntaxException {
         log.debug("REST request to save Paniers : {}", paniers);
+
         if (paniers.getId() != null) {
             throw new BadRequestAlertException("A new paniers cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Paniers result = paniersRepository.save(paniers);
+
+        String login = SecurityContextHolder.getContext().getAuthentication().getName();
+        User loggedUser = userRepository.findOneByLogin(login).orElseThrow(()->new NotFoundUserException(login));
+        Utilisateurs utilisateurs = utilisateursRepository.findById(loggedUser.getId())
+            .orElseThrow(()-> new NotFoundPaniersException());
+
+        Paniers loggedUserPanier = utilisateurs.getPaniers();
+        Paniers result = panierMapper.paniersDtoToPanier(loggedUserPanier,paniers);
+        result.getAnimauxes().forEach(animal -> animal.setPaniers(result));
+        paniersRepository.save(result);
+        utilisateursRepository.save(utilisateurs);
         return ResponseEntity.created(new URI("/api/paniers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -80,16 +102,22 @@ public class PaniersResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/paniers")
+    @Transactional
     public ResponseEntity<Paniers> updatePaniers(@RequestBody PanierDto paniers) throws URISyntaxException {
         log.debug("REST request to update Paniers : {}", paniers);
         if (paniers.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Paniers result = paniersRepository.save(panierMapper.paniersDtoToPanier(paniers));
-//        for (Long animalId : paniers.getAnimauxes()){
-//            Animaux animaux = animauxRepository.findById(animalId).orElseThrow(()->new NotFoundAnimal(animalId));
-//            animaux.setStatut(AnimalStatut.RESERVE);
-//        }
+        String login = SecurityContextHolder.getContext().getAuthentication().getName();
+        User loggedUser = userRepository.findOneByLogin(login).orElseThrow(()->new NotFoundUserException(login));
+        Utilisateurs utilisateurs = utilisateursRepository.findById(loggedUser.getId())
+            .orElseThrow(()-> new NotFoundPaniersException());
+
+        Paniers loggedUserPanier = utilisateurs.getPaniers();
+        Paniers result = panierMapper.paniersDtoToPanier(loggedUserPanier,paniers);
+        result.getAnimauxes().forEach(animal -> animal.setPaniers(result));
+        paniersRepository.save(result);
+        utilisateursRepository.save(utilisateurs);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, paniers.getId().toString()))
             .body(result);

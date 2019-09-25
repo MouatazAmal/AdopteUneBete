@@ -22,9 +22,13 @@ public class Paniers implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "paniers")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "paniers")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Animaux> animauxes = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private Utilisateurs utilisateurs;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -82,5 +86,13 @@ public class Paniers implements Serializable {
         return "Paniers{" +
             "id=" + getId() +
             "}";
+    }
+
+    public Utilisateurs getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Utilisateurs utilisateurs) {
+        this.utilisateurs = utilisateurs;
     }
 }

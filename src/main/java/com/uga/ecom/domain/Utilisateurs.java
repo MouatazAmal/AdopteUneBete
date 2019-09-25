@@ -37,8 +37,7 @@ public class Utilisateurs implements Serializable {
     @Column(name = "date_naissance")
     private Instant dateNaissance;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
-    @JoinColumn(unique = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade =  CascadeType.ALL)
     private Paniers paniers;
 
     @OneToMany(mappedBy = "utilisateurs",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
