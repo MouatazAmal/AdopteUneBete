@@ -199,33 +199,34 @@ public class UserService {
             .map(Optional::get)
             .map(user -> {
                 this.clearUserCaches(user);
-                if (!Objects.isNull(userDTO.getLogin()) || !userDTO.getLogin().isEmpty()){
+                if (!Objects.isNull(userDTO.getLogin()) && !userDTO.getLogin().isEmpty()){
                     user.setLogin(userDTO.getLogin().toLowerCase());
                 }
 
-                if (!Objects.isNull(userDTO.getFirstName())|| !userDTO.getFirstName().isEmpty()){
+                if (!Objects.isNull(userDTO.getFirstName())&& !userDTO.getFirstName().isEmpty()){
                     user.setFirstName(userDTO.getFirstName());
                 }
 
-                if (!Objects.isNull(userDTO.getLastName())|| !userDTO.getLastName().isEmpty()){
+                if (!Objects.isNull(userDTO.getLastName())&& !userDTO.getLastName().isEmpty()){
                     user.setLastName(userDTO.getLastName());
                 }
 
-                if (!Objects.isNull(userDTO.getEmail())|| !userDTO.getEmail().isEmpty()){
+                if (!Objects.isNull(userDTO.getEmail())&& !userDTO.getEmail().isEmpty()){
                     user.setEmail(userDTO.getEmail().toLowerCase());
                 }
 
-                    if (!Objects.isNull(userDTO.getImageUrl()) || !userDTO.getImageUrl().isEmpty() || !userDTO.getImageUrl().equals("null")){
+                if (!Objects.isNull(userDTO.getImageUrl()) &&  !userDTO.getImageUrl().isEmpty() && !userDTO.getImageUrl().equals("null")){
                     user.setImageUrl(userDTO.getImageUrl());
                 }
 
                 user.setActivated(userDTO.isActivated());
-
-                if (!Objects.isNull(userDTO.getLangKey())|| !userDTO.getLangKey().isEmpty()){
+                
+                if (!Objects.isNull(userDTO.getLangKey())&& !userDTO.getLangKey().isEmpty()){
                     user.setLangKey(userDTO.getLangKey());
                 }
 
-                if (!Objects.isNull(userDTO.getAuthorities())|| !userDTO.getLastName().isEmpty()){
+                if (!Objects.isNull(userDTO.getAuthorities())&& !userDTO.getLastName().isEmpty()){
+
                     Set<Authority> managedAuthorities = user.getAuthorities();
                     managedAuthorities.clear();
                     userDTO.getAuthorities().stream()
