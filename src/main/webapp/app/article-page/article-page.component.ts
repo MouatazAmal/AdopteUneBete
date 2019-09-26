@@ -29,14 +29,8 @@ export class ArticlePageComponent implements OnInit {
   }
 
   addToPanier(){
-    // eslint-disable-next-line no-console
-    console.log(this.articleItem.statut);
     this.articleItem.statut=AnimalStatut.RESERVE;
-    // eslint-disable-next-line no-console
-    console.log(this.articleItem.statut);
     const newAnimal = this.animauxService.createFromAnimalForm(this.articleItem);
-    // eslint-disable-next-line no-console
-    console.log(newAnimal);
     this.animauxService.update(newAnimal).subscribe(
       () => {
         // eslint-disable-next-line no-console

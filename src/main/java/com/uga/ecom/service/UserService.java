@@ -215,7 +215,7 @@ public class UserService {
                     user.setEmail(userDTO.getEmail().toLowerCase());
                 }
 
-                    if (!Objects.isNull(userDTO.getImageUrl())  !userDTO.getImageUrl().isEmpty() || !userDTO.getImageUrl().equals("null")){
+                    if (!Objects.isNull(userDTO.getImageUrl()) || !userDTO.getImageUrl().isEmpty() || !userDTO.getImageUrl().equals("null")){
                     user.setImageUrl(userDTO.getImageUrl());
                 }
 

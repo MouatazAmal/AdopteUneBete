@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {HttpResponse} from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute,Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService } from 'ng-jhipster';
-import { IUtilisateurs, Utilisateurs } from 'app/shared/model/utilisateurs.model';
-import { UtilisateursService } from '../entities/utilisateurs/utilisateurs.service';
-import { IPaniers } from 'app/shared/model/paniers.model';
-import { PaniersService } from 'app/entities/paniers/paniers.service';
+import {DATE_TIME_FORMAT} from 'app/shared/constants/input.constants';
+import {JhiAlertService} from 'ng-jhipster';
+import {IUtilisateurs, Utilisateurs} from 'app/shared/model/utilisateurs.model';
+import {UtilisateursService} from '../entities/utilisateurs/utilisateurs.service';
+import {IPaniers} from 'app/shared/model/paniers.model';
 import {IUser, User} from 'app/core/user/user.model';
-import { UserService } from 'app/core/user/user.service';
+import {UserService} from 'app/core/user/user.service';
+import {CommandesService} from "app/entities/commandes/commandes.service";
+import {Commandes} from "app/shared/model/commandes.model";
+import {PanierService} from "app/panier/panier.service";
+import {CommandeStatut} from "app/shared/model/enumerations/commande-statut.model";
 
 @Component({
   selector: 'jhi-utilisateurs-update',
@@ -25,7 +27,6 @@ export class PaymentComponent implements OnInit {
 
   paniers: IPaniers[];
 
-  users: IUser[];
 
   myAccount : HttpResponse<IUser>;
 
@@ -45,8 +46,9 @@ export class PaymentComponent implements OnInit {
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected utilisateursService: UtilisateursService,
-    protected paniersService: PaniersService,
+    private panierService : PanierService,
     protected userService: UserService,
+    protected commandesService: CommandesService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router
@@ -84,19 +86,16 @@ export class PaymentComponent implements OnInit {
     this.isSaving = true;
     const utilisateurs = this.createFromForm();
     const myuser = this.createFromFormUser();
-    // eslint-disable-next-line no-console
-    console.log(myuser);
+    const commande = this.createFromFormCommande(utilisateurs);
     // eslint-disable-next-line no-console
     this.userService.update(myuser).subscribe((data)=> console.log(data) );
-    // eslint-disable-next-line no-console
-    console.log("my user "  + myuser);
-    // eslint-disable-next-line no-console
-    console.log("my utilisateur "  + utilisateurs);
     if ( utilisateurs.id !== undefined) {
       this.subscribeToSaveResponse(this.utilisateursService.update(utilisateurs));
     } else {
       this.subscribeToSaveResponse(this.utilisateursService.create(utilisateurs));
     }
+    // eslint-disable-next-line no-console
+    this.commandesService.create(commande).subscribe((data)=> console.log(data))
     this.router.navigate(['../finishPayment']);
   }
 
@@ -117,12 +116,7 @@ export class PaymentComponent implements OnInit {
     };
   }
 
-  private getUser(){
-    this.userService.getUser(this.myAccount.body.id).subscribe(data => { this.users = data; });
-  }
-
   private createFromFormUser(): User {
-    this.getUser();
     return {
       ...new User(),
       id:this.myAccount.body.id,
@@ -141,8 +135,17 @@ export class PaymentComponent implements OnInit {
     };
   }
 
+  private createFromFormCommande(utilisateur:IUtilisateurs): Commandes {
+    return {
+      ...new Commandes(),
+      animauxes:this.panierService.animauxes,
+      statut:CommandeStatut.NON_CONFIRMEE,
+      utilisateurs:utilisateur
+    };
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IUtilisateurs>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+    result.subscribe((data) => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {
