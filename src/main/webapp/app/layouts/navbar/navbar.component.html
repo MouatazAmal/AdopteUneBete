@@ -224,8 +224,15 @@
         <span class="full-spacer"></span>
         <span>
             <!-- Links -->
-            <span *ngFor="let item of navItems"  class="nav-item active button_span">
-                <a class="nav-link waves-light" >{{item.displayName}}<span class="sr-only"></span></a>
+            <span *ngFor="let item of navItems" class="nav-item active button_span">
+                <a class="nav-link waves-light" >
+                    <div routerLinkActive="active">
+                        <span routerLink="{{item.route}}" (click)="collapseNavbar()" >
+                            {{item.displayName}}
+                        </span>
+        <span class="sr-only"></span>
+        </div>
+        </a>
         </span>
         </span>
         <span class="full-spacer"></span>
