@@ -2,7 +2,7 @@
     <mat-toolbar-row>
         <img src="../../../content/images/logo_4545.svg" alt="Logo" class="logo" routerLink="/" (click)="collapseNavbar()">
         <div routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="Text-centered">
-            <span class="Title" routerLink="/" (click)="collapseNavbar()" >AdopteUneBete.com</span>
+            <span class="Title" routerLink="/" (click)="collapseNavbar()">AdopteUneBete.com</span>
         </div>
     </mat-toolbar-row>
     <mat-toolbar-row>
@@ -12,17 +12,17 @@
         <span ngbDropdown class="dropdown-menu-self">
             <a ngbDropdownToggle href="javascript:void(0);" class="dropdown-menu-self">
                 <span>{{defaultNavItem}}</span>
-            </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="cat-menu">
-                <li *ngFor="let item of navItems" (click)='ChangeCatItem(item.displayName)'>
-                    <a class="dropdown-item">
-                        <span>{{item.displayName}}</span>
-                    </a>
-                </li>
-            </ul>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="cat-menu">
+            <li *ngFor="let item of navItems" (click)='ChangeCatItem(item.displayName)'>
+                <a class="dropdown-item">
+                    <span>{{item.displayName}}</span>
+                </a>
+            </li>
+        </ul>
         </span>
 
-      </span>
+        </span>
         <span>
           <!-- Search form -->
         <form class="form-inline waves-light" >
@@ -41,11 +41,11 @@
                     <span routerLink="{{item.route}}" (click)="collapseNavbar()" >
                         {{item.displayName}}
                     </span>
-                <span class="sr-only"></span>
-                </div>
-            </a>
+        <span class="sr-only"></span>
+        </div>
+        </a>
         </span>
-    </span>
+        </span>
         <span class="example-spacer"></span>
         <span>
         <nav class="navbar navbar-expand-md dropdown-menu-self">
@@ -59,7 +59,7 @@
                                     <span jhiTranslate="global.menu.entities.main">
                                         Entities
                                     </span>
-                                </span>
+        </span>
         </a>
         <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
             <li>
@@ -94,7 +94,7 @@
                 <span>
                                     <fa-icon icon="user-plus"></fa-icon>
                                     <span jhiTranslate="global.menu.admin.main">Administration</span>
-                               </span>
+                </span>
             </a>
             <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
                 <li>
@@ -148,7 +148,7 @@
                 </li>
             </ul>
         </li>
-                        <!--basket-->
+        <!--basket-->
         <li class="nav-item pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a class="nav-link " href="javascript:void(0);" id="basket-menu">
                 <div routerLinkActive="active">
@@ -156,13 +156,13 @@
                                                 <span *ngIf="!getImageUrl()">
                                                         <fa-icon icon="shopping-basket" style="color: white;"></fa-icon>
                                                         <span class="dropdown-menu-self" > Panier </span>
-                                                </span>
+                    </span>
                     </span>
                     <span class="sr-only"></span>
                 </div>
             </a>
         </li>
-                        <!---------acountMenu-->
+        <!---------acountMenu-->
         <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a class="nav-link dropdown-toggle dropdown-menu-self" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                 <span *ngIf="!getImageUrl()">
@@ -170,11 +170,11 @@
                                 <span jhiTranslate="global.menu.account.main" class="dropdown-menu-self">
                                     Account
                                 </span>
-                                </span>
-                                <span *ngIf="getImageUrl()">
+                </span>
+                <span *ngIf="getImageUrl()">
                                     <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
                                 </span>
-                            </a>
+            </a>
             <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
                 <li *ngSwitchCase="true">
                     <a class="dropdown-item" routerLink="/account/settings" routerLinkActive="active" (click)="collapseNavbar()">
@@ -192,6 +192,12 @@
                     <a class="dropdown-item" (click)="logout()" id="logout">
                         <fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>
                         <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                    </a>
+                </li>
+                <li *ngSwitchCase="true">
+                    <a class="dropdown-item" (click)="suiviCommande()" id="suiviCommande">
+                        <!--<fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>-->
+                        <span>Suivi de commande</span>
                     </a>
                 </li>
                 <li *ngSwitchCase="false">
@@ -220,7 +226,7 @@
             <!-- Links -->
             <span *ngFor="let item of navItems"  class="nav-item active button_span">
                 <a class="nav-link waves-light" >{{item.displayName}}<span class="sr-only"></span></a>
-            </span>
+        </span>
         </span>
         <span class="full-spacer"></span>
     </mat-toolbar-row>

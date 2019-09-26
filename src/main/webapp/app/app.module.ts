@@ -43,6 +43,7 @@ import {PanierService} from "app/panier/panier.service";
 import { PaymentModule } from './payment/payment.module';
 import { CanideComponent } from './canide/canide.component';
 import { FinishPaymentComponent } from './finish-payment/finish-payment.component';
+import { SuiviCommandeModule } from './suivi-commande/suivi-commande.module';
 //import { ArticleModule } from './article/article.module';
 
 @NgModule({
@@ -72,7 +73,8 @@ import { FinishPaymentComponent } from './finish-payment/finish-payment.componen
     AutresModule,
     ReptilesModule,
     PanierModule,
-    PaymentModule
+    PaymentModule,
+    SuiviCommandeModule
   ],
   declarations: [
     JhiMainComponent,
@@ -83,6 +85,7 @@ import { FinishPaymentComponent } from './finish-payment/finish-payment.componen
     FooterComponent,
     CanideComponent,
     FinishPaymentComponent,
+    //SuiviCommandeComponent,
     //PaymentComponent
     //PoissonsComponent,
     //ToutlesproduitsComponent,
