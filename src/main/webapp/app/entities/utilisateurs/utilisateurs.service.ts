@@ -22,14 +22,14 @@ export class UtilisateursService {
   create(utilisateurs: IUtilisateurs): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(utilisateurs);
     return this.http
-      .post<IUtilisateurs>(this.resourceUrl, copy, { observe: 'response' })
+      .post<IUtilisateurs>(this.resourceUrl+"/", copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   update(utilisateurs: IUtilisateurs): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(utilisateurs);
     return this.http
-      .put<IUtilisateurs>(this.resourceUrl, copy, { observe: 'response' })
+      .put<IUtilisateurs>(this.resourceUrl+"/", copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

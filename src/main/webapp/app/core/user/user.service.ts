@@ -16,6 +16,7 @@ export class UserService {
     return this.http.post<IUser>(this.resourceUrl, user, { observe: 'response' });
   }
 
+
   update(user: IUser): Observable<HttpResponse<IUser>> {
     return this.http.put<IUser>(this.resourceUrl, user, { observe: 'response' });
   }

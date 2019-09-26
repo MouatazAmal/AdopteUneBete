@@ -60,42 +60,7 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isSaving = false;
-    this.activatedRoute.data.subscribe(({ utilisateurs }) => {
-      this.updateForm(utilisateurs);
-    });
-    this.paniersService
-      .query({ filter: 'utilisateurs-is-null' })
-      .pipe(
-        filter((mayBeOk: HttpResponse<IPaniers[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IPaniers[]>) => response.body)
-      )
-      .subscribe(
-        (res: IPaniers[]) => {
-          if (!this.editForm.get('paniers').value || !this.editForm.get('paniers').value.id) {
-            this.paniers = res;
-          } else {
-            this.paniersService
-              .find(this.editForm.get('paniers').value.id)
-              .pipe(
-                filter((subResMayBeOk: HttpResponse<IPaniers>) => subResMayBeOk.ok),
-                map((subResponse: HttpResponse<IPaniers>) => subResponse.body)
-              )
-              .subscribe(
-                (subRes: IPaniers) => (this.paniers = [subRes].concat(res)),
-                (subRes: HttpErrorResponse) => this.onError(subRes.message)
-              );
-          }
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-    this.userService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IUser[]>) => response.body)
-      )
-      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.userService.getMyAccount().subscribe(data => {this.myAccount = data; });
   }
 
   updateForm(utilisateurs: IUtilisateurs) {
@@ -116,14 +81,18 @@ export class PaymentComponent implements OnInit {
   }
 
   save() {
-    this.userService.getMyAccount().subscribe(data => {this.myAccount = data; });
-    // eslint-disable-next-line no-console
-    console.log(this.myAccount.body);
     this.isSaving = true;
     const utilisateurs = this.createFromForm();
     const myuser = this.createFromFormUser();
-    this.subscribeToSaveResponse(this.userService.update(myuser));
-    if (utilisateurs.id !== undefined) {
+    // eslint-disable-next-line no-console
+    console.log(myuser);
+    // eslint-disable-next-line no-console
+    this.userService.update(myuser).subscribe((data)=> console.log(data) );
+    // eslint-disable-next-line no-console
+    console.log("my user "  + myuser);
+    // eslint-disable-next-line no-console
+    console.log("my utilisateur "  + utilisateurs);
+    if ( utilisateurs.id !== undefined) {
       this.subscribeToSaveResponse(this.utilisateursService.update(utilisateurs));
     } else {
       this.subscribeToSaveResponse(this.utilisateursService.create(utilisateurs));
@@ -144,13 +113,12 @@ export class PaymentComponent implements OnInit {
           ? moment(this.editForm.get(['dateNaissance']).value, DATE_TIME_FORMAT)
           : undefined,
       paniers: this.editForm.get(['paniers']).value,
-      user: this.editForm.get(['user']).value
+      user: this.myAccount.body.id
     };
   }
 
   private getUser(){
-    const uid = this.editForm.get(['id']).value;
-    this.userService.getUser(uid).subscribe(data => { this.users = data; });
+    this.userService.getUser(this.myAccount.body.id).subscribe(data => { this.users = data; });
   }
 
   private createFromFormUser(): User {

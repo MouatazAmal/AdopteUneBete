@@ -26,6 +26,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -122,7 +123,6 @@ public class UserResource {
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already in use.
      */
     @PutMapping("/users")
-    @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST request to update User : {}", userDTO);
         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
@@ -195,5 +195,13 @@ public class UserResource {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User loggedUser = userRepository.findOneByLogin(login).orElseThrow(()->new NotFoundUserException(login));
         return new ResponseEntity<>(loggedUser, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/{id}")
+    @Transactional(readOnly = true)
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        log.debug("REST request to get Utilisateurs : {}", id);
+        Optional<User> utilisateurs = userRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(utilisateurs);
     }
 }
