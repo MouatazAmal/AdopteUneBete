@@ -71,7 +71,6 @@ public class CommandesResource {
      */
     @PostMapping("/commandes")
     public ResponseEntity<Commandes> createCommandes(@RequestBody Commandes commandes) throws URISyntaxException {
-        commandes.getAnimauxes().add(animauxRepository.findById(1L).get());
         log.debug("REST request to save Commandes : {}", commandes);
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User loggedUser = userRepository.findOneByLogin(login).orElseThrow(()->new NotFoundUserException(login));
