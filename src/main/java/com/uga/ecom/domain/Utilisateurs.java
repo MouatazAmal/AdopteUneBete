@@ -40,7 +40,7 @@ public class Utilisateurs implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, cascade =  CascadeType.ALL)
     private Paniers paniers;
 
-    @OneToMany(mappedBy = "utilisateurs",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "utilisateurs",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Commandes> commandes = new HashSet<>();
 
