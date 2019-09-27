@@ -60,6 +60,8 @@ export class AnimauxService {
             sexe: sexeAnimal,
             prixMin: prixMini,
             prixMax: prixMaxi,
+            animalStatut1: AnimalStatut.DISPONIBLE,
+            animalStatut2: AnimalStatut.RESERVE
           }
         });
     }else{

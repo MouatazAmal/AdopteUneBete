@@ -100,7 +100,8 @@ export class PaymentComponent implements OnInit {
   private createCommande(){
     const commande = this.createFromFormCommande();
     // eslint-disable-next-line no-console
-    this.commandesService.create(commande).subscribe((data) => this.onSaveSuccess(), () => this.onSaveError());;
+    this.commandesService.create(commande).subscribe((data) => this.onSaveSuccess(), () => this.onSaveError());
+    this.panierService.animauxes=[];
   }
   private createFromForm(): IUtilisateurs {
     return {
