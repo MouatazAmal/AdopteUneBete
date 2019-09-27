@@ -33,11 +33,11 @@ public class Commandes implements Serializable {
     @Column(name = "statut")
     private CommandeStatut statut;
 
-    @OneToMany(mappedBy = "commandes")
+    @OneToMany(mappedBy = "commandes",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Animaux> animauxes = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties("commandes")
     private Utilisateurs utilisateurs;
 

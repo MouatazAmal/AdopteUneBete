@@ -77,7 +77,7 @@ public class Animaux implements Serializable {
     @JsonIgnoreProperties("animauxes")
     private Paniers paniers;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties("animauxes")
     private Commandes commandes;
 

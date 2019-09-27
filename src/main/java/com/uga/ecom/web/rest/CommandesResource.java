@@ -1,22 +1,38 @@
 package com.uga.ecom.web.rest;
 
+import com.uga.ecom.domain.Animaux;
 import com.uga.ecom.domain.Commandes;
+import com.uga.ecom.domain.User;
+import com.uga.ecom.domain.Utilisateurs;
+import com.uga.ecom.domain.enumeration.AnimalStatut;
+import com.uga.ecom.domain.enumeration.CommandeStatut;
+import com.uga.ecom.exception.NotFoundAnimalException;
+import com.uga.ecom.exception.NotFoundPaniersException;
+import com.uga.ecom.exception.NotFoundUserException;
+import com.uga.ecom.repository.AnimauxRepository;
 import com.uga.ecom.repository.CommandesRepository;
+import com.uga.ecom.repository.UserRepository;
+import com.uga.ecom.repository.UtilisateursRepository;
 import com.uga.ecom.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing {@link com.uga.ecom.domain.Commandes}.
@@ -34,6 +50,15 @@ public class CommandesResource {
 
     private final CommandesRepository commandesRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UtilisateursRepository utilisateursRepository;
+
+    @Autowired
+    private AnimauxRepository animauxRepository;
+
     public CommandesResource(CommandesRepository commandesRepository) {
         this.commandesRepository = commandesRepository;
     }
@@ -41,17 +66,39 @@ public class CommandesResource {
     /**
      * {@code POST  /commandes} : Create a new commandes.
      *
-     * @param commandes the commandes to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new commandes, or with status {@code 400 (Bad Request)} if the commandes has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/commandes")
     public ResponseEntity<Commandes> createCommandes(@RequestBody Commandes commandes) throws URISyntaxException {
+        commandes.getAnimauxes().add(animauxRepository.findById(1L).get());
         log.debug("REST request to save Commandes : {}", commandes);
-        if (commandes.getId() != null) {
-            throw new BadRequestAlertException("A new commandes cannot already have an ID", ENTITY_NAME, "idexists");
+        String login = SecurityContextHolder.getContext().getAuthentication().getName();
+        User loggedUser = userRepository.findOneByLogin(login).orElseThrow(()->new NotFoundUserException(login));
+        Utilisateurs utilisateurs = utilisateursRepository.findById(loggedUser.getId())
+            .orElseThrow(()-> new NotFoundPaniersException());
+
+        commandes.setStatut(CommandeStatut.CONFIRMEE);
+        commandes.setDateCommande(Instant.now());
+        commandes.setUtilisateurs(utilisateurs);
+        utilisateurs.getCommandes().add(commandes);
+
+        Utilisateurs savedUtilisateur = utilisateursRepository.save(utilisateurs);
+
+        long count = savedUtilisateur.getCommandes().stream().count();
+        Commandes result = savedUtilisateur.getCommandes().stream().skip(count-1).findFirst().get();
+
+        Set<Animaux> animauxSet = new HashSet<>();
+
+        for (Animaux animal : commandes.getAnimauxes()){
+            animal.setStatut(AnimalStatut.VENDU);
+            animal.setCommandes(result);
+            animauxSet.add(animal);
+            animauxRepository.save(animal);
         }
-        Commandes result = commandesRepository.save(commandes);
+        result.setAnimauxes(animauxSet);
+        commandesRepository.save(result);
+
         return ResponseEntity.created(new URI("/api/commandes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
