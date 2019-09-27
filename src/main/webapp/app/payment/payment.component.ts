@@ -93,12 +93,15 @@ export class PaymentComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.utilisateursService.create(utilisateurs));
     }
-    const commande = this.createFromFormCommande();
-    // eslint-disable-next-line no-console
-    this.commandesService.create(commande).subscribe((data)=> console.log(data))
+    this.createCommande();
     this.router.navigate(['../finishPayment']);
   }
 
+  private createCommande(){
+    const commande = this.createFromFormCommande();
+    // eslint-disable-next-line no-console
+    this.commandesService.create(commande).subscribe((data) => this.onSaveSuccess(), () => this.onSaveError());;
+  }
   private createFromForm(): IUtilisateurs {
     return {
       ...new Utilisateurs(),
@@ -149,7 +152,7 @@ export class PaymentComponent implements OnInit {
 
   protected onSaveSuccess() {
     this.isSaving = false;
-    this.previousState();
+    //this.previousState();
   }
 
   protected onSaveError() {
