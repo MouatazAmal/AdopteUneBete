@@ -86,7 +86,6 @@ export class PaymentComponent implements OnInit {
     this.isSaving = true;
     const utilisateurs = this.createFromForm();
     const myuser = this.createFromFormUser();
-    const commande = this.createFromFormCommande(utilisateurs);
     // eslint-disable-next-line no-console
     this.userService.update(myuser).subscribe((data)=> console.log(data) );
     if ( utilisateurs.id !== undefined) {
@@ -94,6 +93,7 @@ export class PaymentComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.utilisateursService.create(utilisateurs));
     }
+    const commande = this.createFromFormCommande();
     // eslint-disable-next-line no-console
     this.commandesService.create(commande).subscribe((data)=> console.log(data))
     this.router.navigate(['../finishPayment']);
@@ -135,12 +135,11 @@ export class PaymentComponent implements OnInit {
     };
   }
 
-  private createFromFormCommande(utilisateur:IUtilisateurs): Commandes {
+  private createFromFormCommande(): Commandes {
     return {
       ...new Commandes(),
       animauxes:this.panierService.animauxes,
-      statut:CommandeStatut.NON_CONFIRMEE,
-      utilisateurs:utilisateur
+      statut:CommandeStatut.NON_CONFIRMEE
     };
   }
 
