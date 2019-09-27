@@ -84,4 +84,10 @@ export class PanierComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  goToProductDetailsFrom(animalId) {
+    // console.log(this.articleItem);
+    // this.stateService.data = this.articleItem; , { state: this.articleItem }
+    this.router.navigate(['../articlePage', animalId]);
+  }
+
 }

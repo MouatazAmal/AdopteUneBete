@@ -29,19 +29,21 @@ export class ArticlePageComponent implements OnInit {
   }
 
   addToPanier(){
-    this.articleItem.statut=AnimalStatut.RESERVE;
-    const newAnimal = this.animauxService.createFromAnimalForm(this.articleItem);
-    this.animauxService.update(newAnimal).subscribe(
-      () => {
-        // eslint-disable-next-line no-console
-        console.log('Enregistrement terminé !');
-      },
-      (error) => {
-        // eslint-disable-next-line no-console
-        console.log('Erreur ! : ' + error);
-      }
-    );;
-    this.panierService.addAnimaux(this.articleItem);
+    if(confirm("Animal ajouter au panier")){
+      this.articleItem.statut=AnimalStatut.RESERVE;
+      const newAnimal = this.animauxService.createFromAnimalForm(this.articleItem);
+      this.animauxService.update(newAnimal).subscribe(
+        () => {
+          // eslint-disable-next-line no-console
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          // eslint-disable-next-line no-console
+          console.log('Erreur ! : ' + error);
+        }
+      );;
+      this.panierService.addAnimaux(this.articleItem);
+    }
   }
 
   getResult(){
