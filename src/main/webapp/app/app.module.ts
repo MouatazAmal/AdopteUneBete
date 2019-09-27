@@ -41,7 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import {PanierService} from "app/panier/panier.service";
 import { PaymentModule } from './payment/payment.module';
-import { CanideComponent } from './canide/canide.component';
+import { CanideModule } from './canide/canide.module';
 import { FinishPaymentComponent } from './finish-payment/finish-payment.component';
 import { SuiviCommandeModule } from './suivi-commande/suivi-commande.module';
 //import { ArticleModule } from './article/article.module';
@@ -73,6 +73,7 @@ import { SuiviCommandeModule } from './suivi-commande/suivi-commande.module';
     AutresModule,
     ReptilesModule,
     PanierModule,
+    CanideModule,
     PaymentModule,
     SuiviCommandeModule
   ],
@@ -83,7 +84,7 @@ import { SuiviCommandeModule } from './suivi-commande/suivi-commande.module';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
-    CanideComponent,
+    //CanideComponent,
     FinishPaymentComponent,
     //SuiviCommandeComponent,
     //PaymentComponent
